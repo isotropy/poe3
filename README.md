@@ -1,2 +1,2 @@
-# poe3
+# poetry
 Haiku Community
