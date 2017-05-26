@@ -1,4 +1,4 @@
-export default (initialState = {
+export default {
   selectedReddit: "reactjs",
   postsByReddit: {}
-});
+};

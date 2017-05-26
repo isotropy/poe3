@@ -1,27 +1,20 @@
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { createStore } from "./store";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
+import Profile from "./components/profile";
+import Write from "./components/write";
+import Explore from "./components/explore";
+import Tags from "./components/tags";
 
-const PoetryApp = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
-
-      <hr />
-
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/topics" component={Topics} />
-    </div>
-  </Router>
-);
-
-export default
-  <Provider store={createStore()}>
-    <PoetryApp />
+export default store => () => (
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/profile" component={Profile} />
+        <Route path="/write" component={Write} />
+        <Route exact path="/" component={Explore} />
+        <Route exact path="/tags" component={Tags} />
+      </Switch>
+    </Router>
   </Provider>
 );
