@@ -9,7 +9,7 @@ export default {
         "high on the mountainside",
         "a single stalk of plumegrass wilts."
       ],
-      image: "/site/dev/images/bg-1.png",
+      image: "/dev/images/The_Scream.jpg",
       date: "01-01-711",
       exactDate: false,
       likeCount: 1434
@@ -19,7 +19,7 @@ export default {
       type: "haiku",
       author: "Matsuo Basho",
       lines: ["A crow settles", "on a withered branch:", "autumn nightfall.."],
-      image: "/site/dev/images/bg-2.png",
+      image: "/dev/images/woman-kooning.jpg",
       likeCount: 1132
     },
     {
