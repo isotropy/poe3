@@ -13,4 +13,4 @@ const Write = () => {
   )
 }
 
-export default connect(Write, state => state.explore)
+export default Write

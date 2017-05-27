@@ -15,6 +15,7 @@ export default store => () => (
           <Switch>
             <Route path="/profile" component={Profile} />
             <Route path="/write" component={Write} />
+            <Route exact path="/explore" component={Explore} />
             <Route exact path="/" component={Explore} />
             <Route exact path="/tags" component={Tags} />
           </Switch>
