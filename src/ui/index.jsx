@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { createStore } from "redux-jetpack";
 import initialState from "./initial-state";
-import * as exploreActions from "./actions/explore"
+import * as exploreActions from "./actions/explore";
 import App from "./app";
 
 const rootEl = document.getElementById("container");
