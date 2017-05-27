@@ -1,6 +1,7 @@
 import React from "react";
 import * as menuActions from "../../actions/menu";
 import { connect } from "redux-jetpack";
+import { Link } from "react-router-dom";
 
 function handleClick(item) {
   menuActions.select(item);
@@ -12,8 +13,12 @@ const Menu = ({ items }) => {
       {items.map(
         i =>
           i.selected
-            ? <li className="selected" click={() => handleClick(i.key)}>{i.text || i.key}</li>
-            : <li click={() => handleClick(i.key)}>{i.text || i.key}</li>
+            ? <li className="selected" onClick={() => handleClick(i.key)}>
+                <Link to = '/write'>{i.text || i.key}</Link>
+              </li>
+            : <li onClick={() => handleClick(i.key)}>
+                <Link to = '/write'>{i.text || i.key}</Link>
+              </li>
       )}
     </ul>
   );
