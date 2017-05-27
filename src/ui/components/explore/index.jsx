@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import * as exploreActions from "../../actions/explore";
+import { connect } from "redux-jetpack";
 
-export default () => {
-  const items = exploreActions.getLatest();
+const Explore = ({ latest }) => {
   return (
     <ul>
-      {items.map(item => <li><ul>{item.lines.map(i => <li>{i}</li>)}</ul></li>)}
+      {latest.map(item => <li><ul>{item.lines.map(i => <li>{i}</li>)}</ul></li>)}
     </ul>
   );
 };
+
+export default connect(Explore, state => state.explore);
