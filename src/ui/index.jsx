@@ -10,6 +10,9 @@ const rootEl = document.getElementById("container");
 
 const store = createStore(initialState);
 
+//WTF!
+delete AppContainer.prototype.unstable_handleError;
+
 const render = Component =>
   ReactDOM.render(
     <AppContainer>
