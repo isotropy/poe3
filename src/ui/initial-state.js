@@ -5,8 +5,7 @@ export default {
       { key: "write", text: "Write" },
       { key: "home", text: "Home" },
       { key: "explore", selected: true, text: "Explore" },
-      { key: "follow", text: "Follow" },
-      { key: "tags", text: "Tags" }
+      // { key: "tags", text: "Tags" }
     ]
   },
   auth: {

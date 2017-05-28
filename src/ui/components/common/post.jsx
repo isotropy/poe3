@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Like from './like'
 
 export default ({ post }) => {
   return (
@@ -7,6 +8,7 @@ export default ({ post }) => {
       style={{ backgroundImage: `url(${post.image})` || "none", backgroundSize: "cover" }}
     >
       <ul className="lines">{post.lines.map(i => <li>{i}</li>)}</ul>
+      <Like />
     </li>
   );
 };
