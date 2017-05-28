@@ -12,6 +12,6 @@ export default {
     loggedIn: false,
   },
   explore: {
-    latest: []
+    posts: []
   }
 };

@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import * as exploreActions from "../../actions/explore";
 import { connect } from "redux-jetpack";
-import Post from "../common/post";
+import Posts from "../common/posts";
 
-const Explore = ({ latest }) => {
-  return (
-    <ul>
-      {latest.map(item => <Post post={item} />)}
-    </ul>
-  );
+const Explore = ({ posts }) => {
+  return <Posts posts={posts} />;
 };
 
 export default connect(Explore, state => state.explore);

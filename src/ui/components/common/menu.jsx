@@ -9,7 +9,7 @@ function handleClick(item) {
 
 const Menu = ({ items }) => {
   return (
-    <ul>
+    <ul className="menu ">
       {items.map(
         i =>
           i.selected

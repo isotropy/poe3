@@ -6,7 +6,7 @@ export default ({ post }) => {
       className="post"
       style={{ backgroundImage: `url(${post.image})` || "none", backgroundSize: "cover" }}
     >
-      <ul>{post.lines.map(i => <li>{i}</li>)}</ul>
+      <ul className="lines">{post.lines.map(i => <li>{i}</li>)}</ul>
     </li>
   );
 };
