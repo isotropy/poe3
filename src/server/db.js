@@ -19,7 +19,7 @@ export default {
       type: "haiku",
       author: "Matsuo Basho",
       lines: ["A crow settles", "on a withered branch:", "autumn nightfall.."],
-      image: "/dev/images/woman-kooning.jpg",
+      image: "/dev/images/posts/woman-kooning.jpg",
       likeCount: 1132
     },
     {
@@ -28,23 +28,23 @@ export default {
       author: 'Edvard Munch',
       authorId: 1,
       lines: ['The slow reverberation', 'Splits the silence', 'Shatters the soul'],
-      image: '/site/dev/images/bg-1.png',
+      image: "/dev/images/The_Scream.jpg",
       likeCount: 0
     }
   ],
-  profiles: [
+  users: [
     {
       id: 1,
       name: 'Edvard Munch',
-      image: '/site/profile/images/1.png',
-      follows: [ 2 ],
+      image: '/site/dev/images/users/1.png',
+      follows: [ ],
       likes: [ ]
     },
     {
       id: 2,
       name: 'Salvador Dali',
-      image: '/site/profile/images/1.png',
-      follows: [ ],
+      image: '/site/dev/images/users/1.png',
+      follows: [ 1 ],
       likes: [ ]
     }
   ]

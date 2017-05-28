@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as exploreActions from "../../actions/explore";
+import * as homeActions from "../../actions/home";
 import { connect } from "redux-jetpack";
 import Posts from "../common/posts";
 
-class Explore extends Component {
+class Home extends Component {
   componentWillMount() {
-      exploreActions.getLatest()
+      homeActions.getLatest()
   }
 
   render() {
@@ -13,4 +13,4 @@ class Explore extends Component {
   }
 };
 
-export default connect(Explore, state => state.explore);
+export default connect(Home, state => state.home);
