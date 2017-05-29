@@ -28,6 +28,9 @@ export default {
       author: 'Edvard Munch',
       authorId: 1,
       lines: ['The slow reverberation', 'Splits the silence', 'Shatters the soul'],
+      comments: [{user: 2, msg: 'Ballz'},
+      [{user: 2, msg: 'Fab'}, {user: 1, msg: 'Thank'}],
+      {user: 2, msg: 'Tardy'}],
       image: "/dev/images/The_Scream.jpg",
       likeCount: 0
     }

@@ -1,8 +1,8 @@
 import * as homeAPI from "../../server/home";
-import { updateState } from "redux-jetpack";
+import { updateState, getState } from "redux-jetpack";
 
-export async function getLatest(user) {
-  const results = await homeAPI.getLatest({ id: 1 });
+export async function getLatest() {
+  const results = await homeAPI.getLatest(getState().user);
 
   updateState("home", state => ({
     ...state,

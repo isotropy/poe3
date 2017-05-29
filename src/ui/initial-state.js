@@ -9,7 +9,14 @@ export default {
     ]
   },
   auth: {
-    loggedIn: false,
+    loggedIn: true,
+  },
+  user: {
+    id: 2,
+    name: 'Salvador Dali',
+    image: '/site/dev/images/users/1.png',
+    follows: [ 1 ],
+    likes: [ ]
   },
   explore: {
     posts: []
