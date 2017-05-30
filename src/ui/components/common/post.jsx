@@ -10,7 +10,7 @@ export default ({ post }) => {
     >
       <ul className="lines">{post.lines.map(i => <li>{i}</li>)}</ul>
       <Like />
-      <Comments comments = {post.comments} />
+      <Comments postId = {post.id} />
     </li>
   );
 };

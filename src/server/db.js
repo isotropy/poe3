@@ -28,11 +28,34 @@ export default {
       author: 'Edvard Munch',
       authorId: 1,
       lines: ['The slow reverberation', 'Splits the silence', 'Shatters the soul'],
-      comments: [{user: 2, msg: 'Ballz'},
-      [{user: 2, msg: 'Fab'}, {user: 1, msg: 'Thank'}],
-      {user: 2, msg: 'Tardy'}],
       image: "/dev/images/The_Scream.jpg",
+      timeStamp: '17:28 05-07-2017',
       likeCount: 0
+    }
+  ],
+  comments: [
+    {
+      id: 1,
+      postId: 3,
+      userId: 2,
+      message: 'Whoa!',
+      timestamp: '17:32 05-07-2017'
+    },
+    {
+      id: 2,
+      postId: 3,
+      userId: 2,
+      message: 'This is terrible..',
+      timestamp: '04:39 06-07-2017'
+    }
+  ],
+  commentReplies: [
+    {
+      id: 1,
+      parentCommentId: 2,
+      userId: 1,
+      message: 'Well, too bad for you',
+      timestamp: '07:22 06-07-2017'
     }
   ],
   users: [

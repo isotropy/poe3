@@ -1,29 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "redux-jetpack";
+import * as commentsActions from "../../actions/comments";
+import Comment from './comment'
 
-export default ({ comments }) => {
-  const toggleComments = () => {
-    //open/close comments
+class Comments extends Component {
+  getComments() {
+    commentsActions.getLatest(this.props.postId)
   }
-  return (
-    <div>
-      <div onClick = { toggleComments }>Comment Icon:</div>
-      <ul style = {{ 'fontColor': 'black' }}>
-        {comments.map(
-          comment =>
-            comment.constructor !== Array
-              ? <li>
-                  { comment.user } => { comment.msg }
-                </li>
-              : <ul>
-                  {comment.map(
-                    c =>
-                      <li>
-                        { c.user } => { c.msg }
-                      </li>
-                    )}
-                </ul>
-        )}
-      </ul>
-    </div>
-  )
+
+  render() {
+    if (false)
+      return
+        <div>
+          <input type = 'button' onClick = { this.getComments.bind(this) } value = 'Comments' />
+          <ul className = 'comments'>
+            {this.props.comments.map(comment => <Comment comment = {comment} />)}
+          </ul>
+        </div>
+    return <input type = 'button' onClick = { this.getComments.bind(this) } value = 'Comments' />
+  }
 }
+
+export default connect(Comments, state => state.comments)

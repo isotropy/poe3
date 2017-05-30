@@ -23,5 +23,9 @@ export default {
   },
   home: {
     posts: []
+  },
+  comments: {
+    comments: [],
+    commentsOpen: [ ]
   }
 };

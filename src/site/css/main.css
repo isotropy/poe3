@@ -24,3 +24,9 @@ ul.posts { display: flex; flex-direction: column; }
     ul.posts > li.post ul.lines > li {
       padding: 4px; display: inline; float: left; clear: both; background: black;
     }
+
+ul.comments { display: flex; flex-direction: column; }
+  ul.comments > li.comment {
+    box-sizing: border-box; margin-bottom: 24px; padding-top: 30px; padding-left: 24px;
+    height: 20px; font-size: 1.2em; line-height: 1.5em; font-weight: 100; color: blue;
+  }
