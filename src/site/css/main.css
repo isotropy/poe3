@@ -27,6 +27,6 @@ ul.posts { display: flex; flex-direction: column; }
 
 ul.comments { display: flex; flex-direction: column; }
   ul.comments > li.comment {
-    box-sizing: border-box; margin-bottom: 24px; padding-top: 30px; padding-left: 24px;
+    box-sizing: border-box; margin-bottom: 24px; padding-left: 200px;
     height: 20px; font-size: 1.2em; line-height: 1.5em; font-weight: 100; color: blue;
   }

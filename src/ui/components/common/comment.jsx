@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 export default ({ comment }) => {
-  console.log(comment)
   return (
     <li className = 'comment'>
       <img src = {comment.userPicture} />

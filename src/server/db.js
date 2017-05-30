@@ -9,7 +9,7 @@ export default {
         "high on the mountainside",
         "a single stalk of plumegrass wilts."
       ],
-      image: "/dev/images/The_Scream.jpg",
+      image: "/dev/images/posts/The_Scream.jpg",
       date: "01-01-711",
       exactDate: false,
       likeCount: 1434
@@ -28,7 +28,7 @@ export default {
       author: 'Edvard Munch',
       authorId: 1,
       lines: ['The slow reverberation', 'Splits the silence', 'Shatters the soul'],
-      image: "/dev/images/The_Scream.jpg",
+      image: "/dev/images/posts/The_Scream.jpg",
       timeStamp: '17:28 05-07-2017',
       likeCount: 0
     }
@@ -47,6 +47,20 @@ export default {
       userId: 2,
       message: 'This is terrible..',
       timestamp: '04:39 06-07-2017'
+    },
+    {
+      id: 3,
+      postId: 1,
+      userId: 2,
+      message: 'Sickkk..',
+      timestamp: '00:00 01-01-2000'
+    },
+    {
+      id: 4,
+      postId: 2,
+      userId: 2,
+      message: 'rekt!',
+      timestamp: '00:00 01-01-2000'
     }
   ],
   commentReplies: [

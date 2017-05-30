@@ -26,6 +26,6 @@ export default {
   },
   comments: {
     comments: [],
-    commentsOpen: [ ]
+    commentsIsOpen: []
   }
 };
