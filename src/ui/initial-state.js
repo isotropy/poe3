@@ -5,6 +5,7 @@ export default {
       { key: "write", text: "Write" },
       { key: "home", text: "Home" },
       { key: "explore", selected: true, text: "Explore" },
+      { key: 'profile', text: 'Profile' }
       // { key: "tags", text: "Tags" }
     ]
   },
@@ -26,6 +27,6 @@ export default {
   },
   comments: {
     comments: [],
-    commentsIsOpen: []
+    commentsIsOpen: 0
   }
 };

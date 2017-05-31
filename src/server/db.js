@@ -39,28 +39,28 @@ export default {
       postId: 3,
       userId: 2,
       message: 'Whoa!',
-      timestamp: '17:32 05-07-2017'
+      timeStamp: '17:32 05-07-2017'
     },
     {
       id: 2,
       postId: 3,
       userId: 2,
       message: 'This is terrible..',
-      timestamp: '04:39 06-07-2017'
+      timeStamp: '04:39 06-07-2017'
     },
     {
       id: 3,
       postId: 1,
       userId: 2,
       message: 'Sickkk..',
-      timestamp: '00:00 01-01-2000'
+      timeStamp: '00:00 01-01-2000'
     },
     {
       id: 4,
       postId: 2,
       userId: 2,
       message: 'rekt!',
-      timestamp: '00:00 01-01-2000'
+      timeStamp: '00:00 01-01-2000'
     }
   ],
   commentReplies: [
@@ -69,7 +69,7 @@ export default {
       parentCommentId: 2,
       userId: 1,
       message: 'Well, too bad for you',
-      timestamp: '07:22 06-07-2017'
+      timeStamp: '07:22 06-07-2017'
     }
   ],
   users: [
