@@ -8,7 +8,3 @@ export async function getProfile(userId) {
     user: results
   }));
 }
-
-export async function getUsers(userId) {
-  return await profileAPI.getProfile(userId)
-}

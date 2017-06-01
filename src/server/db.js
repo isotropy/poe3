@@ -38,6 +38,8 @@ export default {
       id: 1,
       postId: 3,
       userId: 2,
+      userName: 'Salvador Dali',
+      userPicture: '/site/dev/images/users/1.png',
       message: 'Whoa!',
       timeStamp: '17:32 05-07-2017'
     },
@@ -45,6 +47,8 @@ export default {
       id: 2,
       postId: 3,
       userId: 2,
+      userName: 'Salvador Dali',
+      userPicture: '/site/dev/images/users/1.png',
       message: 'This is terrible..',
       timeStamp: '04:39 06-07-2017'
     },
@@ -53,23 +57,38 @@ export default {
       postId: 1,
       userId: 2,
       message: 'Sickkk..',
+      userName: 'Salvador Dali',
+      userPicture: '/site/dev/images/users/1.png',
       timeStamp: '00:00 01-01-2000'
     },
     {
       id: 4,
       postId: 2,
       userId: 2,
+      userName: 'Salvador Dali',
+      userPicture: '/site/dev/images/users/1.png',
       message: 'rekt!',
       timeStamp: '00:00 01-01-2000'
-    }
-  ],
-  commentReplies: [
+    },
     {
-      id: 1,
+      id: 5,
+      postId: 3,
       parentCommentId: 2,
       userId: 1,
+      userName: 'Edvard Munch',
+      userPicture: '/site/dev/images/users/1.png',
       message: 'Well, too bad for you',
       timeStamp: '07:22 06-07-2017'
+    },
+    {
+      id: 6,
+      postId: 3,
+      parentCommentId: 2,
+      userId: 2,
+      userName: 'Salvador Dali',
+      userPicture: '/site/dev/images/users/1.png',
+      message: 'meh',
+      timeStamp: '09:03 07-07-2017'
     }
   ],
   users: [

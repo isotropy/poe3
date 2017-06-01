@@ -30,3 +30,5 @@ ul.comments { display: flex; flex-direction: column; }
     box-sizing: border-box; margin-bottom: 24px; padding-left: 200px;
     font-size: 1.2em; line-height: 1.5em; font-weight: 60; color: blue;
   }
+
+.write { height: 500px; width: 400px; white-space: pre-line; }
