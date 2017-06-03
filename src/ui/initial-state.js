@@ -25,6 +25,9 @@ export default {
   home: {
     posts: []
   },
+  myPosts: {
+    posts: []
+  },
   comments: {
     comments: [],
     commentsIsOpen: 0

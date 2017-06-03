@@ -8,3 +8,12 @@ export async function getProfile(userId) {
     user: results
   }));
 }
+
+export async function getPosts(userId) {
+  const results = await profileAPI.getPosts(userId)
+  console.log('action', results)
+  updateState("myPosts", state => ({
+    ...state,
+    posts: results
+  }));
+}

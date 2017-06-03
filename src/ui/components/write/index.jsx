@@ -8,10 +8,17 @@ class Write extends Component {
 
   showColors = () => this.setState({ showPalette: !this.state.showPalette })
 
-  colorChange = ({ hex }) => {
-    this.haiku.color = hex
-    this.setState({ color: hex })
-  }
+  colorChange = ({ hex }) => { this.setState({ color: hex }) }
+
+  writeHaiku = () =>
+    writeActions.write({
+      author: this.props.name,
+      authorId: this.props.id,
+      type: 'haiku',
+      lines: this.haiku.lines.innerText.trim().split('\n'),
+      color: this.state.color,
+      timeStamp: new Date().toLocaleString()
+    })
 
   componentWillMount() { this.setState({ color: 'gray', showPalette: false }) }
 
@@ -28,10 +35,10 @@ class Write extends Component {
         <div style={{display: this.state.showPalette ? 'block' : 'none' }}>
           <CirclePicker onChangeComplete = { color => this.colorChange(color) }/>
         </div>
-        <input type = 'button' value = 'Send it away' onClick = {() => writeActions.write({ ...this.haiku, lines: this.haiku.lines.innerText.trim().split('\n') })} />
+        <input type = 'button' value = 'Send it away' onClick = { this.writeHaiku } />
       </div>
     )
   }
 }
 
-export default Write
+export default connect(Write, state => state.user)

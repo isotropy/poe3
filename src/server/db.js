@@ -96,7 +96,7 @@ export default {
       id: 1,
       name: 'Edvard Munch',
       image: '/site/dev/images/users/1.png',
-      follows: [ ],
+      follows: [ 2 ],
       likes: [ ]
     },
     {
