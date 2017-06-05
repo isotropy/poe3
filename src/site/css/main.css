@@ -31,4 +31,9 @@ ul.comments { display: flex; flex-direction: column; }
     font-size: 1.2em; line-height: 1.5em; font-weight: 60; color: blue;
   }
 
+  ul.comments > li.childComment {
+    box-sizing: border-box; margin-bottom: 24px; padding-left: 230px;
+    font-size: 1em; line-height: 1em; font-weight: 30; color: blue;
+  }
+
 .write { height: 500px; width: 400px; white-space: pre-line; }
