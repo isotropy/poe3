@@ -9,7 +9,7 @@ export default {
         "high on the mountainside",
         "a single stalk of plumegrass wilts."
       ],
-      image: "/dev/images/posts/The_Scream.jpg",
+      image: "The_Scream.jpg",
       date: "01-01-711",
       exactDate: false,
       likeCount: 1434
@@ -106,5 +106,15 @@ export default {
       follows: [ 1 ],
       likes: [ ]
     }
-  ]
+  ],
+  homeFeed: [
+    { userId: 1, postId: 12 },
+    { userId: 1, postId: 14 },
+    { userId: 2, postId: 12 }
+  ],
+  exploreFeed: [
+    { userId: 1, postId: 12 },
+    { userId: 1, postId: 14 },
+    { userId: 2, postId: 12 }
+  ],
 };

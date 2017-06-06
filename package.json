@@ -20,7 +20,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
-    "redux-jetpack": "2"
+    "redux-jetpack": "0.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -35,7 +35,7 @@
     "copyfiles": "^1.2.0",
     "css-loader": "^0.28.4",
     "mocha": "*",
-    "react-hot-loader": "@next",
+    "react-hot-loader": "3.0.0-beta.7",
     "rimraf": "^2.6.1",
     "should": "*",
     "source-map-support": "^0.4.8",
