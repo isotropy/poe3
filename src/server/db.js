@@ -110,11 +110,12 @@ export default {
   homeFeed: [
     { userId: 1, postId: 12 },
     { userId: 1, postId: 14 },
-    { userId: 2, postId: 12 }
+    { userId: 2, postId: 3 }
   ],
   exploreFeed: [
-    { userId: 1, postId: 12 },
-    { userId: 1, postId: 14 },
-    { userId: 2, postId: 12 }
+    { userId: 1, postId: 1 },
+    { userId: 1, postId: 2 },
+    { userId: 2, postId: 1 },
+    { userId: 2, postId: 2 },
   ],
 };

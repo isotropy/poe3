@@ -1,44 +1,53 @@
-import React, { Component } from 'react'
-import * as writeActions from '../../actions/write'
-import { connect } from 'redux-jetpack'
-import { CirclePicker } from 'react-color'
+import React, { Component } from "react";
+import { connect } from "redux-jetpack";
+import BGSelect from "./bgselect";
 
 class Write extends Component {
-  haiku = {  }
+  lines = "";
+  haiku = {};
 
-  showColors = () => this.setState({ showPalette: !this.state.showPalette })
+  componentWillMount() {
+    this.setState({
+      hidden: false
+    });
+  }
 
-  colorChange = ({ hex }) => { this.setState({ color: hex }) }
-
-  writeHaiku = () =>
-    writeActions.write({
+  writeHaiku = () => {
+    this.haiku = {
       author: this.props.name,
       authorId: this.props.id,
-      type: 'haiku',
-      lines: this.haiku.lines.innerText.trim().split('\n'),
-      color: this.state.color,
+      type: "haiku",
+      lines: this.lines.innerText.trim().split("\n"),
       timeStamp: new Date().toLocaleString()
-    })
-
-  componentWillMount() { this.setState({ color: 'gray', showPalette: false }) }
+    };
+    this.setState({
+      hidden: !this.state.hidden
+    });
+  };
 
   render() {
     return (
       <div>
-        <label>Your haiku here: </label>
-        <div
-          contentEditable = 'true' className = 'write'
-          style = {{ backgroundColor: this.state.color }}
-          ref = { input => { this.haiku.lines = input } }>
-        </div>
-        <input type = 'button' value = 'Select Color' onClick = {this.showColors} />
-        <div style={{display: this.state.showPalette ? 'block' : 'none' }}>
-          <CirclePicker onChangeComplete = { color => this.colorChange(color) }/>
-        </div>
-        <input type = 'button' value = 'Send it away' onClick = { this.writeHaiku } />
+        {!this.state.hidden &&
+          <div>
+            <div
+              contentEditable="true"
+              className="write"
+              style={{ backgroundColor: "purple" }}
+              ref={input => {
+                this.lines = input;
+              }}
+            />
+            <input
+              type="button"
+              value="Choose Colors"
+              onClick={this.writeHaiku}
+            />
+          </div>}
+        {this.state.hidden && <BGSelect haiku={this.haiku} />}
       </div>
-    )
+    );
   }
 }
 
-export default connect(Write, state => state.user)
+export default connect(Write, state => state.user);

@@ -13,22 +13,20 @@ class Comments extends Component {
       <div>
         <input
           type="button"
-          onClick={this.getComments.bind(this)}
           value="Comments"
+          onClick={this.getComments.bind(this)}
         />
         {this.props.commentsIsOpen === this.props.postId &&
           <ul className="comments">
-            {this.props.comments.parentComments.map(
-              comment =>
-                comment.postId === this.props.postId
-                  ? this.props.comments.childComments.hasOwnProperty(comment.id)
-                      ? <ul className="comments">
-                          <Comment comment={comment} />
-                          {this.props.comments.childComments[
-                            comment.id
-                          ].map(cComment => <Comment comment={cComment} />)}
-                        </ul>
-                      : <Comment comment={comment} />
+            {this.props.comments.map(
+              c =>
+                c.postId === this.props.postId
+                  ? c["children"]
+                    ? <ul className="comments">
+                        <Comment comment={c} />
+                        {c.children.map(cc => <Comment comment={cc} />)}
+                      </ul>
+                    : <Comment comment={c} />
                   : ""
             )}
           </ul>}
