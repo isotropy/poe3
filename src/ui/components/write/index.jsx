@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import BGSelect from "./bgselect";
+import * as writeActions from "../../actions/write";
+import ColorSelect from "./colorselect";
+import ImageSelect from "./imageselect";
 
 class Write extends Component {
   lines = "";
@@ -8,11 +10,12 @@ class Write extends Component {
 
   componentWillMount() {
     this.setState({
-      hidden: false
+      editable: false,
+      colors: true
     });
   }
 
-  writeHaiku = () => {
+  saveHaiku = () => {
     this.haiku = {
       author: this.props.name,
       authorId: this.props.id,
@@ -20,15 +23,25 @@ class Write extends Component {
       lines: this.lines.innerText.trim().split("\n"),
       timeStamp: new Date().toLocaleString()
     };
-    this.setState({
-      hidden: !this.state.hidden
-    });
+    this.toggleActive("edit");
   };
+
+  toggleActive = edit => {
+    edit === 'edit'
+      ? this.setState({
+          editable: !this.state.editable
+        })
+      : this.setState({
+          colors: !this.state.colors
+        });
+  };
+
+  writeHaiku = haiku => writeActions.write(haiku);
 
   render() {
     return (
       <div>
-        {!this.state.hidden &&
+        {!this.state.editable &&
           <div>
             <div
               contentEditable="true"
@@ -36,15 +49,28 @@ class Write extends Component {
               style={{ backgroundColor: "purple" }}
               ref={input => {
                 this.lines = input;
-              }}
-            />
+              }}>{this.lines}</div>
             <input
               type="button"
               value="Choose Colors"
-              onClick={this.writeHaiku}
+              onClick={this.saveHaiku}
             />
           </div>}
-        {this.state.hidden && <BGSelect haiku={this.haiku} />}
+        {this.state.editable &&
+          <div>
+            {this.state.colors &&
+              <ColorSelect
+                haiku={this.haiku}
+                writeHaiku={this.writeHaiku}
+                toggleActive={this.toggleActive}
+              />}
+            {!this.state.colors &&
+              <ImageSelect
+                haiku={this.haiku}
+                writeHaiku={this.writeHaiku}
+                toggleActive={this.toggleActive}
+              />}
+          </div>}
       </div>
     );
   }
