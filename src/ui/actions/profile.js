@@ -10,7 +10,7 @@ export async function getProfile(userId) {
 }
 
 export async function getPosts(userId) {
-  const results = await profileAPI.getPosts(userId)
+  const results = await profileAPI.getPosts(userId);
   updateState("myPosts", state => ({
     ...state,
     posts: results

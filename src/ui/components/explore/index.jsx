@@ -5,12 +5,12 @@ import Posts from "../common/posts";
 
 class Explore extends Component {
   componentWillMount() {
-      exploreActions.getLatest()
+    exploreActions.getLatest(this.props.user);
   }
 
   render() {
-    return <Posts posts={this.props.posts} />;
+    return <Posts posts={this.props.explore.posts} user={this.props.user} />;
   }
-};
+}
 
-export default connect(Explore, state => state.explore);
+export default connect(Explore, state => state);

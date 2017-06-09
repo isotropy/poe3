@@ -27,7 +27,7 @@ class Write extends Component {
   };
 
   toggleActive = edit => {
-    edit === 'edit'
+    edit === "edit"
       ? this.setState({
           editable: !this.state.editable
         })
@@ -36,7 +36,9 @@ class Write extends Component {
         });
   };
 
-  writeHaiku = haiku => writeActions.write(haiku);
+  writeHaiku = haiku => {
+    writeActions.write({ ...haiku, lines: haiku.lines.join("\n") });
+  };
 
   render() {
     return (
@@ -49,7 +51,9 @@ class Write extends Component {
               style={{ backgroundColor: "purple" }}
               ref={input => {
                 this.lines = input;
-              }}>{this.lines}</div>
+              }}>
+              {this.lines}
+            </div>
             <input
               type="button"
               value="Choose Colors"
