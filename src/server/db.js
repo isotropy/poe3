@@ -27,6 +27,16 @@ export default {
       image: "The_Scream",
       timeStamp: "17:28 05-07-2017",
       likeCount: 0
+    },
+    {
+      id: 4,
+      type: "haiku",
+      author: "Salvador Dali",
+      authorId: 2,
+      lines: "Greens and Beans\nSeamless Dreams\nSinful Feen",
+      color: "#37512e",
+      timeStamp: "19:38 20-07-2017",
+      likeCount: 0
     }
   ],
   comments: [
@@ -115,7 +125,8 @@ export default {
     { userId: 2, postId: 2 }
   ],
   log: [
-    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "04:39 06-07-2017" },
-    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "09:03 07-07-2017" }
+    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "07:22 06-07-2017" },
+    { userId: 2, actionUser: 1, type: "comment", postId: 3, timeStamp: "04:39 06-07-2017" },
+    { userId: 2, actionUser: 1, type: "comment", postId: 3, timeStamp: "09:03 07-07-2017" }
   ]
 };
