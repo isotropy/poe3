@@ -15,7 +15,7 @@ export default {
   user: {
     id: 2,
     name: 'Salvador Dali',
-    image: '/site/dev/images/users/1.png',
+    image: 'dali',
     follows: [ 1 ],
     likes: [ ]
   },

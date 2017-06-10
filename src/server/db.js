@@ -113,5 +113,9 @@ export default {
     { userId: 1, postId: 2 },
     { userId: 2, postId: 1 },
     { userId: 2, postId: 2 }
+  ],
+  log: [
+    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "04:39 06-07-2017" },
+    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "09:03 07-07-2017" }
   ]
 };

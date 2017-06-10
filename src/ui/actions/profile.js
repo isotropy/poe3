@@ -3,10 +3,7 @@ import { getState, updateState } from "redux-jetpack";
 
 export async function getProfile(userId) {
   const results = await profileAPI.getProfile(userId);
-  updateState("user", state => ({
-    ...state,
-    user: results
-  }));
+  updateState("user", state => ({ ...results }));
 }
 
 export async function getPosts(userId) {
