@@ -2,13 +2,10 @@ import React, { Component } from "react";
 
 class ImageSelect extends Component {
   image = "";
+
   imageParse = () => {
     const reader = new FileReader();
-    reader.onload = img => {
-      this.setState({
-        image: img.target.result
-      });
-    };
+    reader.onload = img => this.setState({ image: img.target.result });
     reader.readAsDataURL(this.image.files[0]);
   };
 
@@ -32,9 +29,7 @@ class ImageSelect extends Component {
           </li>
         </ul>
         <input
-          ref={input => {
-            this.image = input;
-          }}
+          ref={input => (this.image = input)}
           type="file"
           onChange={e => this.imageParse(e)}
         />

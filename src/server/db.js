@@ -5,7 +5,7 @@ export default {
       type: "haiku",
       author: "Ō no Yasumaro",
       lines: "While you decline to cry\nhigh on the mountainside\na single stalk of plumegrass wilts.\n",
-      image: "The_Scream.jpg",
+      image: "The_Scream",
       date: "01-01-711",
       exactDate: false,
       likeCount: 1434
@@ -15,7 +15,7 @@ export default {
       type: "haiku",
       author: "Matsuo Basho",
       lines: "A crow settles\non a withered branch\nautumn nightfall..\n",
-      image: "/dev/images/posts/woman-kooning.jpg",
+      image: "woman-kooning",
       likeCount: 1132
     },
     {
@@ -24,7 +24,7 @@ export default {
       author: "Edvard Munch",
       authorId: 1,
       lines: "The slow reverberation\nSplits the silence\nShatters the soul",
-      image: "/dev/images/posts/The_Scream.jpg",
+      image: "The_Scream",
       timeStamp: "17:28 05-07-2017",
       likeCount: 0
     }
@@ -35,7 +35,7 @@ export default {
       postId: 3,
       userId: 2,
       userName: "Salvador Dali",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "dali",
       message: "Whoa!",
       timeStamp: "17:32 05-07-2017"
     },
@@ -44,7 +44,7 @@ export default {
       postId: 3,
       userId: 2,
       userName: "Salvador Dali",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "dali",
       message: "This is terrible..",
       timeStamp: "04:39 06-07-2017"
     },
@@ -54,7 +54,7 @@ export default {
       userId: 2,
       message: "Sickkk..",
       userName: "Salvador Dali",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "dali",
       timeStamp: "00:00 01-01-2000"
     },
     {
@@ -62,7 +62,7 @@ export default {
       postId: 2,
       userId: 2,
       userName: "Salvador Dali",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "dali",
       message: "rekt!",
       timeStamp: "00:00 01-01-2000"
     },
@@ -72,7 +72,7 @@ export default {
       parentCommentId: 2,
       userId: 1,
       userName: "Edvard Munch",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "munch",
       message: "Well, too bad for you",
       timeStamp: "07:22 06-07-2017"
     },
@@ -82,7 +82,7 @@ export default {
       parentCommentId: 2,
       userId: 2,
       userName: "Salvador Dali",
-      userPicture: "/site/dev/images/users/1.png",
+      userPicture: "dali",
       message: "meh",
       timeStamp: "09:03 07-07-2017"
     }
@@ -91,14 +91,14 @@ export default {
     {
       id: 1,
       name: "Edvard Munch",
-      image: "/site/dev/images/users/1.png",
+      image: "munch",
       follows: "2",
       likes: ""
     },
     {
       id: 2,
       name: "Salvador Dali",
-      image: "/site/dev/images/users/1.png",
+      image: "dali",
       follows: "1",
       likes: ""
     }

@@ -25,10 +25,21 @@ class Comments extends Component {
                     ? <ul className="comments">
                         <Comment comment={c} />
                         {c.children.map(cc => <Comment comment={cc} />)}
+                        <input
+                          ref={input => (this.image = input)}
+                          type="text"
+                          value="Child Comments"
+                        />
+                        <input type="button" onClick="submitCComment" />
                       </ul>
                     : <Comment comment={c} />
                   : ""
             )}
+            <input
+              ref={input => (this.comment = input)}
+              type="text"
+              value="Comments"
+            />
           </ul>}
       </div>
     );
