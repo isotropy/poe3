@@ -10,7 +10,7 @@ export async function getLatest(user) {
         ? post
         : {
             ...post,
-            image: fs.find(f => f.filename === post.image)["contents"]
+            image: fs.images.find(f => f.filename === post.image)["contents"]
           }
   );
 }
