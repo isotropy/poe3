@@ -17,6 +17,8 @@ export async function getLatest(postId) {
 
   if (getState().comments.commentsIsOpen === postId) postId = null;
 
+  console.log('read', groupedComments)
+
   updateState("comments", state => ({
     ...state,
     comments: groupedComments,

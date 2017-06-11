@@ -1,8 +1,25 @@
 import React, { Component } from "react";
-import * as commentsActions from "../../actions/comments";
+import * as commentActions from "../../actions/comment";
 
-class Reply extends Component {
+export default ({ updateCB, postId, user, parentComment }) => {
+  let comment = "";
 
-}
+  const postComment = () => {
+    commentActions.write({
+      postId,
+      userId: user.id,
+      userName: user.name,
+      userPicture: user.image,
+      message: comment.value,
+      timeStamp: new Date().toLocaleString()
+    });
+    updateCB(postId);
+  };
 
-export default Reply
+  return (
+    <div>
+      <input type="text" ref={input => (comment = input)} />
+      <input type="button" onClick={postComment} />
+    </div>
+  );
+};

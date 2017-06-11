@@ -13,7 +13,7 @@ export default ({ post, user }) => {
       }}>
       <ul className="lines">{post.lines.split("\n").map(i => <li>{i}</li>)}</ul>
       <Like postId={post.id} userId={user.id} />
-      <Comments postId={post.id} userId={user.id} />
+      <Comments postId={post.id} user={user} />
     </li>
   );
 };

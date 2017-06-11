@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import * as commentsActions from "../../actions/comments";
 import Comment from "./comment";
+import Reply from "./reply";
 
 class Comments extends Component {
-  getComments() {
-    commentsActions.getLatest(this.props.postId);
+  getComments(postId) {
+    commentsActions.getLatest(postId);
   }
 
   render() {
@@ -14,7 +15,7 @@ class Comments extends Component {
         <input
           type="button"
           value="Comments"
-          onClick={this.getComments.bind(this)}
+          onClick={() => this.getComments(this.props.postId)}
         />
         {this.props.commentsIsOpen === this.props.postId &&
           <ul className="comments">
@@ -29,6 +30,7 @@ class Comments extends Component {
                     : <Comment comment={c} />
                   : ""
             )}
+            <Reply updateCB={this.getComments} postId={this.props.postId} user={this.props.user}/>
           </ul>}
       </div>
     );
