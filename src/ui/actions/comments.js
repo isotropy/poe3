@@ -1,5 +1,4 @@
 import * as commentsAPI from "../../server/comments";
-import * as profileActions from "./profile";
 import { getState, updateState } from "redux-jetpack";
 import ramda from "ramda";
 
@@ -16,8 +15,6 @@ export async function getLatest(postId) {
     : [];
 
   if (getState().comments.commentsIsOpen === postId) postId = null;
-
-  console.log('read', groupedComments)
 
   updateState("comments", state => ({
     ...state,

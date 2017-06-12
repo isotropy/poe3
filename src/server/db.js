@@ -4,7 +4,8 @@ export default {
       id: 1,
       type: "haiku",
       author: "Ō no Yasumaro",
-      lines: "While you decline to cry\nhigh on the mountainside\na single stalk of plumegrass wilts.\n",
+      lines:
+        "While you decline to cry\nhigh on the mountainside\na single stalk of plumegrass wilts.\n",
       image: "The_Scream",
       date: "01-01-711",
       exactDate: false,
@@ -125,8 +126,34 @@ export default {
     { userId: 2, postId: 2 }
   ],
   log: [
-    { userId: 1, actionUser: 2, type: "comment", postId: 3, timeStamp: "07:22 06-07-2017" },
-    { userId: 2, actionUser: 1, type: "comment", postId: 3, timeStamp: "04:39 06-07-2017" },
-    { userId: 2, actionUser: 1, type: "comment", postId: 3, timeStamp: "09:03 07-07-2017" }
+    {
+      userId: 1,
+      actionUser: 2,
+      type: "comment",
+      postId: 3,
+      timeStamp: "07:22 06-07-2017"
+    },
+    {
+      userId: 2,
+      actionUser: 1,
+      type: "comment",
+      postId: 3,
+      timeStamp: "04:39 06-07-2017"
+    },
+    {
+      userId: 2,
+      actionUser: 1,
+      type: "comment",
+      postId: 3,
+      timeStamp: "09:03 07-07-2017"
+    }
+  ],
+  meta: [
+    {
+      postId: 4,
+      commentId: 6,
+      imageId: 1,
+      userId: 2
+    }
   ]
 };

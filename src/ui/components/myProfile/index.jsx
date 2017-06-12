@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as profileActions from "../../actions/profile";
+import * as myProfileActions from "../../actions/myProfile";
 import Posts from "../common/posts";
 
-class Profile extends Component {
+class MyProfile extends Component {
   componentWillMount() {
-    profileActions.getProfile(this.props.user.id);
-    profileActions.getPosts(this.props.user.id);
+    myProfileActions.getProfile(this.props.user.id);
+    myProfileActions.getPosts(this.props.user.id);
     this.setState({
       open: "posts"
     });
@@ -46,4 +46,4 @@ class Profile extends Component {
   }
 }
 
-export default connect(Profile, state => state);
+export default connect(MyProfile, state => state);

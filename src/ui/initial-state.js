@@ -31,5 +31,9 @@ export default {
   comments: {
     comments: [],
     commentsIsOpen: 0
+  },
+  resources: {
+    posts: [],
+    profile: {}
   }
 };
