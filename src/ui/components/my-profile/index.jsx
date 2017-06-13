@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import * as myProfileActions from "../../actions/myProfile";
-import Posts from "../common/posts";
+import Posts from "../posts/posts";
 
 class MyProfile extends Component {
   componentWillMount() {

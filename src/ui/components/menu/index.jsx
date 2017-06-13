@@ -14,10 +14,10 @@ const Menu = ({ items }) => {
         i =>
           i.selected
             ? <li className="selected" onClick={() => handleClick(i.key)}>
-                <Link to={i.key}>{i.text || i.key}</Link>
+                <Link to={`/${i.key}`}>{i.text || i.key}</Link>
               </li>
             : <li onClick={() => handleClick(i.key)}>
-                <Link to={i.key}>{i.text || i.key}</Link>
+                <Link to={`/${i.key}`}>{i.text || i.key}</Link>
               </li>
       )}
     </ul>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import * as postsActions from "../../actions/posts";
 import { connect } from "redux-jetpack";
-import Posts from "../common/posts";
+import Posts from "./posts";
 
-class PermaPost extends Component {
+class Post extends Component {
   componentWillMount() {
     postsActions.getPost(this.props.match.params.postId);
   }
@@ -19,4 +19,4 @@ class PermaPost extends Component {
   }
 }
 
-export default connect(PermaPost, state => state);
+export default connect(Post, state => state);

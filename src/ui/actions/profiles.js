@@ -1,8 +1,8 @@
 import * as profilesAPI from "../../server/profiles";
 import { updateState } from "redux-jetpack";
 
-export async function getProfile(userId) {
-  const results = await profilesAPI.getProfile(userId);
+export async function getProfile(profile) {
+  const results = await profilesAPI.getProfile(profile);
   updateState("resources", state => ({ ...state, profile: results }));
 }
 

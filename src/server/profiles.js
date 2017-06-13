@@ -1,15 +1,16 @@
 import db from "./db";
 import fs from "./fs";
 
-export async function getProfile(userId) {
-  const user = db.users.filter(u => u.id == userId)[0];
+export async function getProfile(profile) {
+  const user = db.users.filter(u => u.profile == profile)[0];
   return {
     ...user,
     image: fs.images.find(f => f.filename === user.image)["contents"]
   };
 }
 
-export async function getPosts(userId) {
+export async function getPosts(profile) {
+  const userId = db.users.filter(u => u.profile == profile)[0].id
   const posts = db.posts.filter(post => post.authorId == userId);
   return posts.map(
     post =>
