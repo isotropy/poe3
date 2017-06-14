@@ -118,11 +118,7 @@ export default {
       likes: ""
     }
   ],
-  homeFeed: [
-    { userId: 1, postId: 12 },
-    { userId: 1, postId: 14 },
-    { userId: 2, postId: 3 }
-  ],
+  homeFeed: [{ userId: 1, postId: 12 }, { userId: 1, postId: 14 }, { userId: 2, postId: 3 }],
   exploreFeed: [
     { userId: 1, postId: 1 },
     { userId: 1, postId: 2 },

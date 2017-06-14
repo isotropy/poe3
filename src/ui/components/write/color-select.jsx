@@ -24,18 +24,15 @@ class ColorSelect extends Component {
             style={{
               backgroundColor: this.state.color || "none",
               backgroundSize: "cover"
-            }}>
+            }}
+          >
             <ul className="lines">
               {this.props.haiku.lines.map(i => <li>{i}</li>)}
             </ul>
           </li>
         </ul>
         <input type="button" value="Select Color" onClick={this.showColors} />
-        <input
-          type="button"
-          value="Select Image"
-          onClick={this.props.toggleActive}
-        />
+        <input type="button" value="Select Image" onClick={this.props.toggleActive} />
         <div style={{ display: this.state.showPalette ? "block" : "none" }}>
           <CirclePicker onChangeComplete={color => this.colorChange(color)} />
         </div>
@@ -48,11 +45,7 @@ class ColorSelect extends Component {
               color: this.state.color
             })}
         />
-        <input
-          type="button"
-          value="Back"
-          onClick={() => this.props.toggleActive("edit")}
-        />
+        <input type="button" value="Back" onClick={() => this.props.toggleActive("edit")} />
       </div>
     );
   }

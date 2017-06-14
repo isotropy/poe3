@@ -5,20 +5,20 @@ export default {
       { key: "write", text: "Write" },
       { key: "home", text: "Home" },
       { key: "explore", selected: true, text: "Explore" },
-      { key: 'profile', text: 'Profile' }
+      { key: "profile", text: "Profile" }
       // { key: "tags", text: "Tags" }
     ]
   },
   auth: {
-    loggedIn: false,
+    loggedIn: false
   },
   user: {
     id: 2,
-    name: 'Salvador Dali',
-    profile: 'sadali',
-    image: 'dali',
-    follows: [ 1 ],
-    likes: [ ]
+    name: "Salvador Dali",
+    profile: "sadali",
+    image: "dali",
+    follows: [1],
+    likes: []
   },
   explore: {
     posts: []

@@ -14,7 +14,7 @@ export default () => {
   const handleLogin = e => {
     if (e.target.innerText === "Success") login = true;
     else login = false;
-    loginActions.login(login)
+    loginActions.login(login);
   };
   return (
     <div>

@@ -10,7 +10,8 @@ export default ({ post, user }) => {
         backgroundImage: `url(${post.image})` || "none",
         backgroundColor: post.color || "none",
         backgroundSize: "cover"
-      }}>
+      }}
+    >
       <ul className="lines">{post.lines.split("\n").map(i => <li>{i}</li>)}</ul>
       <Like postId={post.id} userId={user.id} />
       <Comments postId={post.id} user={user} />

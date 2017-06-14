@@ -30,7 +30,11 @@ class Comments extends Component {
                     : <Comment comment={c} />
                   : ""
             )}
-            <Reply updateCB={this.getComments} postId={this.props.postId} user={this.props.user}/>
+            <Reply
+              updateCB={this.getComments}
+              postId={this.props.postId}
+              user={this.props.user}
+            />
           </ul>}
       </div>
     );

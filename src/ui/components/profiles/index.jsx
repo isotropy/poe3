@@ -11,16 +11,12 @@ class Profiles extends Component {
   }
 
   render() {
-    if (!Object.keys(this.props.resources.profile).length)
-      return <div>Loading...</div>;
+    if (!Object.keys(this.props.resources.profile).length) return <div>Loading...</div>;
     return (
       <div>
         <img src={this.props.resources.profile.image} />
         {this.props.resources.profile.name}
-        <Follow
-          userId={this.props.user.id}
-          profileId={this.props.resources.profile.id}
-        />
+        <Follow userId={this.props.user.id} profileId={this.props.resources.profile.id} />
         {this.props.resources.posts &&
           <Posts posts={this.props.resources.posts} user={this.props.user} />}
       </div>

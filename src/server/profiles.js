@@ -10,7 +10,7 @@ export async function getProfile(profile) {
 }
 
 export async function getPosts(profile) {
-  const userId = db.users.filter(u => u.profile == profile)[0].id
+  const userId = db.users.filter(u => u.profile == profile)[0].id;
   const posts = db.posts.filter(post => post.authorId == userId);
   return posts.map(
     post =>

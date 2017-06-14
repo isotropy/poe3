@@ -8,11 +8,9 @@ const AuthRoute = ({ loggedIn, component: Component, ...rest }) =>
   <Route
     {...rest}
     render={props =>
-      loggedIn || props.location.pathname === '/login'
+      loggedIn || props.location.pathname === "/login"
         ? <Component {...props} />
-        : <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />}
+        : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />}
   />;
 
 export default connect(AuthRoute, state => state.auth);

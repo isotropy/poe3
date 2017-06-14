@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import Route from "./components/auth-route";
 import { Provider } from "react-redux";
-import Login from "./components/login"
+import Login from "./components/login";
 import Home from "./components/home";
 import Explore from "./components/explore";
 import Post from "./components/posts";

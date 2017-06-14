@@ -38,7 +38,7 @@ class Write extends Component {
 
   writeHaiku = haiku => {
     writeActions.write({ ...haiku, lines: haiku.lines.join("\n") });
-    this.props.history.push('/profile')
+    this.props.history.push("/profile");
   };
 
   render() {
@@ -50,14 +50,11 @@ class Write extends Component {
               contentEditable="true"
               className="write"
               style={{ backgroundColor: "purple" }}
-              ref={input => (this.lines = input)}>
+              ref={input => (this.lines = input)}
+            >
               {this.lines}
             </div>
-            <input
-              type="button"
-              value="Choose Colors"
-              onClick={this.saveHaiku}
-            />
+            <input type="button" value="Choose Colors" onClick={this.saveHaiku} />
           </div>}
         {this.state.editable &&
           <div>
