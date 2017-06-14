@@ -23,11 +23,21 @@ class MyProfile extends Component {
       <div>
         <img src={this.props.user.image} />
         {this.props.user.name}
-        <div>
-          <span onClick={() => this.handleClick("posts")}>My Posts</span>
-          <span onClick={() => this.handleClick("notifs")}>Notifications</span>
-          <span onClick={() => this.handleClick("activity")}>Activity</span>
-        </div>
+        <ul>
+          <li>
+            <a href="posts">My Posts</a>
+          </li>
+          <li>
+            <a href="notifications">
+              Notifications
+            </a>
+          </li>
+          <li>
+            <a href="activity">
+              Activity
+            </a>
+          </li>
+        </ul>
         {this.props.myPosts.posts &&
           this.state.open === "posts" &&
           <Posts posts={this.props.myPosts.posts} user={this.props.user} />}
