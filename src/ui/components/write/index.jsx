@@ -6,7 +6,9 @@ import ImageSelect from "./imageselect";
 
 class Write extends Component {
   lines = "";
-  haiku = {};
+  haiku = {
+    styles : {bgColor: "purple"}
+  };
 
   componentWillMount() {
     this.setState({
@@ -15,14 +17,22 @@ class Write extends Component {
     });
   }
 
+  set haikuBGColor(color) {
+    this.haiku.styles.bgColor = color;
+  }
+
+  get haikuBGColor() {
+    return this.haiku.styles.bgColor;
+  }
+
   saveHaiku = () => {
-    this.haiku = {
+    Object.assign(this.haiku, {
       author: this.props.name,
       authorId: this.props.id,
       type: "haiku",
       lines: this.lines.innerText.trim().split("\n"),
       timeStamp: new Date().toLocaleString()
-    };
+    });
     this.toggleActive("edit");
   };
 
@@ -36,8 +46,8 @@ class Write extends Component {
         });
   };
 
-  writeHaiku = haiku => {
-    writeActions.write({ ...haiku, lines: haiku.lines.join("\n") });
+  writeHaiku = () => {
+    writeActions.write({ ...this.haiku, lines: this.haiku.lines.join("\n") });
     this.props.history.push('/profile')
   };
 
@@ -49,7 +59,7 @@ class Write extends Component {
             <div
               contentEditable="true"
               className="write"
-              style={{ backgroundColor: "purple" }}
+              style={{ backgroundColor:  this.haiku.styles.bgColor}}
               ref={input => (this.lines = input)}>
               {this.lines}
             </div>
@@ -62,10 +72,7 @@ class Write extends Component {
         {this.state.editable &&
           <div>
             {this.state.colors &&
-              <ColorSelect
-                haiku={this.haiku}
-                writeHaiku={this.writeHaiku}
-                toggleActive={this.toggleActive}
+              <ColorSelect haikuEditor={this}
               />}
             {!this.state.colors &&
               <ImageSelect

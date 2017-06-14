@@ -8,11 +8,12 @@ class ColorSelect extends Component {
   };
 
   colorChange = ({ hex }) => {
+    this.props.haikuEditor.haikuBGColor = hex;
     this.setState({ color: hex });
   };
 
   componentWillMount() {
-    this.setState({ color: "purple", showPalette: false });
+    this.setState({ color: this.props.haikuEditor.haikuBGColor, showPalette: false });
   }
 
   render() {
@@ -26,7 +27,7 @@ class ColorSelect extends Component {
               backgroundSize: "cover"
             }}>
             <ul className="lines">
-              {this.props.haiku.lines.map(i => <li>{i}</li>)}
+              {this.props.haikuEditor.haiku.lines.map(i => <li>{i}</li>)}
             </ul>
           </li>
         </ul>
@@ -34,7 +35,7 @@ class ColorSelect extends Component {
         <input
           type="button"
           value="Select Image"
-          onClick={this.props.toggleActive}
+          onClick={this.props.haikuEditor.toggleActive}
         />
         <div style={{ display: this.state.showPalette ? "block" : "none" }}>
           <CirclePicker onChangeComplete={color => this.colorChange(color)} />
@@ -42,16 +43,14 @@ class ColorSelect extends Component {
         <input
           type="button"
           value="Send Haiku Home"
-          onClick={() =>
-            this.props.writeHaiku({
-              ...this.props.haiku,
-              color: this.state.color
-            })}
+          onClick={() => 
+              this.props.haikuEditor.writeHaiku()
+          }
         />
         <input
           type="button"
           value="Back"
-          onClick={() => this.props.toggleActive("edit")}
+          onClick={() => this.props.haikuEditor.toggleActive("edit")}
         />
       </div>
     );
