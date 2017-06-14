@@ -10,7 +10,8 @@ export default {
     ]
   },
   auth: {
-    loggedIn: false
+    loggedIn: false,
+    requiresRegistration: false
   },
   user: {
     id: 2,

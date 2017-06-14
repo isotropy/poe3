@@ -103,7 +103,6 @@ export default {
       id: 1,
       name: "Edvard Munch",
       profile: "edvard_munch",
-      identities: [],
       image: "munch",
       follows: "2",
       likes: ""
@@ -112,7 +111,6 @@ export default {
       id: 2,
       name: "Salvador Dali",
       profile: "sadali",
-      identities: [],
       image: "dali",
       follows: "1",
       likes: ""
@@ -159,5 +157,8 @@ export default {
       imageId: 1,
       userId: 2
     }
-  ]
+  ],
+  identities: [
+    { service: 'google', serviceId: 's_dali', id: 2 }
+  ],
 };
