@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import * as writeActions from "../../actions/write";
-import ColorSelect from "./colorselect";
-import ImageSelect from "./imageselect";
+import ColorSelect from "./color-select";
+import ImageSelect from "./image-select";
 
 class Write extends Component {
   lines = "";
