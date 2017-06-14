@@ -5,7 +5,7 @@ export async function getProfile(profile) {
   const user = db.users.filter(u => u.profile == profile)[0];
   return {
     ...user,
-    image: fs.images.find(f => f.filename === user.image)["contents"]
+    image: fs.images.find(f => f.filename === user.image).contents
   };
 }
 
@@ -14,11 +14,11 @@ export async function getPosts(profile) {
   const posts = db.posts.filter(post => post.authorId == userId);
   return posts.map(
     post =>
-      post["color"]
+      post.color
         ? post
         : {
             ...post,
-            image: fs.images.find(f => f.filename === post.image)["contents"]
+            image: fs.images.find(f => f.filename === post.image).contents
           }
   );
 }

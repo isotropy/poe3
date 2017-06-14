@@ -13,7 +13,7 @@ export async function getProfile(userId) {
     ...user,
     notifications,
     activity,
-    image: fs.images.find(f => f.filename === user.image)["contents"]
+    image: fs.images.find(f => f.filename === user.image).contents
   };
 }
 
@@ -21,11 +21,11 @@ export async function getPosts(userId) {
   const posts = db.posts.filter(post => post.authorId === userId);
   return posts.map(
     post =>
-      post["color"]
+      post.color
         ? post
         : {
             ...post,
-            image: fs.images.find(f => f.filename === post.image)["contents"]
+            image: fs.images.find(f => f.filename === post.image).contents
           }
   );
 }
