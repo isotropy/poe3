@@ -34,7 +34,11 @@ class ImageSelect extends Component {
           type="file"
           onChange={e => this.imageParse(e)}
         />
-        <input type="button" value="Select Color" onClick={this.props.toggleActive} />
+        <input
+          type="button"
+          value="Select Color"
+          onClick={this.props.toggleActive}
+        />
         <input
           type="button"
           value="Send Haiku Home"
@@ -44,7 +48,11 @@ class ImageSelect extends Component {
               image: this.state.image
             })}
         />
-        <input type="button" value="Back" onClick={() => this.props.toggleActive("edit")} />
+        <input
+          type="button"
+          value="Back"
+          onClick={() => this.props.toggleActive("edit")}
+        />
       </div>
     );
   }

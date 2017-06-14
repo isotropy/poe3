@@ -10,7 +10,9 @@ class Post extends Component {
 
   render() {
     if (this.props.resources.posts.length)
-      return <Posts posts={this.props.resources.posts} user={this.props.user} />;
+      return (
+        <Posts posts={this.props.resources.posts} user={this.props.user} />
+      );
     return (
       <div>
         Loading

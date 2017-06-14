@@ -8,11 +8,14 @@ class ColorSelect extends Component {
   };
 
   colorChange = ({ hex }) => {
-    this.setState({ color: hex });
+    this.setState({ backgroundColor: hex });
   };
 
   componentWillMount() {
-    this.setState({ color: "purple", showPalette: false });
+    this.setState({
+      backgroundColor: this.props.backgroundColor,
+      showPalette: false
+    });
   }
 
   render() {
@@ -22,7 +25,7 @@ class ColorSelect extends Component {
           <li
             className="post"
             style={{
-              backgroundColor: this.state.color || "none",
+              backgroundColor: this.state.backgroundColor || "none",
               backgroundSize: "cover"
             }}
           >
@@ -32,20 +35,24 @@ class ColorSelect extends Component {
           </li>
         </ul>
         <input type="button" value="Select Color" onClick={this.showColors} />
-        <input type="button" value="Select Image" onClick={this.props.toggleActive} />
+        <input
+          type="button"
+          value="Select Image"
+          onClick={this.props.toggleActive}
+        />
         <div style={{ display: this.state.showPalette ? "block" : "none" }}>
           <CirclePicker onChangeComplete={color => this.colorChange(color)} />
         </div>
         <input
           type="button"
           value="Send Haiku Home"
-          onClick={() =>
-            this.props.writeHaiku({
-              ...this.props.haiku,
-              color: this.state.color
-            })}
+          onClick={() => this.props.writeHaiku()}
         />
-        <input type="button" value="Back" onClick={() => this.props.toggleActive("edit")} />
+        <input
+          type="button"
+          value="Back"
+          onClick={() => this.props.toggleActive("edit")}
+        />
       </div>
     );
   }

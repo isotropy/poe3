@@ -5,11 +5,14 @@ import ramda from "ramda";
 export async function getLatest(postId) {
   let ungroupedComments = await commentsAPI.getLatest(postId);
 
-  const comments = ramda.groupBy(c => c.parentCommentId || "root")(ungroupedComments);
+  const comments = ramda.groupBy(c => c.parentCommentId || "root")(
+    ungroupedComments
+  );
 
   const groupedComments = comments.root
     ? comments.root.reduce(
-        (acc, comment) => acc.concat({ ...comment, children: comments[comment.id] }),
+        (acc, comment) =>
+          acc.concat({ ...comment, children: comments[comment.id] }),
         []
       )
     : [];
