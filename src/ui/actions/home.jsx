@@ -8,4 +8,15 @@ export async function getLatest(user) {
     ...state,
     posts: results
   }));
+
+  //Posts containing images
+  const imagePosts = results.filter(p => p.image);
+  for (const post of imagePosts) {
+    someAPI.getImage("image-url-goes-here").then(image => {
+      updateState("home", state => ({
+        ...state,
+        posts: state.posts.map(p => (p === post ? { ...p, image } : p))
+      }));
+    });
+  }
 }
