@@ -7,10 +7,11 @@ function handleClick(item) {
   menuActions.select(item);
 }
 
-const Menu = ({ items }) => {
+const Menu = ({ ...state }) => {
   return (
+    state.auth.loggedIn &&
     <ul className="menu ">
-      {items.map(
+      {state.menu.items.map(
         i =>
           i.selected
             ? <li className="selected" onClick={() => handleClick(i.key)}>
@@ -22,6 +23,7 @@ const Menu = ({ items }) => {
       )}
     </ul>
   );
+  return <div></div>;
 };
 
-export default connect(Menu, state => state.menu);
+export default connect(Menu, state => state);

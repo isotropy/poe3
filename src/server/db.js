@@ -104,6 +104,7 @@ export default {
       id: "edvard_munch",
       name: "Edvard Munch",
       identities: [],
+      profile: "edvard_munch",
       image: "munch",
       follows: "2",
       likes: ""
@@ -112,21 +113,22 @@ export default {
       id: "sadali",
       name: "Salvador Dali",
       identities: [],
+      profile: "sadali",
       image: "dali",
       follows: "1",
       likes: ""
     }
   ],
   homeFeed: [
-    { userId: "sadali", postId: 12 },
-    { userId: "sadali", postId: 14 },
-    { userId: 2, postId: 3 }
+    { userId: "sadali", postId: "p11" },
+    { userId: "sadali", postId: "p12" },
+    { userId: "edvard_munch", postId: "p13" }
   ],
   exploreFeed: [
-    { userId: "sadali", postId: 1 },
-    { userId: "sadali", postId: 2 },
-    { userId: 2, postId: 1 },
-    { userId: 2, postId: 2 }
+    { userId: "sadali", postId: "p11" },
+    { userId: "sadali", postId: "p12" },
+    { userId: "edvard_munch", postId: "p13" },
+    { userId: "edvard_munch", postId: "p14" }
   ],
   notifications: [
     {
@@ -158,12 +160,5 @@ export default {
       commentId: 5
     }
   ],
-  meta: [
-    {
-      postId: 4,
-      commentId: 6,
-      imageId: 1,
-      userId: 2
-    }
-  ]
+  identities: [{ service: "google", serviceId: "s_dali", id: 2 }]
 };
