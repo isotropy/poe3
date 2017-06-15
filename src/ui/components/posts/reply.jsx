@@ -11,7 +11,7 @@ export default ({ updateCB, postId, user, parentComment }) => {
       userName: user.name,
       userPicture: user.image,
       message: comment.value,
-      timeStamp: new Date().toLocaleString()
+      timestamp: new Date().toLocaleString()
     });
     updateCB(postId);
   };

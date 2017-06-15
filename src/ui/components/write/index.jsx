@@ -19,7 +19,7 @@ class Write extends Component {
         authorId: this.props.user.id,
         type: "haiku",
         lines: this.lines.innerText.trim().split("\n"),
-        timeStamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString()
       })
       .then(() => {
         this.props.history.push("/profile");

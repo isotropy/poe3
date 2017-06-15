@@ -6,10 +6,10 @@ export async function getProfile(userId) {
   updateState("user", state => ({ ...results }));
 }
 
-export async function getPosts(userId) {
-  const results = await myProfileAPI.getPosts(userId);
-  updateState("myPosts", state => ({
-    ...state,
-    posts: results
-  }));
-}
+// export async function getPosts(userId) {
+//   const results = await myProfileAPI.getPosts(userId);
+//   updateState("myPosts", state => ({
+//     ...state,
+//     posts: results
+//   }));
+// }

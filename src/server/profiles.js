@@ -2,7 +2,7 @@ import db from "./db";
 import fs from "./fs";
 
 export async function getProfile(profile) {
-  const user = db.users.filter(u => u.profile == profile)[0];
+  return db.users.find(u => u.profile == profile)[0];
   return {
     ...user,
     image: fs.images.find(f => f.filename === user.image).contents

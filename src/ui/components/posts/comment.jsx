@@ -8,7 +8,7 @@ export default ({ comment }) => {
     <li className={classSelector}>
       <img src={comment.userPicture} />
       <span>{comment.userName}</span>
-      <span>{comment.timeStamp}</span>
+      <span>{comment.timestamp}</span>
       <div>{comment.message}</div>
     </li>
   );

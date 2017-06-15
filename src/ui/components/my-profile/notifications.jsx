@@ -3,7 +3,7 @@ import { connect } from "redux-jetpack";
 import * as myProfileActions from "../../actions/my-profile";
 import Posts from "../posts/posts";
 
-class MyProfile extends Component {
+class Notifications extends Component {
   componentWillMount() {
     myProfileActions.getProfile(this.props.user.id);
     this.setState({
@@ -24,7 +24,7 @@ class MyProfile extends Component {
         {this.props.user.name}
         <ul>
           <li>
-            <a href="posts">My Posts</a>
+            <a href="/my-profile">My Posts</a>
           </li>
           <li>
             <a href="/my-profile/notifications">
@@ -37,10 +37,14 @@ class MyProfile extends Component {
             </a>
           </li>
         </ul>
-        <Posts posts={this.props.myPosts.posts} user={this.props.user} />
+        <ul>
+          {this.props.user.notifications.map(n =>
+            <li>{n.userId} {n.type}ed your post on {n.timestamp}</li>
+          )}
+        </ul>
       </div>
     );
   }
 }
 
-export default connect(MyProfile, state => state);
+export default connect(Notifications, state => state);
