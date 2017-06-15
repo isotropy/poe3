@@ -7,7 +7,7 @@ export default ({ post, user }) => {
     <li
       className="post"
       style={{
-        backgroundImage: `url(${post.image})` || "none",
+        backgroundImage: `url(${post.imageData})` || "none",
         backgroundColor: post.color || "none",
         backgroundSize: "cover"
       }}

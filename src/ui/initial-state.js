@@ -10,13 +10,12 @@ export default {
     ]
   },
   auth: {
-    loggedIn: false,
+    loggedIn: true,
     requiresRegistration: false
   },
   user: {
-    id: 2,
     name: "Salvador Dali",
-    profile: "sadali",
+    userId: "sadali",
     image: "dali",
     follows: [1],
     likes: []

@@ -12,7 +12,7 @@ class Login extends Component {
     this.handleService = this.handleService.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.login = this.login.bind(this);
-    this.closeLoginModal = this.closeLoginModal.bind(this);
+    // this.closeLoginModal = this.closeLoginModal.bind(this);
     this.register = this.register.bind(this);
     this.closeRegisterModal = this.closeRegisterModal.bind(this);
   }
@@ -21,7 +21,7 @@ class Login extends Component {
     if (this.props.loggedIn) this.props.history.push("/");
     this.setState({
       serviceProvider: "default",
-      openLoginModal: false,
+      // openLoginModal: false,
       openRegistrationModal: false,
       loginSuccess: false
     });
@@ -31,15 +31,15 @@ class Login extends Component {
     if (this.props.loggedIn) this.props.history.push("/");
     if (this.props.requiresRegistration)
       this.setState({
-        openRegistrationModal: true,
-        openLoginModal: false
+        openRegistrationModal: true
+        // openLoginModal: false
       });
   }
 
   handleService(e) {
     this.setState({
-      serviceProvider: e.target.value,
-      openLoginModal: true
+      serviceProvider: e.target.value
+      // openLoginModal: true
     });
   }
 
@@ -50,7 +50,7 @@ class Login extends Component {
   }
 
   login() {
-    this.setState({ userName: this.userName.value })
+    this.setState({ userName: this.userName.value });
     loginActions.login(
       this.state.loginSuccess,
       this.state.serviceProvider,
@@ -58,11 +58,11 @@ class Login extends Component {
     );
   }
 
-  closeLoginModal() {
-    this.setState({
-      openLoginModal: false
-    });
-  }
+  // closeLoginModal() {
+  //   this.setState({
+  //     openLoginModal: false
+  //   });
+  // }
 
   closeRegisterModal() {
     this.setState({
@@ -81,7 +81,6 @@ class Login extends Component {
   render() {
     return (
       <div>
-
         <h3>Login</h3>
         <div>
           Login service provider:
@@ -93,36 +92,28 @@ class Login extends Component {
             <option value="google">Google</option>
             <option value="twitter">Twitter</option>
           </select>
-        </div>
-
-        {this.state.openLoginModal &&
           <div>
-            <div>
-              Username:
-              <input type="text" ref={input => (this.userName = input)} />
-            </div>
-            <div>
-              Tell us how your login went:
-              <select
-                value={this.state.loginSuccess}
-                onChange={this.handleLoginSuccess}>
-                <option value="true">Success</option>
-                <option value="false">Failure</option>
-              </select>
-            </div>
-            <div>
-              <input
-                type="button"
-                value="Login"
-                onClick={this.login}
-              />
-              <input
-                type="button"
-                value="Cancel"
-                onClick={this.closeLoginModal}
-              />
-            </div>
-          </div>}
+            Username:
+            <input type="text" ref={input => (this.userName = input)} />
+          </div>
+          <div>
+            Tell us how your login went:
+            <select
+              value={this.state.loginSuccess}
+              onChange={this.handleLoginSuccess}>
+              <option value="true">Success</option>
+              <option value="false">Failure</option>
+            </select>
+          </div>
+          <div>
+            <input type="button" value="Login" onClick={this.login} />
+            <input
+              type="button"
+              value="Cancel"
+              onClick={this.closeLoginModal}
+            />
+          </div>
+        </div>
 
         {this.state.openRegistrationModal &&
           <div>
@@ -132,11 +123,7 @@ class Login extends Component {
               <input type="text" ref={input => (this.name = input)} />
             </div>
             <div>
-              <input
-                type="button"
-                value="Register"
-                onClick={this.register}
-              />
+              <input type="button" value="Register" onClick={this.register} />
               <input
                 type="button"
                 value="Cancel"

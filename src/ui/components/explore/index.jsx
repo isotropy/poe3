@@ -5,7 +5,7 @@ import Posts from "../posts/posts";
 
 class Explore extends Component {
   componentWillMount() {
-    exploreActions.getLatest(this.props.user);
+    exploreActions.getLatest(this.props.user.userId);
   }
 
   render() {
