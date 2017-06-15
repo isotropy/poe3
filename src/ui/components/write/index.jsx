@@ -15,8 +15,8 @@ class Write extends Component {
     console.log(this.props.user);
     writeActions
       .write({
-        author: this.props.user.name,
-        authorId: this.props.user.id,
+        userFullName: this.props.user.name,
+        userId: this.props.user.id,
         type: "haiku",
         lines: this.lines.innerText.trim().split("\n"),
         timestamp: new Date().toLocaleString()
