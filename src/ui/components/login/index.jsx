@@ -107,11 +107,11 @@ class Login extends Component {
           </div>
           <div>
             <input type="button" value="Login" onClick={this.login} />
-            <input
-              type="button"
-              value="Cancel"
-              onClick={this.closeLoginModal}
-            />
+            /* <input
+            //   type="button"
+            //   value="Cancel"
+            //   onClick={this.closeLoginModal}
+             /> */
           </div>
         </div>
 

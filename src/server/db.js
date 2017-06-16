@@ -48,6 +48,7 @@ export default {
       postId: "p3",
       userId: "sadali",
       userFullName: "Salvador Dali",
+      userPicture: "dali",
       message: "Whoa!",
       timestamp: 1497498441691
     },

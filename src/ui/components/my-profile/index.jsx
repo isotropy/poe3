@@ -5,23 +5,14 @@ import Posts from "../posts/posts";
 
 class MyProfile extends Component {
   componentWillMount() {
-    myProfileActions.getProfile(this.props.user.id);
-    this.setState({
-      open: "posts"
-    });
-  }
-
-  handleClick(action) {
-    this.setState({
-      open: action
-    });
+    myProfileActions.getProfile(this.props.userId);
   }
 
   render() {
     return (
       <div>
-        <img src={this.props.user.image} />
-        {this.props.user.name}
+        <img src={this.props.image} />
+        {this.props.name}
         <ul>
           <li>
             <a href="posts">My Posts</a>
@@ -37,10 +28,10 @@ class MyProfile extends Component {
             </a>
           </li>
         </ul>
-        <Posts posts={this.props.myPosts.posts} user={this.props.user} />
+        {this.props.posts && <Posts posts={this.props.posts} user={this.props} />}
       </div>
     );
   }
 }
 
-export default connect(MyProfile, state => state);
+export default connect(MyProfile, state => state.user);

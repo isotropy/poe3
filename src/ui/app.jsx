@@ -28,9 +28,9 @@ export default store => () =>
             <Route path="/posts/:postId" component={Post} />
             <Route path="/profiles/:profile" component={Profiles} />
             <Route path="/my-profile" component={MyProfile}>
-            <Route path="/my-profile/notifications" component={Notifications} />
-            <Route path="/my-profile/activity" component={Activity} />
-            <Route path="/my-profile" component={MyProfile} />
+              <Route path="/my-profile/notifications" component={Notifications} />
+              <Route path="/my-profile/activity" component={Activity} />
+              <Route path="/my-profile" component={MyProfile} />
             </Route>
             <Route exact path="/tags" component={Tags} />
           </Switch>
