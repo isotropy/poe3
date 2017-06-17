@@ -4,8 +4,9 @@ import * as loginActions from "../../actions/login";
 import * as registrationActions from "../../actions/registration";
 
 class Login extends Component {
-  userName = "";
+  providerId = "";
   name = "";
+  id = "";
 
   constructor(props) {
     super(props);
@@ -50,11 +51,11 @@ class Login extends Component {
   }
 
   login() {
-    this.setState({ userName: this.userName.value });
+    this.setState({ providerId: this.providerId.value });
     loginActions.login(
       this.state.loginSuccess,
       this.state.serviceProvider,
-      this.userName.value
+      this.providerId.value
     );
   }
 
@@ -71,10 +72,15 @@ class Login extends Component {
   }
 
   register() {
+    this.setState({
+      name: this.name.value,
+      id: this.id.value
+    });
     registrationActions.register(
       this.state.serviceProvider,
-      this.state.userName.value,
-      this.name.value
+      this.state.providerId,
+      this.name.value,
+      this.id.value
     );
   }
 
@@ -107,11 +113,13 @@ class Login extends Component {
           </div>
           <div>
             <input type="button" value="Login" onClick={this.login} />
-            /* <input
+            {/*{" "}
+            <input
             //   type="button"
             //   value="Cancel"
             //   onClick={this.closeLoginModal}
-             /> */
+            />{" "}
+            */}
           </div>
         </div>
 
@@ -123,6 +131,10 @@ class Login extends Component {
               <input type="text" ref={input => (this.name = input)} />
             </div>
             <div>
+              Also, a fancy display/user name:
+              <input type="text" ref={input => (this.id = input)} />
+            </div>
+            <div>
               <input type="button" value="Register" onClick={this.register} />
               <input
                 type="button"
@@ -130,6 +142,7 @@ class Login extends Component {
                 onClick={this.closeRegisterModal}
               />
             </div>
+            {this.props.userIdUnAvailable && <div>Bruh that name ain't around. Choose another.</div>}
           </div>}
 
       </div>

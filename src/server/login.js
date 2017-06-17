@@ -7,10 +7,12 @@ export async function login(service, serviceId) {
   return user.length > 0
     ? {
         loggedIn: true,
-        requiresRegistration: false
+        requiresRegistration: false,
+        userIdUnAvailable: false
       }
     : {
         loggedIn: false,
-        requiresRegistration: true
+        requiresRegistration: true,
+        userIdUnAvailable: false
       };
 }

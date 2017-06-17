@@ -100,22 +100,32 @@ export default {
       timestamp: 1497498481691
     }
   ],
+  likes: [
+    {
+      postId: "p1",
+      userId: "sadali",
+      userFullName: "Salvador Dali"
+    },
+    {
+      postId: "p2",
+      userId: "munch",
+      userFullName: "Edvard Munch"
+    }
+  ],
   users: [
     {
       id: "edvard_munch",
-      name: "Edvard Munch",
-      profile: "edvard_munch",
+      userFullName: "Edvard Munch",
       image: "munch",
       follows: "sadali",
-      likes: ""
+      likes: "p2"
     },
     {
       id: "sadali",
-      name: "Salvador Dali",
-      profile: "sadali",
+      userFullName: "Salvador Dali",
       image: "dali",
       follows: "edvard_munch",
-      likes: ""
+      likes: "p1"
     }
   ],
   homeFeed: [
@@ -160,5 +170,5 @@ export default {
       commentId: 5
     }
   ],
-  identities: [{ service: "google", serviceId: "s_dali", id: 'sadali' }]
+  identities: [{ service: "google", serviceId: "s_dali", id: "sadali" }]
 };

@@ -11,10 +11,11 @@ export default {
   },
   auth: {
     loggedIn: true,
-    requiresRegistration: false
+    requiresRegistration: false,
+    userIdUnAvailable: false
   },
   user: {
-    name: "Salvador Dali",
+    userFullName: "Salvador Dali",
     userId: "sadali",
     image: "dali",
     follows: [1],
@@ -36,5 +37,8 @@ export default {
   resources: {
     posts: [],
     profile: {}
+  },
+  likes: {
+    likes: []
   }
 };
