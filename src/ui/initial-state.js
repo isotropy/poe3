@@ -38,7 +38,4 @@ export default {
     posts: [],
     profile: {}
   },
-  likes: {
-    likes: []
-  }
 };

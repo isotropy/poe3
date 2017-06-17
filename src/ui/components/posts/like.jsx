@@ -4,7 +4,11 @@ import { connect } from "redux-jetpack";
 
 class Like extends Component {
   handleClick = () => {
-    likeActions.like(this.props.user.userId, this.props.user.userFullName, this.props.postId);
+    likeActions.like(
+      this.props.user.userId,
+      this.props.user.userFullName,
+      this.props.postId
+    );
     if (this.state.liked === "unliked")
       this.setState({
         liked: "liked",
@@ -25,7 +29,17 @@ class Like extends Component {
   }
 
   componentWillReceiveProps() {
-
+    if (this.props.likes.isLiked) {
+      this.setState({
+        liked: "liked",
+        icon: "♥"
+      })
+    } else {
+      this.setState({
+        liked: "unliked",
+        icon: "♡"
+      })
+    }
   }
 
   render() {
@@ -39,7 +53,7 @@ class Like extends Component {
               onClick={this.handleClick}
               className={this.state.liked}
             />
-            {this.props.likes.map(like => <span>{like.userFullName} </span>)}
+          {this.props.likes.likes.map(like => <span>{like.userFullName} </span>)}
           </div>}
         <span>like this post</span>
       </div>
@@ -47,4 +61,4 @@ class Like extends Component {
   }
 }
 
-export default connect(Like, state => state.likes);
+export default connect(Like, state => state);

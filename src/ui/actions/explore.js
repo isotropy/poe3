@@ -4,7 +4,7 @@ import { updateState } from "redux-jetpack";
 
 export async function getLatest(userId) {
   const results = await exploreAPI.getLatest(userId);
-
+  
   updateState("explore", state => ({
     ...state,
     posts: results
