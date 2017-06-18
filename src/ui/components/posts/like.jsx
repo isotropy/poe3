@@ -11,35 +11,38 @@ class Like extends Component {
     );
     if (this.state.liked === "unliked")
       this.setState({
-        liked: "liked",
-        icon: "♥"
+        liked: "liked"
       });
     else
       this.setState({
-        liked: "unliked",
-        icon: "♡"
+        liked: "unliked"
       });
   };
 
   componentWillMount() {
     this.setState({
-      liked: "unliked",
-      icon: "♡"
+      liked: "liked",
+      openLikes: false
     });
   }
 
   componentWillReceiveProps() {
+    console.log(this.props);
     if (this.props.likes.isLiked) {
       this.setState({
-        liked: "liked",
-        icon: "♥"
-      })
+        liked: "liked"
+      });
     } else {
       this.setState({
-        liked: "unliked",
-        icon: "♡"
-      })
+        liked: "unliked"
+      });
     }
+  }
+
+  showLikes() {
+    this.setState({
+      openLikes: !this.state.openLikes
+    });
   }
 
   render() {
@@ -49,13 +52,18 @@ class Like extends Component {
           <div>
             <input
               type="button"
-              value={this.state.icon}
+              value={this.state.liked === "liked" ? "♥" : "♡"}
               onClick={this.handleClick}
               className={this.state.liked}
             />
-          {this.props.likes.likes.map(like => <span>{like.userFullName} </span>)}
+            <div onClick={this.showLikes.bind(this)}>
+              {this.props.likeCount} people like this post.
+            </div>
+            {this.state.openLikes &&
+              this.props.likes.likes.map(like =>
+                <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
+              )}
           </div>}
-        <span>like this post</span>
       </div>
     );
   }

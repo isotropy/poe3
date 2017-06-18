@@ -1,17 +1,17 @@
 import db from "./db";
 
 export async function like(userId, userFullName, postId) {
-  const user = db.users.find(u => u.id === userId);
-  const likes = user.likes.length === 0 ? "" : user.likes.split(",");
   if (!likes.includes(postId)) {
-    const updatedLikes = likes.concat(postId).join(",");
-    db.users = db.users.map(
-      u => (u.id === userId ? { ...u, likes: updatedLikes } : u)
-    );
     db.posts = db.posts.map(
       post =>
-        post.id === postId ? { ...post, likeCount: ++post.likeCount } : post
+        post.id === postId ? { ...post, likeCount: post.likeCount + 1 } : post
     );
     db.likes = db.likes.concat({ postId, userId, userFullName });
+  } else {
+    db.posts = db.posts.map(
+      post =>
+        post.id === postId ? { ...post, likeCount: post.likeCount - 1 } : post
+    );
+    db.likes.splice(db.likes.findIndex(like => like.postId === postId), 1);
   }
 }
