@@ -3,7 +3,6 @@ import Like from "./like";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
-  console.log(post);
   return (
     <li
       className="post"
@@ -13,13 +12,8 @@ export default ({ post, user }) => {
         backgroundSize: "cover"
       }}>
       <ul className="lines">{post.lines.split("\n").map(i => <li>{i}</li>)}</ul>
-      <Like
-        postId={post.id}
-        user={user}
-        likes={post.likes}
-        likeCount={post.likeCount}
-      />
-      <Comments postId={post.id} user={user} />
+      <Like post={post} user={user} />
+      {/*<Comments post={post} user={user} />*/}
     </li>
   );
 };

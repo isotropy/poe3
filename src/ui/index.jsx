@@ -22,6 +22,6 @@ const render = Component =>
   );
 
 render(App(store));
-exploreActions.getLatest();
+// exploreActions.getLatest();
 
 if (module.hot) module.hot.accept("./app", () => render(App(store)));

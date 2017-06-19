@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as homeActions from "../../actions/home.js";
+import * as homeActions from "../../actions/home";
 import { connect } from "redux-jetpack";
 import Posts from "../posts/posts";
 

@@ -5,8 +5,20 @@ import Comment from "./comment";
 import Reply from "./reply";
 
 class Comments extends Component {
-  getComments(postId) {
-    commentsActions.getLatest(postId);
+  componentWillMount() {
+    this.setState({
+      commentsIsOpen: false
+    });
+  }
+
+  componentWillReceiveProps() {
+    console.log(this.props)
+  }
+
+  openComments() {
+    this.setState({
+      commentsIsOpen: !this.state.commentsIsOpen
+    });
   }
 
   render() {
@@ -15,7 +27,7 @@ class Comments extends Component {
         <input
           type="button"
           value="Comments"
-          onClick={() => this.getComments(this.props.postId)}
+          onClick={this.openComments.bind(this)}
         />
         {this.props.commentsIsOpen === this.props.postId &&
           <ul className="comments">
@@ -41,4 +53,4 @@ class Comments extends Component {
   }
 }
 
-export default connect(Comments, state => state.comments);
+export default connect(Comments, state => state);

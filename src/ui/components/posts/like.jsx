@@ -1,54 +1,37 @@
 import React, { Component } from "react";
 import * as likeActions from "../../actions/like";
-import { connect } from "redux-jetpack";
+import * as exploreActions from "../../actions/explore";
+import * as homeActions from "../../actions/home";
 
 class Like extends Component {
   handleClick = () => {
     likeActions.like(
       this.props.user.userId,
       this.props.user.userFullName,
-      this.props.postId
+      this.props.post
     );
-    if (this.state.liked === "unliked")
-      this.setState({
-        liked: "liked"
-      });
-    else
-      this.setState({
-        liked: "unliked"
-      });
+    exploreActions.getLatest(this.props.user.userId);
+    homeActions.getLatest(this.props.user.userId);
   };
 
   componentWillMount() {
-    this.setState({
-      liked: "liked",
-      openLikes: false
-    });
+    this.setState({ liked: "liked", openLikes: false });
   }
 
   componentWillReceiveProps() {
-    console.log(this.props);
-    if (this.props.likes.isLiked) {
-      this.setState({
-        liked: "liked"
-      });
-    } else {
-      this.setState({
-        liked: "unliked"
-      });
-    }
+    if (this.props.post.likes)
+      if (this.props.post.likes.isLiked) this.setState({ liked: "liked" });
+      else this.setState({ liked: "unliked" });
   }
 
   showLikes() {
-    this.setState({
-      openLikes: !this.state.openLikes
-    });
+    this.setState({ openLikes: !this.state.openLikes });
   }
 
   render() {
     return (
       <div>
-        {this.props.likes &&
+        {this.props.post.likes &&
           <div>
             <input
               type="button"
@@ -57,11 +40,13 @@ class Like extends Component {
               className={this.state.liked}
             />
             <div onClick={this.showLikes.bind(this)}>
-              {this.props.likeCount} people like this post.
+              {this.props.post.likeCount} people like this post.
             </div>
             {this.state.openLikes &&
-              this.props.likes.likes.map(like =>
-                <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
+              this.props.post.likes.likes.map(like =>
+                <div>
+                  <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
+                </div>
               )}
           </div>}
       </div>
@@ -69,4 +54,4 @@ class Like extends Component {
   }
 }
 
-export default connect(Like, state => state);
+export default Like;

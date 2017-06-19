@@ -30,10 +30,6 @@ export default {
   myPosts: {
     posts: []
   },
-  comments: {
-    comments: [],
-    commentsIsOpen: 0
-  },
   resources: {
     posts: [],
     profile: {}
