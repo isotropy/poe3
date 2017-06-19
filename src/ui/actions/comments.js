@@ -1,27 +1,26 @@
 import * as commentsAPI from "../../server/comments";
-import { getState, updateState } from "redux-jetpack";
 import ramda from "ramda";
 
-export async function getLatest(postId) {
-  let ungroupedComments = await commentsAPI.getLatest(postId);
+export async function getComments(posts) {
+  const results = [];
+  posts.forEach(async post => {
+    let ungroupedComments = await commentsAPI.getLatest(post.id);
 
-  const comments = ramda.groupBy(c => c.parentCommentId || "root")(
-    ungroupedComments
-  );
+    const comments = ramda.groupBy(c => c.parentCommentId || "root")(
+      ungroupedComments
+    );
 
-  const groupedComments = comments.root
-    ? comments.root.reduce(
-        (acc, comment) =>
-          acc.concat({ ...comment, children: comments[comment.id] }),
-        []
-      )
-    : [];
-
-  if (getState().comments.commentsIsOpen === postId) postId = null;
-
-  updateState("comments", state => ({
-    ...state,
-    comments: groupedComments,
-    commentsIsOpen: postId
-  }));
+    const result = {
+      ...post,
+      comments: comments.root
+        ? comments.root.reduce(
+            (acc, comment) =>
+              acc.concat({ ...comment, children: comments[comment.id] }),
+            []
+          )
+        : []
+    };
+    results.push(result);
+  });
+  return results;
 }

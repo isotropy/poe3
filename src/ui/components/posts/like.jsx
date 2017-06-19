@@ -24,7 +24,7 @@ class Like extends Component {
       else this.setState({ liked: "unliked" });
   }
 
-  showLikes() {
+  toggleLikes() {
     this.setState({ openLikes: !this.state.openLikes });
   }
 
@@ -39,7 +39,7 @@ class Like extends Component {
               onClick={this.handleClick}
               className={this.state.liked}
             />
-            <div onClick={this.showLikes.bind(this)}>
+          <div onClick={this.toggleLikes.bind(this)}>
               {this.props.post.likeCount} people like this post.
             </div>
             {this.state.openLikes &&

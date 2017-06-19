@@ -3,6 +3,7 @@ import Like from "./like";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
+  console.log('not again', post)
   return (
     <li
       className="post"
@@ -13,7 +14,7 @@ export default ({ post, user }) => {
       }}>
       <ul className="lines">{post.lines.split("\n").map(i => <li>{i}</li>)}</ul>
       <Like post={post} user={user} />
-      {/*<Comments post={post} user={user} />*/}
+      <Comments post={post} user={user} />
     </li>
   );
 };

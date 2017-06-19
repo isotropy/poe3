@@ -6,19 +6,15 @@ import Reply from "./reply";
 
 class Comments extends Component {
   componentWillMount() {
-    this.setState({
-      commentsIsOpen: false
-    });
+    this.setState({ openComments: false });
   }
 
   componentWillReceiveProps() {
-    console.log(this.props)
+    console.log(this.props);
   }
 
-  openComments() {
-    this.setState({
-      commentsIsOpen: !this.state.commentsIsOpen
-    });
+  toggleComments() {
+    this.setState({ openComments: !this.state.openComments });
   }
 
   render() {
@@ -27,9 +23,9 @@ class Comments extends Component {
         <input
           type="button"
           value="Comments"
-          onClick={this.openComments.bind(this)}
+          onClick={this.toggleComments.bind(this)}
         />
-        {this.props.commentsIsOpen === this.props.postId &&
+        {this.state.openComments &&
           <ul className="comments">
             {this.props.comments.map(
               c =>
@@ -53,4 +49,4 @@ class Comments extends Component {
   }
 }
 
-export default connect(Comments, state => state);
+export default Comments;
