@@ -9,14 +9,13 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.home.posts.length > 0)
-      return <Posts posts={this.props.home.posts} user={this.props.user} />;
-    return (
-      <div>
-        Head over to Explore and follow someone. We will fill up this page with
-        haikus you'd love.
-      </div>
-    );
+    return this.props.home.posts.length > 0
+      ? <Posts posts={this.props.home.posts} user={this.props.user} />
+      : <div>
+          Head over to Explore and follow someone. We will fill up this page
+          with
+          haikus you'd love.
+        </div>;
   }
 }
 
