@@ -9,3 +9,7 @@ export async function getPost(postId) {
     posts: [results]
   }));
 }
+
+export async function create(haiku) {
+  const results = await writeAPI.write(haiku);
+}

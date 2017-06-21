@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as commentActions from "../../actions/comment";
+import * as commentsActions from "../../actions/comments";
 
 export default ({ updateCB, postId, user, parentComment }) => {
   let comment = "";
 
   const postComment = () => {
-    commentActions.write({
+    commentsActions.write({
       postId,
       userId: user.id,
       userName: user.name,

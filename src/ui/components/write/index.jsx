@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as writeActions from "../../actions/write";
+import * as postsActions from "../../actions/posts";
 import ColorSelect from "./color-select";
 import ImageSelect from "./image-select";
 
@@ -13,8 +13,8 @@ class Write extends Component {
 
   saveHaiku() {
     console.log(this.props.user);
-    writeActions
-      .write({
+    postsActions
+      .create({
         userFullName: this.props.user.name,
         userId: this.props.user.id,
         type: "haiku",

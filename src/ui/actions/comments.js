@@ -1,6 +1,10 @@
 import * as commentsAPI from "../../server/comments";
 import ramda from "ramda";
 
+export async function write(haiku) {
+  const results = await writeAPI.write(haiku);
+}
+
 export async function getComments(posts) {
   const results = [];
   posts.forEach(async post => {

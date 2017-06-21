@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as likeActions from "../../actions/like";
+import * as likesActions from "../../actions/likes";
 import * as exploreActions from "../../actions/explore";
 import * as homeActions from "../../actions/home";
 
 class Like extends Component {
   handleClick = () => {
-    likeActions.like(
+    likesActions.like(
       this.props.user.userId,
       this.props.user.userFullName,
       this.props.post

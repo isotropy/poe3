@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as writeActions from "../../actions/write";
 import { CirclePicker } from "react-color";
 
 class ColorSelect extends Component {
