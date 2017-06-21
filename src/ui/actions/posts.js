@@ -11,5 +11,5 @@ export async function getPost(postId) {
 }
 
 export async function create(haiku) {
-  const results = await writeAPI.write(haiku);
+  const results = await postsAPI.create(haiku);
 }
