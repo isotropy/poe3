@@ -10,8 +10,8 @@ export async function getProfile(userId) {
     user,
     notifications,
     activity,
-    posts,
-    //image: fs.images.find(f => f.filename === user.image).contents
+    posts
+    //,image: fs.images.find(f => f.filename === user.image).contents
   };
 }
 

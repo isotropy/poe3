@@ -3,7 +3,6 @@ import Like from "./like";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
-  console.log('not again', post)
   return (
     <li
       className="post"

@@ -10,7 +10,6 @@ class Comments extends Component {
   }
 
   componentWillReceiveProps() {
-    console.log(this.props);
   }
 
   toggleComments() {

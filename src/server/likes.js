@@ -1,11 +1,12 @@
 import db from "./db";
 
 export async function getLikes(postId) {
-  return db.likes.filter(like => like.postId === postId)
+  return db.likes.filter(like => like.postId === postId);
 }
 
 export async function like(userId, userFullName, postId) {
   const likes = db.likes.filter(like => like.postId === postId);
+  const user = db.users.find(user => user.id === userId);
   let likeCount = 0;
   if (likes.length > 0) {
     db.posts = db.posts.map(post => {
@@ -15,6 +16,12 @@ export async function like(userId, userFullName, postId) {
       }
       return post;
     });
+    const userLikes = user.likes.split(",");
+    userLikes.splice(userLikes.indexOf(postId), 1);
+    db.users = db.users.map(
+      user =>
+        user.id === userId ? { ...user, likes: userLikes.toString() } : user
+    );
     db.likes.splice(db.likes.findIndex(like => like.postId === postId), 1);
   } else {
     db.posts = db.posts.map(post => {
@@ -24,8 +31,13 @@ export async function like(userId, userFullName, postId) {
       }
       return post;
     });
+    db.users = db.users.map(
+      user =>
+        user.id === userId
+          ? { ...user, likes: user.likes + "," + postId }
+          : user
+    );
     db.likes = db.likes.concat({ postId, userId, userFullName });
   }
-
   return likeCount;
 }

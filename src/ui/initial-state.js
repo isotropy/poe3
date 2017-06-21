@@ -34,4 +34,8 @@ export default {
     posts: [],
     profile: {}
   },
+  componentState: {
+    comments: [],
+    likes: []
+  }
 };

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "redux-jetpack";
+import { getState, updateState } from "redux-jetpack";
 import * as likesActions from "../../actions/likes";
 import * as postsActions from "../../actions/posts";
 
@@ -13,18 +15,13 @@ class Like extends Component {
     postsActions.getFeed(this.props.user.userId);
   };
 
-  componentWillMount() {
-    this.setState({ liked: "liked", openLikes: false });
-  }
-
-  componentWillReceiveProps() {
-    if (this.props.post.likes)
-      if (this.props.post.likes.isLiked) this.setState({ liked: "liked" });
-      else this.setState({ liked: "unliked" });
-  }
-
   toggleLikes() {
-    this.setState({ openLikes: !this.state.openLikes });
+    updateState("componentState", state => ({
+      ...state,
+      likes: state.likes.includes(this.props.post.id)
+        ? state.likes.filter(like => like !== this.props.post.id)
+        : state.likes.concat(this.props.post.id)
+    }));
   }
 
   render() {
@@ -34,14 +31,13 @@ class Like extends Component {
           <div>
             <input
               type="button"
-              value={this.state.liked === "liked" ? "♥" : "♡"}
+              value={this.props.user.likes.includes(this.props.post.id) ? "♥" : "♡"}
               onClick={this.handleClick}
-              className={this.state.liked}
             />
-          <div onClick={this.toggleLikes.bind(this)}>
+            <div onClick={this.toggleLikes.bind(this)}>
               {this.props.post.likeCount} people like this post.
             </div>
-            {this.state.openLikes &&
+            {this.props.likes.includes(this.props.post.id) &&
               this.props.post.likes.likes.map(like =>
                 <div>
                   <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
@@ -53,4 +49,4 @@ class Like extends Component {
   }
 }
 
-export default Like;
+export default connect(Like, state => state.componentState);
