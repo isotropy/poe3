@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as homeActions from "../../actions/home";
+import * as postsActions from "../../actions/posts";
 import { connect } from "redux-jetpack";
 import Posts from "../posts/posts";
 
 class Home extends Component {
   componentWillMount() {
-    homeActions.getLatest(this.props.user.userId);
+    postsActions.getFeed(this.props.user.userId);
   }
 
   render() {

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { createStore } from "redux-jetpack";
 import initialState from "./initial-state";
-import * as exploreActions from "./actions/explore";
+import * as postsActions from "./actions/posts";
 import App from "./app";
 
 const rootEl = document.getElementById("container");
@@ -22,6 +22,6 @@ const render = Component =>
   );
 
 render(App(store));
-// exploreActions.getLatest();
+// postsActions.getInterestingPosts();
 
 if (module.hot) module.hot.accept("./app", () => render(App(store)));

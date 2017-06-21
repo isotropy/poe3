@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as likesActions from "../../actions/likes";
-import * as exploreActions from "../../actions/explore";
-import * as homeActions from "../../actions/home";
+import * as postsActions from "../../actions/posts";
 
 class Like extends Component {
   handleClick = () => {
@@ -10,8 +9,8 @@ class Like extends Component {
       this.props.user.userFullName,
       this.props.post
     );
-    exploreActions.getLatest(this.props.user.userId);
-    homeActions.getLatest(this.props.user.userId);
+    postsActions.getInterestingPosts(this.props.user.userId);
+    postsActions.getFeed(this.props.user.userId);
   };
 
   componentWillMount() {

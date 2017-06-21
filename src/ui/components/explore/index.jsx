@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as exploreActions from "../../actions/explore";
+import * as postsActions from "../../actions/posts";
 import { connect } from "redux-jetpack";
 import Posts from "../posts/posts";
 
 class Explore extends Component {
   componentWillMount() {
-    exploreActions.getLatest(this.props.user.userId);
+    postsActions.getInterestingPosts(this.props.user.userId);
   }
 
   render() {
