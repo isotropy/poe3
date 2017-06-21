@@ -9,11 +9,15 @@ class Comments extends Component {
     this.setState({ openComments: false });
   }
 
-  componentWillReceiveProps() {
-  }
+  componentWillReceiveProps() {}
 
   toggleComments() {
-    this.setState({ openComments: !this.state.openComments });
+    updateState("componentState", state => ({
+      ...state,
+      comments: state.comments.includes(this.props.post.id)
+        ? state.comments.filter(comment => comment !== this.props.post.id)
+        : state.comments.concat(this.props.post.id)
+    }));
   }
 
   render() {
@@ -24,7 +28,7 @@ class Comments extends Component {
           value="Comments"
           onClick={this.toggleComments.bind(this)}
         />
-        {this.state.openComments &&
+        {this.props.comments.includes(this.props.post.id) &&
           <ul className="comments">
             {this.props.comments.map(
               c =>
@@ -48,4 +52,4 @@ class Comments extends Component {
   }
 }
 
-export default Comments;
+export default connect(Comments, state => state.componentState);

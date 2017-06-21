@@ -9,9 +9,9 @@ class ImageSelect extends Component {
     reader.readAsDataURL(this.image.files[0]);
   };
 
-  componentWillMount() {
-    this.setState({ image: "" });
-  }
+  // componentWillMount() {
+  //   this.setState({ image: "" });
+  // }
 
   render() {
     return (

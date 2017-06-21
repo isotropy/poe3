@@ -30,6 +30,11 @@ export default {
   myPosts: {
     posts: []
   },
+  write: {
+    image: "",
+    backgroundColor: "",
+    showPalette: false
+  },
   resources: {
     posts: [],
     profile: {}

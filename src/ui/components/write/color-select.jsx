@@ -1,20 +1,25 @@
 import React, { Component } from "react";
+import { updateState } from "redux-jetpack";
+import { connect } from "redux-jetpack";
 import { CirclePicker } from "react-color";
 
 class ColorSelect extends Component {
   showColors = () => {
-    this.setState({ showPalette: !this.state.showPalette });
+    this.updateState("write", state => ({
+      ...state,
+      showPalette: !state.showPalette
+    }));
   };
 
   colorChange = ({ hex }) => {
-    this.setState({ backgroundColor: hex });
+    this.updateState("write", state => ({ ...state, backgroundColor: hex }));
   };
 
   componentWillMount() {
-    this.setState({
-      backgroundColor: this.props.backgroundColor,
-      showPalette: false
-    });
+    this.updateState("write", state => ({
+      ...state,
+      backgroundColor: this.props.backgroundColor
+    }));
   }
 
   render() {
@@ -24,10 +29,9 @@ class ColorSelect extends Component {
           <li
             className="post"
             style={{
-              backgroundColor: this.state.backgroundColor || "none",
+              backgroundColor: this.props.backgroundColor || "none",
               backgroundSize: "cover"
-            }}
-          >
+            }}>
             <ul className="lines">
               {this.props.haiku.lines.map(i => <li>{i}</li>)}
             </ul>
@@ -39,7 +43,7 @@ class ColorSelect extends Component {
           value="Select Image"
           onClick={this.props.toggleActive}
         />
-        <div style={{ display: this.state.showPalette ? "block" : "none" }}>
+        <div style={{ display: this.props.showPalette ? "block" : "none" }}>
           <CirclePicker onChangeComplete={color => this.colorChange(color)} />
         </div>
         <input
@@ -57,4 +61,4 @@ class ColorSelect extends Component {
   }
 }
 
-export default ColorSelect;
+export default connect(ColorSelect, state => state.write);

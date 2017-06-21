@@ -51,7 +51,11 @@ export async function getFeed(userId) {
   const user = await userAPI.getUser(userId);
   updateState("user", state => ({
     ...state,
-    user
+    user: {
+      ...user,
+      follows: user.follows.split(","),
+      likes: user.likes.split(",")
+    }
   }));
 }
 
@@ -101,7 +105,11 @@ export async function getInterestingPosts(userId) {
   const user = await userAPI.getUser(userId);
   updateState("user", state => ({
     ...state,
-    user
+    user: {
+      ...user,
+      follows: user.follows.split(","),
+      likes: user.likes.split(",")
+    }
   }));
 }
 

@@ -5,6 +5,12 @@ import ColorSelect from "./color-select";
 import ImageSelect from "./image-select";
 
 class Write extends Component {
+  constructor(props) {
+    super(props);
+    this.selectBackgroundColor = this.selectBackgroundColor.bind(this)
+    this.saveHaiku = this.saveHaiku.bind(this)
+  }
+
   selectBackgroundColor(color) {
     this.setState({ backgroundColor: color });
   }
@@ -12,7 +18,6 @@ class Write extends Component {
   options() {}
 
   saveHaiku() {
-    console.log(this.props.user);
     postsActions
       .create({
         userFullName: this.props.user.name,
@@ -29,17 +34,18 @@ class Write extends Component {
   render() {
     return (
       <div
-        style={{ backgroundColor: this.props.backgroundColor || "aliceblue" }}
-      >
+        style={{ backgroundColor: this.props.backgroundColor || "aliceblue" }}>
         <div
           contentEditable="true"
           className="write"
           ref={input => (this.lines = input)}
         />
         <ul>
-          <li><a href="#" onClick={this.options.bind(this)}>Options</a></li>
           <li>
-            <a href="#" onClick={this.saveHaiku.bind(this)}>Post Haiku</a>
+            <a href="#" onClick={this.options.bind(this)}>Options</a>
+          </li>
+          <li>
+            <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
           </li>
         </ul>
       </div>
