@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { updateState } from "redux-jetpack";
+import { connect } from "redux-jetpack";
 
 class ImageSelect extends Component {
   image = "";
 
   imageParse = () => {
     const reader = new FileReader();
-    reader.onload = img => this.setState({ image: img.target.result });
+    reader.onload = img =>
+      updateState("write", state => ({ ...state, image: img.target.result }));
     reader.readAsDataURL(this.image.files[0]);
   };
 
@@ -20,10 +23,9 @@ class ImageSelect extends Component {
           <li
             className="post"
             style={{
-              backgroundImage: `url(${this.state.image})` || "none",
+              backgroundImage: `url(${this.props.image})` || "none",
               backgroundSize: "cover"
-            }}
-          >
+            }}>
             <ul className="lines">
               {this.props.haiku.lines.map(i => <li>{i}</li>)}
             </ul>
@@ -58,4 +60,4 @@ class ImageSelect extends Component {
   }
 }
 
-export default ImageSelect;
+export default connect(ImageSelect, state => state.write);

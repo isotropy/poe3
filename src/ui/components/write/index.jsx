@@ -7,8 +7,8 @@ import ImageSelect from "./image-select";
 class Write extends Component {
   constructor(props) {
     super(props);
-    this.selectBackgroundColor = this.selectBackgroundColor.bind(this)
-    this.saveHaiku = this.saveHaiku.bind(this)
+    this.selectBackgroundColor = this.selectBackgroundColor.bind(this);
+    this.saveHaiku = this.saveHaiku.bind(this);
   }
 
   selectBackgroundColor(color) {
@@ -34,7 +34,11 @@ class Write extends Component {
   render() {
     return (
       <div
-        style={{ backgroundColor: this.props.backgroundColor || "aliceblue" }}>
+        style={{
+          backgroundImage: `url(${this.props.write.image})` || "none",
+          backgroundColor: post.color || "aliceblue",
+          backgroundSize: "cover"
+        }}>
         <div
           contentEditable="true"
           className="write"
@@ -53,4 +57,7 @@ class Write extends Component {
   }
 }
 
-export default connect(Write, state => ({ user: state.user }));
+export default connect(Write, state => ({
+  user: state.user,
+  write: state.write
+}));

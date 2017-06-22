@@ -15,13 +15,6 @@ class ColorSelect extends Component {
     this.updateState("write", state => ({ ...state, backgroundColor: hex }));
   };
 
-  componentWillMount() {
-    this.updateState("write", state => ({
-      ...state,
-      backgroundColor: this.props.backgroundColor
-    }));
-  }
-
   render() {
     return (
       <div>
