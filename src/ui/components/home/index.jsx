@@ -9,8 +9,8 @@ class Home extends Component {
   }
 
   render() {
-    return this.props.home.posts.length > 0
-      ? <Posts posts={this.props.home.posts} user={this.props.user} />
+    return this.props.posts.length > 0
+      ? <Posts posts={this.props.posts} user={this.props.user} />
       : <div>
           Head over to Explore and follow someone. We will fill up this page
           with

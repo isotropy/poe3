@@ -22,7 +22,6 @@ export async function like(userId, userFullName, postId) {
       user =>
         user.id === userId ? { ...user, likes: userLikes.toString() } : user
     );
-    // db.likes.splice(db.likes.findIndex(like => like.postId === postId), 1);
     db.likes = db.likes.filter(like => like.postId !== postId)
   } else {
     db.posts = db.posts.map(post => {

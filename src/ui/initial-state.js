@@ -10,7 +10,7 @@ export default {
     ]
   },
   auth: {
-    loggedIn: false,
+    loggedIn: true,
     requiresRegistration: false,
     userIdUnAvailable: false
   },
@@ -27,6 +27,7 @@ export default {
   home: {
     posts: []
   },
+  posts: [],
   myPosts: {
     posts: []
   },
@@ -39,8 +40,4 @@ export default {
     posts: [],
     profile: {}
   },
-  componentState: {
-    comments: [],
-    likes: []
-  }
 };

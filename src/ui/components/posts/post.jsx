@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Like from "./like";
+import Likes from "./likes";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
@@ -16,9 +16,8 @@ export default ({ post, user }) => {
           .split("\n")
           .map((line, i) => <li key={`line_${i}`}>{line}</li>)}
       </ul>
-      <Like post={post} user={user} />
-      {console.log("---->", post)}
-      <Comments post={post} user={user} />
+      <Likes postId={post.id} likes={post.likes} likeCount={post.likeCount} user={user} />
+      <Comments postId={post.id} comments={post.comments} post={post} user={user} />
     </li>
   );
 };

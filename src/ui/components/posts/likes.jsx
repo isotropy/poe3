@@ -11,12 +11,10 @@ class Like extends Component {
       this.props.user.userFullName,
       this.props.post
     );
-    postsActions.getInterestingPosts(this.props.user.userId);
-    postsActions.getFeed(this.props.user.userId);
+    postsActions.getPost(this.props.user.userId);
   };
 
   componentWillReceiveProps() {
-    console.log('*******>', this.props);
   }
 
   toggleLikes() {
@@ -31,26 +29,26 @@ class Like extends Component {
   render() {
     return (
       <div>
-        {this.props.post.likes &&
+        {this.props.likes &&
           <div>
             <input
               type="button"
-              value={this.props.user.likes.includes(this.props.post.id) ? "♥" : "♡"}
+              value={this.props.user.likes.includes(this.props.postId) ? "♥" : "♡"}
               onClick={this.handleClick}
             />
             <div onClick={this.toggleLikes.bind(this)}>
-              {this.props.post.likeCount} people like this post.
+              {this.props.likeCount} people like this post.
             </div>
-            {this.props.likes.includes(this.props.post.id) &&
+            {/*this.props.likes.includes(this.props.post.id) &&
               this.props.post.likes.likes.map(like =>
                 <div>
                   <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
                 </div>
-              )}
+              )*/}
           </div>}
       </div>
     );
   }
 }
 
-export default connect(Like, state => state.componentState);
+export default Like;

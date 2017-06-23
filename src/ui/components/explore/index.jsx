@@ -9,7 +9,9 @@ class Explore extends Component {
   }
 
   render() {
-    return <Posts posts={this.props.explore.posts} user={this.props.user} />;
+    return this.props.posts.length > 0
+      ? <Posts posts={this.props.posts} user={this.props.user} />
+      : <div>Thing is loading.</div>;
   }
 }
 

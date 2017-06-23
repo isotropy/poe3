@@ -25,7 +25,6 @@ class Comments extends Component {
   render() {
     return (
       <div>
-        {console.log('======>', this.props)}
         <input
           type="button"
           value="Comments"
@@ -55,4 +54,4 @@ class Comments extends Component {
   }
 }
 
-export default connect(Comments, state => state.componentState);
+export default Comments;
