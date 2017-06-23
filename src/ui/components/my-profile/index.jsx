@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
+import { Switch } from "react-router-dom";
+import Route from "../../route";
 import * as myProfileActions from "../../actions/my-profile";
 import Posts from "../posts/posts";
+import Notifications from "./notifications";
+import Activity from "./activity";
 
 class MyProfile extends Component {
   componentWillMount() {
@@ -28,7 +32,12 @@ class MyProfile extends Component {
             </a>
           </li>
         </ul>
-        {this.props.posts && <Posts posts={this.props.posts} user={this.props} />}
+        {this.props.posts &&
+          <Posts posts={this.props.posts} user={this.props} />}
+        <Switch>
+          <Route path="/my-profile/notifications" component={Notifications} />
+          <Route path="/my-profile/activity" component={Activity} />
+        </Switch>
       </div>
     );
   }

@@ -15,6 +15,10 @@ class Like extends Component {
     postsActions.getFeed(this.props.user.userId);
   };
 
+  componentWillReceiveProps() {
+    console.log('*******>', this.props);
+  }
+
   toggleLikes() {
     updateState("componentState", state => ({
       ...state,

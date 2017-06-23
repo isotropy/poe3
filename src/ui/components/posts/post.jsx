@@ -11,8 +11,13 @@ export default ({ post, user }) => {
         backgroundColor: post.color || "none",
         backgroundSize: "cover"
       }}>
-      <ul className="lines">{post.lines.split("\n").map(i => <li>{i}</li>)}</ul>
+      <ul className="lines">
+        {post.lines
+          .split("\n")
+          .map((line, i) => <li key={`line_${i}`}>{line}</li>)}
+      </ul>
       <Like post={post} user={user} />
+      {console.log("---->", post)}
       <Comments post={post} user={user} />
     </li>
   );

@@ -7,7 +7,7 @@ export async function login(service, serviceId) {
 
   const user = db.users.find(user => user.id === providerIdentity.id)
 
-  return user.length > 0
+  return user > 0
     ? {
         loggedIn: true,
         requiresRegistration: false,

@@ -9,7 +9,9 @@ class Comments extends Component {
     this.setState({ openComments: false });
   }
 
-  componentWillReceiveProps() {}
+  componentWillReceiveProps() {
+    // console.log(this.props);
+  }
 
   toggleComments() {
     updateState("componentState", state => ({
@@ -23,6 +25,7 @@ class Comments extends Component {
   render() {
     return (
       <div>
+        {console.log('======>', this.props)}
         <input
           type="button"
           value="Comments"
@@ -35,10 +38,10 @@ class Comments extends Component {
                 c.postId === this.props.postId
                   ? c["children"]
                     ? <ul className="comments">
-                        <Comment comment={c} />
-                        {c.children.map(cc => <Comment comment={cc} />)}
+                        <Comment comment={c} key={`post_${this.props.post.id}_comment_${c.id}`} />
+                        {c.children.map(cc => <Comment comment={cc} key={`post_${this.props.post.id}_comment_${cc.id}`} />)}
                       </ul>
-                    : <Comment comment={c} />
+                    : <Comment comment={c} key={`post_${this.props.post.id}_comment_${c.id}`} />
                   : ""
             )}
             <Reply

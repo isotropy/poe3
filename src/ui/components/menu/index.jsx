@@ -14,16 +14,19 @@ const Menu = ({ ...state }) => {
       {state.menu.items.map(
         i =>
           i.selected
-            ? <li className="selected" onClick={() => handleClick(i.key)}>
+            ? <li
+                className="selected"
+                onClick={() => handleClick(i.key)}
+                key={i.key}>
                 <Link to={`/${i.key}`}>{i.text || i.key}</Link>
               </li>
-            : <li onClick={() => handleClick(i.key)}>
+            : <li onClick={() => handleClick(i.key)} key={i.key}>
                 <Link to={`/${i.key}`}>{i.text || i.key}</Link>
               </li>
       )}
     </ul>
   );
-  return <div></div>;
+  return <div />;
 };
 
 export default connect(Menu, state => state);

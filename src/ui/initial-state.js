@@ -10,7 +10,7 @@ export default {
     ]
   },
   auth: {
-    loggedIn: true,
+    loggedIn: false,
     requiresRegistration: false,
     userIdUnAvailable: false
   },

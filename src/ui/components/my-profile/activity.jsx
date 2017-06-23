@@ -14,21 +14,6 @@ class Notifications extends Component {
         <img src={this.props.image} />
         {this.props.name}
         <ul>
-          <li>
-            <a href="posts">My Posts</a>
-          </li>
-          <li>
-            <a href="/my-profile/notifications">
-              Notifications
-            </a>
-          </li>
-          <li>
-            <a href="/my-profile/activity">
-              Activity
-            </a>
-          </li>
-        </ul>
-        <ul>
           {this.props.activity &&
             this.props.activity.map(a =>
               <li>You {a.type}ed on {a.userId}'s post' on {a.timestamp}</li>
