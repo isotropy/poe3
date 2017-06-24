@@ -17,7 +17,7 @@ class MyProfile extends Component {
       ? <div>Loading</div>
       : <div>
           <img src={this.props.user.user.imageData} />
-          {this.props.user.user.name}
+          {this.props.user.user.userFullName}
           <ul>
             <li>
               <a href="/my-profile/posts">My Posts</a>

@@ -12,12 +12,12 @@ export default {
     },
     {
       filename: "dali",
-      dir: "1/profile",
+      dir: "sadali/profile",
       contents: dali
     },
     {
       filename: "munch",
-      dir: "2/profile",
+      dir: "munch/profile",
       contents: munch
     },
     {

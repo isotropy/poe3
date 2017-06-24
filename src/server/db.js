@@ -156,19 +156,19 @@ export default {
     {
       userId: "sadali",
       action: "liked",
-      postId: p1,
+      postId: "p1",
       timestamp: 0
     },
     {
       userId: "sadali",
       action: "liked",
-      postId: p4,
+      postId: "p4",
       timestamp: 0
     },
     {
       userId: "sadali",
       action: "commented on",
-      postId: p5,
+      postId: "p5",
       commentId: 5,
       timestamp: 0
     }
