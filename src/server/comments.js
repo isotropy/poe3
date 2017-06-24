@@ -9,10 +9,4 @@ export async function writeComment(comment) {
 
 export async function getLatest(postId) {
   return db.comments.filter(comment => comment.postId === postId);
-  // const comments = db.comments.filter(comment => comment.postId === postId);
-  //
-  // return comments.map(comment => ({
-  //   ...comment,
-  //   userPicture: fs.images.find(f => f.filename === comment.userPicture).contents
-  // }));
 }

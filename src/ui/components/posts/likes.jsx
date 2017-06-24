@@ -29,7 +29,7 @@ class Like extends Component {
   render() {
     return (
       <div>
-        {this.props.likes &&
+        {Object.keys(this.props.likes).length !== 0 &&
           <div>
             <input
               type="button"
@@ -39,12 +39,12 @@ class Like extends Component {
             <div onClick={this.toggleLikes.bind(this)}>
               {this.props.likeCount} people like this post.
             </div>
-            {/*this.props.likes.includes(this.props.post.id) &&
+            {this.props.likes.includes(this.props.postId) &&
               this.props.post.likes.likes.map(like =>
                 <div>
                   <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
                 </div>
-              )*/}
+              )}
           </div>}
       </div>
     );

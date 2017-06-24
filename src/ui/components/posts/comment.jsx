@@ -6,7 +6,7 @@ export default ({ comment }) => {
     : "comment";
   return (
     <li className={classSelector}>
-      <img src={comment.userPicture} />
+      <img src={comment.userPictureData || ''} />
       <span>{comment.userName}</span>
       <span>{comment.timestamp}</span>
       <div>{comment.message}</div>

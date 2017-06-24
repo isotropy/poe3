@@ -1,4 +1,26 @@
 export default {
+  posts: [],
+  auth: {
+    loggedIn: true,
+    requiresRegistration: false,
+    userIdUnAvailable: false
+  },
+  user: {
+    user: {
+      userFullName: "Salvador Dali",
+      userId: "sadali",
+      image: "dali",
+      follows: [1],
+      likes: []
+    },
+    notifications: [],
+    activity: []
+  },
+  write: {
+    image: "",
+    backgroundColor: "",
+    showPalette: false
+  },
   menu: {
     visible: true,
     items: [
@@ -8,36 +30,5 @@ export default {
       { key: "my-profile", text: "Profile" }
       // { key: "tags", text: "Tags" }
     ]
-  },
-  auth: {
-    loggedIn: true,
-    requiresRegistration: false,
-    userIdUnAvailable: false
-  },
-  user: {
-    userFullName: "Salvador Dali",
-    userId: "sadali",
-    image: "dali",
-    follows: [1],
-    likes: []
-  },
-  explore: {
-    posts: []
-  },
-  home: {
-    posts: []
-  },
-  posts: [],
-  myPosts: {
-    posts: []
-  },
-  write: {
-    image: "",
-    backgroundColor: "",
-    showPalette: false
-  },
-  resources: {
-    posts: [],
-    profile: {}
-  },
+  }
 };

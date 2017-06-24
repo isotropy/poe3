@@ -4,9 +4,16 @@ import * as imageAPI from "../image";
 import * as likesAPI from "../likes";
 
 export async function getFullPost(post) {
-  let ungroupedComments = await commentsAPI.getLatest(post.id);
+  
+  const ungroupedComments = await commentsAPI.getLatest(post.id);
+  const imagedUngroupedComments = await Promise.all(
+    ungroupedComments.map(async ungroupedComment => ({
+      ...ungroupedComment,
+      userPictureData: await imageAPI.getImage(ungroupedComment.userPicture)
+    }))
+  );
   const groupedComments = ramda.groupBy(c => c.parentCommentId || "root")(
-    ungroupedComments
+    imagedUngroupedComments
   );
   const comments = groupedComments.root
     ? groupedComments.root.reduce(
@@ -15,6 +22,7 @@ export async function getFullPost(post) {
         []
       )
     : [];
+
   const likes = await likesAPI.getLikes(post.id);
 
   const imageData = await imageAPI.getImage(post.image);
