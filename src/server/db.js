@@ -155,19 +155,22 @@ export default {
   activity: [
     {
       userId: "sadali",
-      type: "like",
-      postId: 3
+      action: "liked",
+      postId: p1,
+      timestamp: 0
     },
     {
       userId: "sadali",
-      type: "like",
-      postId: 4
+      action: "liked",
+      postId: p4,
+      timestamp: 0
     },
     {
       userId: "sadali",
-      type: "comment",
-      postId: 5,
-      commentId: 5
+      action: "commented on",
+      postId: p5,
+      commentId: 5,
+      timestamp: 0
     }
   ],
   identities: [{ service: "google", serviceId: "s_dali", id: "sadali" }]

@@ -22,6 +22,5 @@ const render = Component =>
   );
 
 render(App(store));
-// postsActions.getInterestingPosts();
 
 if (module.hot) module.hot.accept("./app", () => render(App(store)));

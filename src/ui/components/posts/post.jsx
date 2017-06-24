@@ -3,7 +3,6 @@ import Likes from "./likes";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
-  console.log(post)
   return (
     <li
       className="post"

@@ -10,6 +10,7 @@ function handleClick(item) {
 const Menu = ({ ...state }) => {
   return (
     state.auth.loggedIn &&
+    state.menu.visible &&
     <ul className="menu ">
       {state.menu.items.map(
         i =>

@@ -13,7 +13,6 @@ class Login extends Component {
     this.handleService = this.handleService.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
     this.login = this.login.bind(this);
-    // this.closeLoginModal = this.closeLoginModal.bind(this);
     this.register = this.register.bind(this);
     this.closeRegisterModal = this.closeRegisterModal.bind(this);
   }
@@ -22,7 +21,6 @@ class Login extends Component {
     if (this.props.loggedIn) this.props.history.push("/");
     this.setState({
       serviceProvider: "default",
-      // openLoginModal: false,
       openRegistrationModal: false,
       loginSuccess: false
     });
@@ -33,14 +31,12 @@ class Login extends Component {
     if (this.props.requiresRegistration)
       this.setState({
         openRegistrationModal: true
-        // openLoginModal: false
       });
   }
 
   handleService(e) {
     this.setState({
       serviceProvider: e.target.value
-      // openLoginModal: true
     });
   }
 
@@ -58,12 +54,6 @@ class Login extends Component {
       this.providerId.value
     );
   }
-
-  // closeLoginModal() {
-  //   this.setState({
-  //     openLoginModal: false
-  //   });
-  // }
 
   closeRegisterModal() {
     this.setState({
@@ -113,13 +103,6 @@ class Login extends Component {
           </div>
           <div>
             <input type="button" value="Login" onClick={this.login} />
-            {/*{" "}
-            <input
-            //   type="button"
-            //   value="Cancel"
-            //   onClick={this.closeLoginModal}
-            />{" "}
-            */}
           </div>
         </div>
 

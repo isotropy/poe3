@@ -8,8 +8,7 @@ export default {
   user: {
     user: {
       userFullName: "Salvador Dali",
-      userId: "sadali",
-      image: "dali",
+      id: "sadali",
       follows: [1],
       likes: []
     },

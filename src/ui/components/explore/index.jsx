@@ -5,12 +5,12 @@ import Posts from "../posts/posts";
 
 class Explore extends Component {
   componentWillMount() {
-    postsActions.getInterestingPosts(this.props.user.userId);
+    postsActions.getInterestingPosts(this.props.user.user.id);
   }
 
   render() {
     return this.props.posts.length > 0
-      ? <Posts posts={this.props.posts} user={this.props.user} />
+      ? <Posts posts={this.props.posts} user={this.props.user.user} />
       : <div>Thing is loading.</div>;
   }
 }

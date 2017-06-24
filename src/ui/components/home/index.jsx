@@ -5,12 +5,12 @@ import Posts from "../posts/posts";
 
 class Home extends Component {
   componentWillMount() {
-    postsActions.getFeed(this.props.user.userId);
+    postsActions.getFeed(this.props.user.user.id);
   }
 
   render() {
     return this.props.posts.length > 0
-      ? <Posts posts={this.props.posts} user={this.props.user} />
+      ? <Posts posts={this.props.posts} user={this.props.user.user} />
       : <div>
           Head over to Explore and follow someone. We will fill up this page
           with
@@ -19,4 +19,7 @@ class Home extends Component {
   }
 }
 
-export default connect(Home, state => state);
+export default connect(Home, state => ({
+  user: state.user,
+  posts: state.posts
+}));
