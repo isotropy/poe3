@@ -7,10 +7,7 @@ import Reply from "./reply";
 
 class Comments extends Component {
   toggleComments() {
-    componentStateActions.updateComponentState(
-      this.props.post.id,
-      "isCommentsOpen"
-    );
+    componentStateActions.comments_isCommentsOpen(this.props.post.id);
   }
 
   render() {
@@ -45,10 +42,7 @@ class Comments extends Component {
                       />
                   : ""
             )}
-            <Reply
-              postId={this.props.post.id}
-              user={this.props.user}
-            />
+            <Reply postId={this.props.post.id} user={this.props.user} />
           </ul>}
       </div>
     );

@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import * as postsActions from "../../actions/posts";
-import ColorSelect from "./color-select";
-import ImageSelect from "./image-select";
+import * as componentStateActions from "../../actions/component-state";
+import Options from "./options";
 
 class Write extends Component {
   constructor(props) {
     super(props);
-    this.selectBackgroundColor = this.selectBackgroundColor.bind(this);
     this.saveHaiku = this.saveHaiku.bind(this);
+    this.storeHaiku = this.storeHaiku.bind(this);
+    this.toggleOptions = this.toggleOptions.bind(this);
   }
 
-  selectBackgroundColor(color) {
-    this.setState({ backgroundColor: color });
+  toggleOptions() {
+    componentStateActions.write_showPalette();
   }
 
-  options() {}
+  storeHaiku(e) {
+    componentStateActions.write_haiku(e.target.innerText);
+  }
 
   saveHaiku() {
     postsActions
@@ -27,6 +30,7 @@ class Write extends Component {
         timestamp: new Date().toLocaleString()
       })
       .then(() => {
+        componentStateActions.write_showPalette();
         this.props.history.push("/profile");
       });
   }
@@ -36,22 +40,24 @@ class Write extends Component {
       <div
         style={{
           backgroundImage: `url(${this.props.write.image})` || "none",
-          backgroundColor: post.color || "aliceblue",
+          backgroundColor: this.props.write.backgroundColor || "aliceblue",
           backgroundSize: "cover"
         }}>
         <div
           contentEditable="true"
           className="write"
-          ref={input => (this.lines = input)}
+          onInput={this.storeHaiku}
         />
-        <ul>
-          <li>
-            <a href="#" onClick={this.options.bind(this)}>Options</a>
-          </li>
-          <li>
-            <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
-          </li>
-        </ul>
+        {!this.props.write.showPalette && !this.props.write.showImageUpload
+          ? <ul>
+              <li>
+                <a href="#" onClick={this.toggleOptions}>Options</a>
+              </li>
+              <li>
+                <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
+              </li>
+            </ul>
+          : <Options />}
       </div>
     );
   }

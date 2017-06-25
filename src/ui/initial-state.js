@@ -16,9 +16,11 @@ export default {
     activity: []
   },
   write: {
+    haiku: "",
     image: "",
     backgroundColor: "",
-    showPalette: false
+    showPalette: false,
+    showImageUpload: false
   },
   menu: {
     visible: true,

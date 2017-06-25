@@ -16,10 +16,7 @@ class Like extends Component {
   };
 
   toggleLikes() {
-    componentStateActions.updateComponentState(
-      this.props.post.id,
-      "isLikesOpen"
-    );
+    componentStateActions.likes_isLikesOpen(this.props.post.id);
   }
 
   render() {
@@ -29,9 +26,7 @@ class Like extends Component {
           <div>
             <input
               type="button"
-              value={
-                this.props.post.isPostLiked ? "♥" : "♡"
-              }
+              value={this.props.post.isPostLiked ? "♥" : "♡"}
               onClick={this.handleClick}
             />
             <div onClick={this.toggleLikes.bind(this)}>
