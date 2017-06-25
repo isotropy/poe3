@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as commentsActions from "../../actions/comments";
 
-export default ({ updateCB, postId, user, parentComment }) => {
+export default ({ postId, user, parentComment }) => {
   let comment = "";
 
   const postComment = () => {
@@ -13,13 +13,12 @@ export default ({ updateCB, postId, user, parentComment }) => {
       message: comment.value,
       timestamp: new Date().toLocaleString()
     });
-    updateCB(postId);
   };
 
   return (
     <div>
       <input type="text" ref={input => (comment = input)} />
-      <input type="button" onClick={postComment} />
+      <input type="button" value="Submit Comment" onClick={postComment} />
     </div>
   );
 };

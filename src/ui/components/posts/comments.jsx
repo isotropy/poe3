@@ -46,7 +46,6 @@ class Comments extends Component {
                   : ""
             )}
             <Reply
-              updateCB={this.getComments}
               postId={this.props.post.id}
               user={this.props.user}
             />
