@@ -5,7 +5,10 @@ export async function updatePosts(results) {
   const posts = results.map(result => ({
     ...result,
     likes: {},
-    comments: []
+    comments: [],
+    isPostLiked: false,
+    isLikesOpen: false,
+    isCommentsOpen: false
   }));
 
   updateState("posts", state => posts);
