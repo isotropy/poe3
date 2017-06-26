@@ -17,7 +17,7 @@ export async function comments_isCommentsOpen(postId) {
 }
 
 export async function write_backgroundColor(backgroundColor) {
-  updateState("write", state => state.map({ ...state, backgroundColor }));
+  updateState("write", state => ({ ...state, backgroundColor }));
 }
 
 export async function write_showPalette() {

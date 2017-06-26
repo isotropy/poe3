@@ -11,6 +11,10 @@ class Options extends Component {
     componentStateActions.write_showPalette();
   };
 
+  showImageUpload = () => {
+    componentStateActions.write_showImageUpload();
+  };
+
   colorChange = ({ hex }) => {
     componentStateActions.write_backgroundColor(hex);
   };
@@ -32,10 +36,8 @@ class Options extends Component {
           <li
             className="post"
             style={{
-              backgroundImage:
-                `url(${this.props.image})` ||
-                  this.props.backgroundColor ||
-                  "aliceblue",
+              backgroundImage: `url(${this.props.image})` || "none",
+              backgroundColor: this.props.backgroundColor || "aliceblue",
               backgroundSize: "cover"
             }}>
             <ul className="lines">
@@ -44,42 +46,50 @@ class Options extends Component {
             </ul>
           </li>
         </ul>
-        <input
-          ref={input => (this.image = input)}
-          type="file"
-          onChange={e => this.imageParse(e)}
-        />
-        <input
-          type="button"
-          value="Select Color"
-          onClick={this.props.toggleActive}
-        />
-        <input
-          type="button"
-          value="Send Haiku Home"
-          onClick={() =>
-            this.props.writeHaiku({
-              ...this.props.haiku,
-              image: this.state.image
-            })}
-        />
+
+        {this.props.showImageUpload &&
+          <div>
+            <input
+              ref={input => (this.image = input)}
+              type="file"
+              onChange={e => this.imageParse(e)}
+            />
+            <input
+              type="button"
+              value="Select Color"
+              onClick={this.showPalette}
+            />
+            <input
+              type="button"
+              value="Send Haiku Home"
+              onClick={() =>
+                this.props.writeHaiku({
+                  ...this.props.haiku,
+                  image: this.state.image
+                })}
+            />
+          </div>}
+
+        {this.props.showPalette &&
+          <div>
+            <input
+              type="button"
+              value="Select Image"
+              onClick={this.showImageUpload}
+            />
+            <div>
+              <CirclePicker
+                onChangeComplete={color => this.colorChange(color)}
+              />
+            </div>
+            <input
+              type="button"
+              value="Send Haiku Home"
+              onClick={() => this.props.writeHaiku()}
+            />
+          </div>}
+
         <input type="button" value="Back" onClick={() => this.hideOptions()} />
-
-        <input type="button" value="Select Color" onClick={this.showColors} />
-        <input
-          type="button"
-          value="Select Image"
-          onClick={this.props.toggleActive}
-        />
-        <div style={{ display: this.props.showPalette ? "block" : "none" }}>
-          <CirclePicker onChangeComplete={color => this.colorChange(color)} />
-        </div>
-        <input
-          type="button"
-          value="Send Haiku Home"
-          onClick={() => this.props.writeHaiku()}
-        />
-
       </div>
     );
   }

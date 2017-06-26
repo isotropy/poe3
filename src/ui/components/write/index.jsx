@@ -36,7 +36,8 @@ class Write extends Component {
   }
 
   render() {
-    return (
+    return !this.props.write.showPalette &&
+        !this.props.write.showImageUpload ?
       <div
         style={{
           backgroundImage: `url(${this.props.write.image})` || "none",
@@ -48,18 +49,16 @@ class Write extends Component {
           className="write"
           onInput={this.storeHaiku}
         />
-        {!this.props.write.showPalette && !this.props.write.showImageUpload
-          ? <ul>
-              <li>
-                <a href="#" onClick={this.toggleOptions}>Options</a>
-              </li>
-              <li>
-                <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
-              </li>
-            </ul>
-          : <Options />}
+          <ul>
+            <li>
+              <a href="#" onClick={this.toggleOptions}>Options</a>
+            </li>
+            <li>
+              <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
+            </li>
+          </ul>
       </div>
-    );
+      : <Options />
   }
 }
 
