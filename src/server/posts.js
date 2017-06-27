@@ -3,34 +3,45 @@ import fs from "./fs";
 import idGenerator from "./helpers/id-generator";
 import * as likes from "./likes";
 
-export async function getInterestingPosts(userId = 'dfault') {
+export async function getInterestingPosts(userId = "dfault") {
   const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
   return db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
 }
 
 export async function getFeed(userId) {
   const feeds = db.homeFeed
-  .filter(feedItem => feedItem.userId === userId)
-  .map(f => f.postId);
+    .filter(feedItem => feedItem.userId === userId)
+    .map(f => f.postId);
   return db.posts.filter(p => feeds.includes(p.id));
 }
 
 export async function create(haiku) {
-  const contents = haiku.image;
+  console.log(haiku.lines)
+  const lines = haiku.lines.join("\n");
   const id = idGenerator("p");
 
-  db.posts = db.posts.concat({
-    ...haiku,
-    id,
-    image: id,
-    likeCount: 0
-  });
+  if (haiku.image) {
+    db.posts = db.posts.concat({
+      ...haiku,
+      lines,
+      id,
+      image: id,
+      likeCount: 0
+    });
 
-  fs.images = fs.images.concat({
-    dir: haiku.userId,
-    filename: id,
-    contents
-  });
+    fs.images = fs.images.concat({
+      dir: haiku.userId,
+      filename: id,
+      contents: haiku.image
+    });
+  } else {
+    db.posts = db.posts.concat({
+      ...haiku,
+      id,
+      lines,
+      likeCount: 0
+    });
+  }
 }
 
 export async function getPost(postId) {

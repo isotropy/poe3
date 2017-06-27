@@ -3,7 +3,6 @@ import { connect } from "redux-jetpack";
 import { getState, updateState } from "redux-jetpack";
 import * as likesActions from "../../actions/likes";
 import * as postsActions from "../../actions/posts";
-import * as componentStateActions from "../../actions/component-state";
 
 class Like extends Component {
   handleClick = () => {
@@ -16,7 +15,7 @@ class Like extends Component {
   };
 
   toggleLikes() {
-    componentStateActions.likes_isLikesOpen(this.props.post.id);
+    likesActions.isLikesOpen(this.props.post.id);
   }
 
   render() {

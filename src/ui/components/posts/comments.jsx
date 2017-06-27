@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import * as commentsActions from "../../actions/comments";
-import * as componentStateActions from "../../actions/component-state";
 import Comment from "./comment";
 import Reply from "./reply";
 
 class Comments extends Component {
   toggleComments() {
-    componentStateActions.comments_isCommentsOpen(this.props.post.id);
+    commentsActions.isCommentsOpen(this.props.post.id);
   }
 
   render() {

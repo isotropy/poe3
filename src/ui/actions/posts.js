@@ -17,7 +17,3 @@ export async function getPost(postId) {
   const post = await postsAPI.getPost(postId);
   updatePostsHelper.updatePosts([post]);
 }
-
-export async function create(haiku) {
-  const results = await postsAPI.create(haiku);
-}

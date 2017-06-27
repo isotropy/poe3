@@ -2,30 +2,30 @@ import React, { Component } from "react";
 import { updateState } from "redux-jetpack";
 import { connect } from "redux-jetpack";
 import { CirclePicker } from "react-color";
-import * as componentStateActions from "../../actions/component-state";
+import * as writeActions from "../../actions/write";
 
 class Options extends Component {
   image = "";
 
   showPalette = () => {
-    componentStateActions.write_showPalette();
+    writeActions.showPalette();
   };
 
   showImageUpload = () => {
-    componentStateActions.write_showImageUpload();
+    writeActions.showImageUpload();
   };
 
   colorChange = ({ hex }) => {
-    componentStateActions.write_backgroundColor(hex);
+    writeActions.backgroundColor(hex);
   };
 
   hideOptions = () => {
-    componentStateActions.write_hideOptions();
+    writeActions.hideOptions();
   };
 
   imageParse = () => {
     const reader = new FileReader();
-    reader.onload = img => componentStateActions.write_image(img.target.result);
+    reader.onload = img => writeActions.image(img.target.result);
     reader.readAsDataURL(this.image.files[0]);
   };
 
@@ -41,8 +41,7 @@ class Options extends Component {
               backgroundSize: "cover"
             }}>
             <ul className="lines">
-              {this.props.haiku}
-              {/*this.props.haiku.lines.map(i => <li>{i}</li>)*/}
+              {this.props.haiku.map(i => <li>{i}</li>)}
             </ul>
           </li>
         </ul>
@@ -63,9 +62,8 @@ class Options extends Component {
               type="button"
               value="Send Haiku Home"
               onClick={() =>
-                this.props.writeHaiku({
-                  ...this.props.haiku,
-                  image: this.state.image
+                this.props.createPost({
+                  image: this.props.image
                 })}
             />
           </div>}
@@ -85,7 +83,10 @@ class Options extends Component {
             <input
               type="button"
               value="Send Haiku Home"
-              onClick={() => this.props.writeHaiku()}
+              onClick={() =>
+                this.props.createPost({
+                  color: this.props.backgroundColor
+                })}
             />
           </div>}
 

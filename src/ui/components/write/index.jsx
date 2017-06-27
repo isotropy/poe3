@@ -1,54 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as postsActions from "../../actions/posts";
-import * as componentStateActions from "../../actions/component-state";
+import * as writeActions from "../../actions/write";
 import Options from "./options";
 
 class Write extends Component {
   constructor(props) {
     super(props);
-    this.saveHaiku = this.saveHaiku.bind(this);
+    this.createPost = this.createPost.bind(this);
     this.storeHaiku = this.storeHaiku.bind(this);
     this.toggleOptions = this.toggleOptions.bind(this);
   }
 
   toggleOptions() {
-    componentStateActions.write_showPalette();
+    writeActions.showPalette();
   }
 
   storeHaiku(e) {
-    componentStateActions.write_haiku(e.target.innerText);
+    const haikuText = e.target.innerText.replace(/^\s+|\s+$/g, "").split("\n");
+    writeActions.haiku(haikuText);
   }
 
-  saveHaiku() {
-    postsActions
-      .create({
-        userFullName: this.props.user.name,
-        userId: this.props.user.id,
+  createPost(visualOptions) {
+    writeActions
+      .createPost({
+        ...visualOptions,
+        userFullName: this.props.user.user.userFullName,
+        userId: this.props.user.user.id,
         type: "haiku",
-        lines: this.lines.innerText.trim().split("\n"),
+        lines: this.props.write.haiku,
         timestamp: new Date().toLocaleString()
       })
       .then(() => {
-        componentStateActions.write_showPalette();
-        this.props.history.push("/profile");
+        writeActions.clearState();
+        this.props.history.push("/my-profile");
       });
   }
 
   render() {
-    return !this.props.write.showPalette &&
-        !this.props.write.showImageUpload ?
-      <div
-        style={{
-          backgroundImage: `url(${this.props.write.image})` || "none",
-          backgroundColor: this.props.write.backgroundColor || "aliceblue",
-          backgroundSize: "cover"
-        }}>
-        <div
-          contentEditable="true"
-          className="write"
-          onInput={this.storeHaiku}
-        />
+    return !this.props.write.showPalette && !this.props.write.showImageUpload
+      ? <div
+          style={{
+            backgroundImage: `url(${this.props.write.image})` || "none",
+            backgroundColor: this.props.write.backgroundColor || "aliceblue",
+            backgroundSize: "cover"
+          }}>
+          <div
+            contentEditable="true"
+            className="write"
+            onInput={this.storeHaiku}
+          />
           <ul>
             <li>
               <a href="#" onClick={this.toggleOptions}>Options</a>
@@ -57,8 +57,8 @@ class Write extends Component {
               <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
             </li>
           </ul>
-      </div>
-      : <Options />
+        </div>
+      : <Options createPost={this.createPost} />;
   }
 }
 
