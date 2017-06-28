@@ -128,14 +128,14 @@ export default {
       userFullName: "Edvard Munch",
       image: "munch",
       follows: "sadali",
-      likes: "p1"
+      likes: "p1,p2"
     },
     {
       id: "sadali",
       userFullName: "Salvador Dali",
       image: "dali",
       follows: "edvard_munch",
-      likes: "p2"
+      likes: "p1,p2"
     }
   ],
   homeFeed: [

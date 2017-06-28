@@ -5,50 +5,57 @@ export async function getLikes(postId) {
   return test;
 }
 
-export async function toggleLike(userId, userFullName, postId) {
-  //See if there is an existing like on it
-  const likes = db.likes.filter(like => like.userId === userId);
+export async function unLike(userId, userFullName, postId) {
+  const user = db.users.find(user => user.id === userId);
+  const likes = user.likes;
 
-  const hasLiked = likes.some(like => like.postId === postId);
+  //Decrement likeCount on post
+  db.posts = db.posts.map(
+    post =>
+      post.id === postId ? { ...post, likeCount: post.likeCount - 1 } : post
+  );
 
-  if (hasLiked) {
-    //Decrement likeCount on post
-    db.posts = db.posts.map(
-      post =>
-        post.id === postId ? { ...post, likeCount: post.likeCount - 1 } : post
-    );
+  //remove like from likes table
+  db.likes = db.likes.filter(
+    like => like.postId !== postId || like.userId !== userId
+  );
 
-    //remove like from likes table
-    db.likes = db.likes.filter(
-      like => like.postId !== postId || like.userId !== userId
-    );
+  //Update likes on user table
+  const likesString = likes.replace(postId, "");
 
-    //Update likes on user table
-    const likesString = likes
-      .filter(like => like.postId !== postId)
-      .map(like => like.postId)
-      .join(",");
+  db.users = db.users.map(
+    u => (u.userId === userId ? { ...u, likes: likesString } : u)
+  );
 
-    db.users = db.users.map(
-      u => (u.userId === userId ? { ...u, likes: likesString } : u)
-    );
-  } else {
-    //Increment likeCount on post
-    db.posts = db.posts.map(
-      post =>
-        post.id === postId ? { ...post, likeCount: post.likeCount + 1 } : post
-    );
+  return {
+    likes: db.likes.filter(like => like.postId === postId),
+    likeCount: db.posts.find(post => post.id === postId).likeCount
+  };
+}
 
-    //add like to likes table
-    db.likes = db.likes.concat({ userId, postId });
+export async function like(userId, userFullName, postId) {
+  const user = db.users.filter(user => user.id === userId);
+  const likes = user.likes;
+  //Increment likeCount on post
+  db.posts = db.posts.map(
+    post =>
+      post.id === postId ? { ...post, likeCount: post.likeCount + 1 } : post
+  );
 
-    //Update likes on user table
-    const likesString = likes.concat({ userId, postId });
+  //add like to likes table
+  db.likes = db.likes.concat({ userId, postId });
 
-    db.users = db.users.map(
-      u => (u.userId === userId ? { ...u, likes: likesString } : u)
-    );
-  }
+  //Update likes on user table
+  const likesString = likes + ",postId";
+
+  db.users = db.users.map(
+    u => (u.userId === userId ? { ...u, likes: likesString } : u)
+  );
+
+  return {
+    likes: db.likes.filter(like => like.postId === postId),
+    likeCount: db.posts.find(post => post.id === postId).likeCount
+  };
 }
 
 // export async function like(userId, userFullName, postId) {

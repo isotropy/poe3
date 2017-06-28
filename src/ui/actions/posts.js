@@ -4,12 +4,12 @@ import * as updatePostsHelper from "./helpers/update-posts";
 
 export async function getFeed(userId) {
   const posts = await postsAPI.getFeed(userId);
-  updatePostsHelper.updatePosts(posts);
+  updatePostsHelper.updatePosts(posts, userId);
 }
 
 export async function getInterestingPosts(userId) {
   const posts = await postsAPI.getInterestingPosts(userId);
-  updatePostsHelper.updatePosts(posts);
+  updatePostsHelper.updatePosts(posts, userId);
 }
 
 export async function getPost(postId) {
