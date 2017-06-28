@@ -2,20 +2,19 @@ import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import { getState, updateState } from "redux-jetpack";
 import * as likesActions from "../../actions/likes";
-import * as postsActions from "../../actions/posts";
+import Follow from "../profiles/follow";
 
 class Like extends Component {
   handleClick = () => {
     likesActions.like(
-      this.props.user.userId,
+      this.props.user.id,
       this.props.user.userFullName,
       this.props.post.id
     );
-    postsActions.getPost(this.props.user.userId);
   };
 
   toggleLikes() {
-    likesActions.isLikesOpen(this.props.post.id);
+    likesActions.toggleLikeList(this.props.post.id);
   }
 
   render() {
@@ -32,11 +31,15 @@ class Like extends Component {
               {this.props.post.likeCount} people like this post.
             </div>
             {this.props.post.isLikesOpen &&
-              this.props.post.likes.map(like =>
-                <div>
-                  <a href={`/profile/${like.userId}`}>{like.userFullName}</a>
-                </div>
-              )}
+              <ul>
+                {this.props.post.likes.map(like =>
+                <li key={`likes_${like.postId}${like.userId}`}>
+                  <a href={`/profile/${like.userId}`}>
+                    {like.userFullName} <Follow />
+                  </a>
+                </li>
+                )}
+              </ul>}
           </div>}
       </div>
     );

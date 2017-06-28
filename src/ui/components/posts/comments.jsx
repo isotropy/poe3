@@ -26,18 +26,18 @@ class Comments extends Component {
                     ? <ul className="comments">
                         <Comment
                           comment={c}
-                          key={`post_${this.props.post.id}_comment_${c.id}`}
+                          key={`${this.props.post.id}${c.id}`}
                         />
                         {c.children.map(cc =>
                           <Comment
                             comment={cc}
-                            key={`post_${this.props.post.id}_comment_${cc.id}`}
+                            key={`${this.props.post.id}_${cc.id}`}
                           />
                         )}
                       </ul>
                     : <Comment
                         comment={c}
-                        key={`post_${this.props.post.id}_comment_${c.id}`}
+                        key={`${this.props.post.id}_${c.id}`}
                       />
                   : ""
             )}

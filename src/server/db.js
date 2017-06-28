@@ -107,6 +107,16 @@ export default {
       userFullName: "Salvador Dali"
     },
     {
+      postId: "p1",
+      userId: "munch",
+      userFullName: "Edvard Munch"
+    },
+    {
+      postId: "p2",
+      userId: "sadali",
+      userFullName: "Salvador Dali"
+    },
+    {
       postId: "p2",
       userId: "munch",
       userFullName: "Edvard Munch"

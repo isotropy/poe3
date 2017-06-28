@@ -1,7 +1,6 @@
-import * as postsAPI from "../../server/posts";
-import * as userAPI from "../../server/user";
-import * as updatePostsHelper from "./helpers/update-posts";
 import { updateState } from "redux-jetpack";
+import * as postsAPI from "../../server/posts";
+import * as updatePostsHelper from "./helpers/update-posts";
 
 export async function getFeed(userId) {
   const posts = await postsAPI.getFeed(userId);
