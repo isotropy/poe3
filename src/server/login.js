@@ -12,11 +12,11 @@ export async function login(service, serviceId) {
         loggedIn: true,
         requiresRegistration: false,
         user
-        // ,userIdUnAvailable: false
+        // ,userIdUnavailable: false
       }
     : {
         loggedIn: false,
         requiresRegistration: true
-        // ,userIdUnAvailable: false
+        // ,userIdUnavailable: false
       };
 }

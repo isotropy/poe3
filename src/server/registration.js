@@ -7,7 +7,7 @@ export async function register(service, serviceId, name, id) {
     return {
       loggedIn: false,
       requiresRegistration: true,
-      userIdUnAvailable: true
+      userIdUnavailable: true
     };
 
   db.users = db.users.concat({
@@ -21,6 +21,6 @@ export async function register(service, serviceId, name, id) {
   return {
     loggedIn: true,
     requiresRegistration: false,
-    userIdUnAvailable: false
+    userIdUnavailable: false
   };
 }

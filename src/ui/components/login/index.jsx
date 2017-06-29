@@ -125,7 +125,7 @@ class Login extends Component {
                 onClick={this.closeRegisterModal}
               />
             </div>
-            {this.props.userIdUnAvailable && <div>Bruh that name ain't around. Choose another.</div>}
+            {this.props.userIdUnavailable && <div>Bruh that name ain't around. Choose another.</div>}
           </div>}
 
       </div>
