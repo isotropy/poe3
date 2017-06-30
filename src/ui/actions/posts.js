@@ -1,18 +1,108 @@
 import { updateState } from "redux-jetpack";
 import * as postsAPI from "../../server/posts";
-import * as updatePostsHelper from "./helpers/update-posts";
+import * as imageAPI from "../../server/image";
+import * as likesAPI from "../../server/likes";
+
+const updatePosts = async (results, userId) => {
+  const posts = results.map(result => ({
+    ...result,
+    likes: {},
+    comments: [],
+    isPostLiked: false,
+    isLikesOpen: false,
+    isCommentsOpen: false
+  }));
+
+  updateState("posts", state => posts);
+
+  posts.forEach(async barePost => {
+    const comments = await groupCommentsHelper.getFullComment(post.id);
+
+    const likes = await likesAPI.getLikes(post.id);
+
+    const imageData = await imageAPI.getImage(post.image);
+
+    const post = imageData
+      ? {
+          ...post,
+          comments,
+          likes,
+          imageData,
+          isPostLiked
+        }
+      : {
+          ...post,
+          comments,
+          likes,
+          isPostLiked
+        };
+
+    updateState("posts", state =>
+      state.map(p => (p.id === post.id ? post : p))
+    );
+  });
+};
 
 export async function getFeed(userId) {
   const posts = await postsAPI.getFeed(userId);
-  updatePostsHelper.updatePosts(posts, userId);
+  updatePosts(posts, userId);
 }
 
 export async function getInterestingPosts(userId) {
   const posts = await postsAPI.getInterestingPosts(userId);
-  updatePostsHelper.updatePosts(posts, userId);
+  updatePosts(posts, userId);
 }
 
 export async function getPost(postId) {
   const post = await postsAPI.getPost(postId);
-  updatePostsHelper.updatePosts([post]);
+  updatePosts([post]);
+}
+
+export async function getPostsByUserId(userId) {
+  const post = await postsAPI.getPostsByUserId(userId);
+  updatePosts(post);
+}
+
+export async function createPost(haiku) {
+  const results = await postsAPI.create(haiku);
+}
+
+export async function backgroundColor(backgroundColor) {
+  updateState("write", state => ({ ...state, backgroundColor }));
+}
+
+export async function showPalette() {
+  updateState("write", state => ({
+    ...state,
+    showPalette: true,
+    showImageUpload: false
+  }));
+}
+
+export async function showImageUpload() {
+  updateState("write", state => ({
+    ...state,
+    showPalette: false,
+    showImageUpload: true
+  }));
+}
+
+export async function hideOptions() {
+  updateState("write", state => ({
+    ...state,
+    showPalette: false,
+    showImageUpload: false
+  }));
+}
+
+export async function haiku(haiku) {
+  updateState("write", state => ({ ...state, haiku }));
+}
+
+export async function image(image) {
+  updateState("write", state => ({ ...state, image }));
+}
+
+export async function clearState(image) {
+  updateState("write", state => ({}));
 }

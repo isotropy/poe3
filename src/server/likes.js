@@ -1,4 +1,6 @@
 import db from "./db";
+import * as activityHelper from "./helpers/activity";
+import * as notificationHelper from "./helpers/notification";
 
 export async function getLikes(postId) {
   const test = db.likes.filter(like => like.postId === postId);

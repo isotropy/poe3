@@ -1,6 +1,7 @@
+import ramda from "ramda";
 import { updateState } from "redux-jetpack";
 import * as commentsAPI from "../../server/comments";
-import * as groupCommentsHelper from "../../server/helpers/group-comment";
+import * as imageAPI from "../../serverimage";
 
 export async function write(comment) {
   const results = await commentsAPI.writeComment(comment);
@@ -17,4 +18,24 @@ export async function isCommentsOpen(postId) {
       p => (p.id === postId ? { ...p, isCommentsOpen: !p.isCommentsOpen } : p)
     )
   );
+}
+
+export async function getFullComment(postId) {
+  const ungroupedComments = await commentsAPI.getLatest(postId);
+  const imagedUngroupedComments = await Promise.all(
+    ungroupedComments.map(async ungroupedComment => ({
+      ...ungroupedComment,
+      userPictureData: await imageAPI.getImage(ungroupedComment.userPicture)
+    }))
+  );
+  const groupedComments = ramda.groupBy(c => c.parentCommentId || "root")(
+    imagedUngroupedComments
+  );
+  return groupedComments.root
+    ? groupedComments.root.reduce(
+        (acc, comment) =>
+          acc.concat({ ...comment, children: groupedComments[comment.id] }),
+        []
+      )
+    : [];
 }

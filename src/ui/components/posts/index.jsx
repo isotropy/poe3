@@ -5,7 +5,7 @@ import Posts from "./posts";
 
 class Post extends Component {
   componentWillMount() {
-    postsActions.getPost(this.props.match.params.postId);
+    postsActions.getPost(parseInt(this.props.match.params.postId));
   }
 
   render() {

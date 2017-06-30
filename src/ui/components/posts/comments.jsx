@@ -16,25 +16,31 @@ class Comments extends Component {
           type="button"
           value="Comments"
           onClick={this.toggleComments.bind(this)}
-        />
+        />{" "}
         {this.props.post.isCommentsOpen &&
           <ul className="comments">
             {this.props.post.comments.map(
               c =>
                 c.postId === this.props.post.id
                   ? c["children"]
-                    ? <ul className="comments">
-                        <Comment
-                          comment={c}
-                          key={`${this.props.post.id}${c.id}`}
-                        />
-                        {c.children.map(cc =>
+                    ? <span>
+                        <ul className="comments">
                           <Comment
-                            comment={cc}
-                            key={`${this.props.post.id}_${cc.id}`}
-                          />
-                        )}
-                      </ul>
+                            comment={c}
+                            key={`${this.props.post.id}${c.id}`}
+                          />{" "}
+                          {c.children.map(cc =>
+                            <Comment
+                              comment={cc}
+                              key={`${this.props.post.id}_${cc.id}`}
+                            />
+                          )}
+                        </ul>
+                        <Reply
+                          postId={this.props.post.id}
+                          user={this.props.user}
+                        />
+                      </span>
                     : <Comment
                         comment={c}
                         key={`${this.props.post.id}_${c.id}`}
