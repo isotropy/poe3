@@ -2,30 +2,30 @@ import React, { Component } from "react";
 import { updateState } from "redux-jetpack";
 import { connect } from "redux-jetpack";
 import { CirclePicker } from "react-color";
-import * as writeActions from "../../actions/write";
+import * as postsActions from "../../actions/posts";
 
 class Options extends Component {
   image = "";
 
   showPalette = () => {
-    writeActions.showPalette();
+    postsActions.showPalette();
   };
 
   showImageUpload = () => {
-    writeActions.showImageUpload();
+    postsActions.showImageUpload();
   };
 
   colorChange = ({ hex }) => {
-    writeActions.backgroundColor(hex);
+    postsActions.storeBackgroundColor(hex);
   };
 
   hideOptions = () => {
-    writeActions.hideOptions();
+    postsActions.hideOptions();
   };
 
   imageParse = () => {
     const reader = new FileReader();
-    reader.onload = img => writeActions.image(img.target.result);
+    reader.onload = img => postsActions.storeImage(img.target.result);
     reader.readAsDataURL(this.image.files[0]);
   };
 

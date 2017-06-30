@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as loginActions from "../../actions/login";
-import * as registrationActions from "../../actions/registration";
+import * as usersActions from "../../actions/users";
 
 class Login extends Component {
   providerId = "";
@@ -48,7 +47,7 @@ class Login extends Component {
 
   login() {
     this.setState({ providerId: this.providerId.value });
-    loginActions.login(
+    usersActions.login(
       this.state.loginSuccess,
       this.state.serviceProvider,
       this.providerId.value
@@ -66,7 +65,7 @@ class Login extends Component {
       name: this.name.value,
       id: this.id.value
     });
-    registrationActions.register(
+    usersActions.register(
       this.state.serviceProvider,
       this.state.providerId,
       this.name.value,

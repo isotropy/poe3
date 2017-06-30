@@ -1,15 +1,13 @@
 export default {
   posts: [],
   auth: {
-    sessionId: 0,
+    sessionId: 1
   },
   user: {
-    user: {
-      userFullName: "Salvador Dali",
-      id: "sadali",
-      follows: [1],
-      likes: []
-    },
+    userFullName: "Salvador Dali",
+    id: "sadali",
+    follows: [1],
+    likes: ["p1", "p2"],
     notifications: [],
     activity: []
   },
@@ -19,6 +17,13 @@ export default {
     backgroundColor: "",
     showPalette: false,
     showImageUpload: false
+  },
+  viewProfile: {
+    id: "",
+    userFullName: "",
+    image: "",
+    follows: [],
+    likes: []
   },
   menu: {
     visible: true,

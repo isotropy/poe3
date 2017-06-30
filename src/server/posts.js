@@ -44,10 +44,10 @@ export async function create(haiku) {
   }
 }
 
-export async function get(postId) {
+export async function getPost(postId) {
   return db.posts.find(p => p.id === postId);
 }
 
-export async function getPostsByUserId(userId) {
+export async function getPostsByUser(userId) {
   return db.posts.filter(post => post.userId === userId);
 }

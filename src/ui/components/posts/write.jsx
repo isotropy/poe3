@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as writeActions from "../../actions/write";
-import Options from "./options";
+import * as postsActions from "../../actions/posts";
+import Options from "./write-options";
 
 class Write extends Component {
   constructor(props) {
@@ -12,16 +12,16 @@ class Write extends Component {
   }
 
   toggleOptions() {
-    writeActions.showPalette();
+    postsActions.showPalette();
   }
 
   storeHaiku(e) {
     const haikuText = e.target.innerText.replace(/^\s+|\s+$/g, "").split("\n");
-    writeActions.haiku(haikuText);
+    postsActions.storeHaiku(haikuText);
   }
 
   createPost(visualOptions) {
-    writeActions
+    postsActions
       .createPost({
         ...visualOptions,
         userFullName: this.props.user.user.userFullName,
@@ -31,7 +31,7 @@ class Write extends Component {
         timestamp: new Date().toLocaleString()
       })
       .then(() => {
-        writeActions.clearState();
+        postsActions.clearState();
         this.props.history.push("/my-profile");
       });
   }

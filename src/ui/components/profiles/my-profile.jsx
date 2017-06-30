@@ -2,22 +2,24 @@ import React, { Component } from "react";
 import { connect } from "redux-jetpack";
 import { Switch } from "react-router-dom";
 import Route from "../../route";
-import * as myProfileActions from "../../actions/my-profile";
+import * as usersActions from "../../actions/users";
+import * as postsActions from "../../actions/posts";
 import MyPosts from "./my-posts";
 import Notifications from "./notifications";
 import Activity from "./activity";
 
 class MyProfile extends Component {
   componentWillMount() {
-    myProfileActions.getProfile(this.props.user.user.id);
+    usersActions.getMyProfile(this.props.user.id);
+    postsActions.getPostsByUser(this.props.user.id);
   }
 
   render() {
-    return !this.props.user.user
+    return !this.props.user
       ? <div>Loading</div>
       : <div>
-          <img src={this.props.user.user.imageData} />
-          {this.props.user.user.userFullName}
+          <img src={this.props.user.imageData} />
+          {this.props.user.userFullName}
           <ul>
             <li>
               <a href="/my-profile/posts">My Posts</a>

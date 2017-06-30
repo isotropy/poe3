@@ -3,6 +3,7 @@ import Likes from "./likes";
 import Comments from "./comments";
 
 export default ({ post, user }) => {
+  if (post.id === "p1") console.log(user)
   return (
     <li
       className="post"

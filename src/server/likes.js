@@ -1,10 +1,9 @@
 import db from "./db";
-import * as activityHelper from "./helpers/activity";
-import * as notificationHelper from "./helpers/notification";
+import * as activitiesAPI from "./activities";
+import * as notificationsAPI from "./notifications";
 
 export async function getLikes(postId) {
-  const test = db.likes.filter(like => like.postId === postId);
-  return test;
+  return db.likes.filter(like => like.postId === postId);
 }
 
 export async function unLike(userId, userFullName, postId) {
@@ -23,15 +22,16 @@ export async function unLike(userId, userFullName, postId) {
   );
 
   //Update likes on user table
-  const likesString = likes.replace(postId, "");
+  const userLikes = likes.replace(postId, "");
 
   db.users = db.users.map(
-    u => (u.userId === userId ? { ...u, likes: likesString } : u)
+    u => (u.userId === userId ? { ...u, likes: userLikes } : u)
   );
 
   return {
     likes: db.likes.filter(like => like.postId === postId),
-    likeCount: db.posts.find(post => post.id === postId).likeCount
+    likeCount: db.posts.find(post => post.id === postId).likeCount,
+    userLikes
   };
 }
 
@@ -48,60 +48,15 @@ export async function like(userId, userFullName, postId) {
   db.likes = db.likes.concat({ userId, postId });
 
   //Update likes on user table
-  const likesString = likes + ",postId";
+  const userLikes = likes + "," + postId;
 
   db.users = db.users.map(
-    u => (u.userId === userId ? { ...u, likes: likesString } : u)
+    u => (u.userId === userId ? { ...u, likes: userLikes } : u)
   );
 
   return {
     likes: db.likes.filter(like => like.postId === postId),
-    likeCount: db.posts.find(post => post.id === postId).likeCount
+    likeCount: db.posts.find(post => post.id === postId).likeCount,
+    userLikes
   };
 }
-
-// export async function like(userId, userFullName, postId) {
-//   const likes = db.likes.filter(like => like.postId === postId);
-//   const user = db.users.find(user => user.id === userId);
-//   let likeCount = 0;
-//
-//   if (likes.length > 0) {
-//     //NOT WORKIE
-//     db.posts = db.posts.map(post => {
-//       if (post.id === postId) {
-//         likeCount = post.likeCount - 1;
-//         return { ...post, likeCount };
-//       }
-//       return post;
-//     });
-//     //WORKS
-//     db.posts = db.posts.map(
-//       post =>
-//         post.id === postId ? { ...post, likeCount: likeCount + 1 } : post
-//     );
-//
-//     const userLikes = user.likes.split(",");
-//     userLikes.splice(userLikes.indexOf(postId), 1);
-//     db.users = db.users.map(
-//       user =>
-//         user.id === userId ? { ...user, likes: userLikes.toString() } : user
-//     );
-//     db.likes = db.likes.filter(like => like.postId !== postId);
-//   } else {
-//     db.posts = db.posts.map(post => {
-//       if (post.id === postId) {
-//         likeCount = post.likeCount + 1;
-//         return { ...post, likeCount: post.likeCount + 1 };
-//       }
-//       return post;
-//     });
-//     db.users = db.users.map(
-//       user =>
-//         user.id === userId
-//           ? { ...user, likes: user.likes + "," + postId }
-//           : user
-//     );
-//     db.likes = db.likes.concat({ postId, userId, userFullName });
-//   }
-//   return likeCount;
-// }

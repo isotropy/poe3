@@ -4,11 +4,11 @@ import { connect } from "redux-jetpack";
 
 const isAuthenticated = () => true;
 
-const AuthRoute = ({ loggedIn, component: Component, ...rest }) =>
+const AuthRoute = ({ sessionId, component: Component, ...rest }) =>
   <Route
     {...rest}
     render={props =>
-      loggedIn || props.location.pathname === "/login"
+      sessionId || props.location.pathname === "/login"
         ? <Component {...props} />
         : <Redirect
             to={{ pathname: "/login", state: { from: props.location } }}

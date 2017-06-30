@@ -5,12 +5,12 @@ import Posts from "../posts/posts";
 
 class Home extends Component {
   componentWillMount() {
-    postsActions.getFeed(this.props.user.user.id);
+    postsActions.getFeed(this.props.user.id);
   }
 
   render() {
     return this.props.posts.length > 0
-      ? <Posts posts={this.props.posts} user={this.props.user.user} />
+      ? <Posts posts={this.props.posts} user={this.props.user} />
       : <div>
           Head over to Explore and follow someone. We will fill up this page
           with

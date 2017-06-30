@@ -7,8 +7,8 @@ import Home from "./components/home";
 import Explore from "./components/explore";
 import Post from "./components/posts";
 import Profiles from "./components/profiles";
-import Write from "./components/write";
-import MyProfile from "./components/my-profile";
+import Write from "./components/posts/write";
+import MyProfile from "./components/profiles/my-profile";
 import Tags from "./components/tags";
 import Menu from "./components/menu";
 

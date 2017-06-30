@@ -8,11 +8,11 @@ class Like extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.toggleLikes = this.toggleLikes.bind(this);
   }
 
   handleClick = () => {
-    console.log("liked", this.props.post.isPostLiked);
-    this.props.post.isPostLiked
+    this.props.user.likes.includes(this.props.post.id)
       ? likesActions.unLike(
           this.props.user.id,
           this.props.user.userFullName,
@@ -26,7 +26,7 @@ class Like extends Component {
   };
 
   toggleLikes() {
-    likesActions.toggleLikeList(this.props.post.id);
+    likesActions.toggleLikes(this.props.post.id);
   }
 
   render() {
@@ -34,12 +34,12 @@ class Like extends Component {
       <div>
         <input
           type="button"
-          value={this.props.post.isPostLiked ? "♥" : "♡"}
+          value={this.props.user.likes.includes(this.props.post.id) ? "♥" : "♡"}
           onClick={this.handleClick}
-          />
+        />
         {Object.keys(this.props.post.likes).length !== 0 &&
           <div>
-            <div onClick={this.toggleLikes.bind(this)}>
+            <div onClick={this.toggleLikes}>
               {this.props.post.likeCount} people like this post.
             </div>
             {this.props.post.isLikesOpen &&

@@ -1,28 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "redux-jetpack";
-import * as profilesActions from "../../actions/profiles";
+import * as usersActions from "../../actions/users";
+import * as postsActions from "../../actions/posts";
 import Posts from "../posts/posts";
 import Follow from "./follow";
 
 class Profiles extends Component {
   componentWillMount() {
-    profilesActions.getProfile(this.props.match.params.profile);
-    profilesActions.getPosts(this.props.match.params.profile);
+    usersActions.getProfile(this.props.match.params.userId);
+    postsActions.getPostsByUser(this.props.match.params.userId);
   }
 
   render() {
-    if (!Object.keys(this.props.resources.profile).length)
+    if (!Object.keys(this.props.viewProfile).length)
       return <div>Loading...</div>;
     return (
       <div>
-        <img src={this.props.resources.profile.image} />
-        {this.props.resources.profile.name}
+        <img src={this.props.viewProfile.image} />
+        {this.props.viewProfile.userFullName}
         <Follow
           userId={this.props.user.id}
-          profileId={this.props.resources.profile.id}
+          profileId={this.props.viewProfile.id}
         />
-        {this.props.resources.posts &&
-          <Posts posts={this.props.resources.posts} user={this.props.user} />}
+        {this.props.posts &&
+          <Posts posts={this.props.posts} user={this.props.user} />}
       </div>
     );
   }

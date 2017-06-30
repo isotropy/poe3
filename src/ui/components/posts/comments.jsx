@@ -5,18 +5,19 @@ import Comment from "./comment";
 import Reply from "./reply";
 
 class Comments extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleComments = this.toggleComments.bind(this);
+  }
+
   toggleComments() {
-    commentsActions.isCommentsOpen(this.props.post.id);
+    commentsActions.toggleComments(this.props.post.id);
   }
 
   render() {
     return (
       <div>
-        <input
-          type="button"
-          value="Comments"
-          onClick={this.toggleComments.bind(this)}
-        />{" "}
+        <input type="button" value="Comments" onClick={this.toggleComments} />{" "}
         {this.props.post.isCommentsOpen &&
           <ul className="comments">
             {this.props.post.comments.map(
@@ -39,6 +40,7 @@ class Comments extends Component {
                         <Reply
                           postId={this.props.post.id}
                           user={this.props.user}
+                          parentCommentId={this.props.c.id}
                         />
                       </span>
                     : <Comment

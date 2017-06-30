@@ -58,8 +58,8 @@ export async function getMyProfile(userId) {
   };
 }
 
-export async function getProfile(profile) {
-  return db.users.find(u => u.profile == profile)[0];
+export async function getProfile(userId) {
+  return db.users.find(u => u.userId === userId);
 }
 
 export async function follow(userId, toFollow) {

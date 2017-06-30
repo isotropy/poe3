@@ -1,7 +1,8 @@
 import { updateState } from "redux-jetpack";
 import * as postsAPI from "../../server/posts";
-import * as imageAPI from "../../server/image";
+import * as imageAPI from "../../server/images";
 import * as likesAPI from "../../server/likes";
+import * as commentsActions from "./comments";
 
 const updatePosts = async (results, userId) => {
   const posts = results.map(result => ({
@@ -16,25 +17,23 @@ const updatePosts = async (results, userId) => {
   updateState("posts", state => posts);
 
   posts.forEach(async barePost => {
-    const comments = await groupCommentsHelper.getFullComment(post.id);
+    const comments = await commentsActions.getFullComment(barePost.id);
 
-    const likes = await likesAPI.getLikes(post.id);
+    const likes = await likesAPI.getLikes(barePost.id);
 
-    const imageData = await imageAPI.getImage(post.image);
+    const imageData = await imageAPI.getImage(barePost.image);
 
     const post = imageData
       ? {
-          ...post,
+          ...barePost,
           comments,
           likes,
-          imageData,
-          isPostLiked
+          imageData
         }
       : {
-          ...post,
+          ...barePost,
           comments,
-          likes,
-          isPostLiked
+          likes
         };
 
     updateState("posts", state =>
@@ -58,16 +57,16 @@ export async function getPost(postId) {
   updatePosts([post]);
 }
 
-export async function getPostsByUserId(userId) {
-  const post = await postsAPI.getPostsByUserId(userId);
-  updatePosts(post);
+export async function getPostsByUser(userId) {
+  const posts = await postsAPI.getPostsByUser(userId);
+  updatePosts(posts);
 }
 
 export async function createPost(haiku) {
   const results = await postsAPI.create(haiku);
 }
 
-export async function backgroundColor(backgroundColor) {
+export async function storeBackgroundColor(backgroundColor) {
   updateState("write", state => ({ ...state, backgroundColor }));
 }
 
@@ -95,11 +94,11 @@ export async function hideOptions() {
   }));
 }
 
-export async function haiku(haiku) {
+export async function storeHaiku(haiku) {
   updateState("write", state => ({ ...state, haiku }));
 }
 
-export async function image(image) {
+export async function storeImage(image) {
   updateState("write", state => ({ ...state, image }));
 }
 
