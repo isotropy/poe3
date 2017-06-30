@@ -1,9 +1,7 @@
 export default {
   posts: [],
   auth: {
-    loggedIn: true,
-    requiresRegistration: false,
-    userIdUnAvailable: false
+    sessionId: 0,
   },
   user: {
     user: {
