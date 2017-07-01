@@ -60,6 +60,7 @@ export async function create(haiku) {
             likeCount: 0
           });
 
+          //FIXME - We can't trust haiku.userId
           fs.images = fs.images.concat({
             dir: haiku.userId,
             filename: filename,
