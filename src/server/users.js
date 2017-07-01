@@ -6,47 +6,6 @@ export async function getUser(userId) {
   return db.users.find(user => user.id === userId);
 }
 
-export async function register(service, serviceId, name, id) {
-  const idExists = db.users.find(user => user.id === id);
-  if (idExists)
-    return {
-      loggedIn: false,
-      requiresRegistration: true,
-      userIdUnAvailable: true
-    };
-
-  db.users = db.users.concat({
-    id,
-    name,
-    image: "",
-    follows: "",
-    likes: ""
-  });
-  db.identities = db.identities.concat({ service, serviceId, id });
-  return {
-    loggedIn: true,
-    requiresRegistration: false,
-    userIdUnAvailable: false
-  };
-}
-
-export async function login(service, serviceId) {
-  const providerIdentity = db.identities.filter(
-    i => i.service === service && i.serviceId === serviceId
-  );
-
-  const user = db.users.find(user => user.id === providerIdentity.id);
-
-  return user > 0
-    ? {
-        sessionId: 0,
-        user
-      }
-    : {
-        error: {}
-      };
-}
-
 export async function getMyProfile(userId) {
   const user = db.users.find(u => u.id === userId);
   const notifications = db.notifications.filter(i => i.userId === userId);
@@ -59,7 +18,7 @@ export async function getMyProfile(userId) {
 }
 
 export async function getProfile(userId) {
-  return db.users.find(u => u.userId === userId);
+  return db.users.find(u => u.id === userId);
 }
 
 export async function follow(userId, toFollow) {
@@ -71,4 +30,61 @@ export async function follow(userId, toFollow) {
       u => (u.id === userId ? { ...u, follows: updatedFollows } : u)
     );
   }
+}
+
+export async function login(service, serviceId, success) {
+  if (!success)
+    return {
+      error: {
+        code: 401,
+        message:
+          "Incorrect Credentials. Please try again or register an account."
+      }
+    };
+
+  const providerIdentity = db.identities.find(
+    i => i.service === service && i.serviceId === serviceId
+  ) || [];
+
+  const user = db.users.find(u => u.id === providerIdentity.id);
+
+  return user
+    ? {
+        error: null,
+        sessionId: idGenerator("s"),
+        user
+      }
+    : {
+        error: {
+          code: 403,
+          message: "Register to continue."
+        },
+        sessionId: idGenerator("s")
+      };
+}
+
+export async function register(service, serviceId, name, id) {
+  const idExists = db.users.find(user => user.id === id);
+  if (idExists)
+    return {
+      error: {
+        code: 412,
+        message: "UserID already exists. Please chose an unique-er ID."
+      }
+    };
+
+  const user = {
+    id,
+    name,
+    image: "",
+    follows: "",
+    likes: ""
+  };
+  db.users = db.users.concat(user);
+  db.identities = db.identities.concat({ service, serviceId, id });
+  return {
+    error: null,
+    sessionId: idGenerator("s"),
+    user
+  };
 }

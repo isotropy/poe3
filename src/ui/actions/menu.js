@@ -6,3 +6,10 @@ export async function select(item) {
     items: state.items.map(i => ({ ...i, selected: i.key === item }))
   }));
 }
+
+export async function toggleMenu() {
+  updateState("menu", state => ({
+    ...state,
+    visible: !state.visible
+  }));
+}

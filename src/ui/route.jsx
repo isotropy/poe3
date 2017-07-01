@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "redux-jetpack";
 
-const isAuthenticated = () => true;
-
 const AuthRoute = ({ sessionId, component: Component, ...rest }) =>
   <Route
     {...rest}

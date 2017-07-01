@@ -1,11 +1,20 @@
 import * as usersAPI from "../../server/users";
 import * as imagesAPI from "../../server/images";
-import * as postsActions from "./posts";
+import * as postsAPI from "../../server/posts";
 import { updateState } from "redux-jetpack";
 
 export async function getProfile(userId) {
-  const results = await postsAPI.getProfile(userId);
+  const results = await usersAPI.getProfile(userId);
   updateState("viewProfile", state => results);
+}
+
+export async function loadUser(userId) {
+  const user = await usersAPI.getProfile(userId);
+  updateState("user", state => ({
+    ...user,
+    follows: user.follows ? user.follows.split(",") : [],
+    likes: user.likes ? user.likes.split(",") : []
+  }));
 }
 
 export async function getMyProfile(userId) {
@@ -25,26 +34,44 @@ export async function getMyProfile(userId) {
 }
 
 export async function login(success, service, serviceId) {
-  if (!success) return;
-  const { loggedIn, requiresRegistration, user } = await usersAPI.login(
+  const { error, sessionId, user } = await usersAPI.login(
     service,
-    serviceId
+    serviceId,
+    success
   );
 
-  if (user) getProfile(user.id);
+  if (error) {
+    updateState("error", state => error);
+    return;
+  }
 
-  updateState("auth", state => ({
-    loggedIn,
-    requiresRegistration
-  }));
+  if (user) loadUser(user.id);
+
+  updateState("auth", state => ({ sessionId }));
 }
 
 export async function register(service, serviceId, name, id) {
   id = id.replace(/,/g, "").trim();
-  const result = await usersAPI.register(service, serviceId, name, id);
-  updateState("auth", state => result);
+  const { error, sessionId, user } = await usersAPI.register(
+    service,
+    serviceId,
+    name,
+    id
+  );
+
+  if (error) {
+    updateState("error", state => error);
+    return;
+  }
+
+  loadUser(user.id);
+  updateState("auth", state => ({ sessionId }));
 }
 
 export async function follow(userId, toFollow) {
   const results = await usersAPI.follow(userId, toFollow);
+}
+
+export async function updateLoginLocalState(values) {
+  updateState("login", state => ({ ...state, ...values }));
 }

@@ -1,15 +1,22 @@
 export default {
   posts: [],
   auth: {
-    sessionId: 1
+    sessionId: 0
+  },
+  login: {
+    serviceProvider: "default",
+    loginSuccess: false,
+    providerId: "",
+    name: "",
+    id: ""    
   },
   user: {
-    userFullName: "Salvador Dali",
-    id: "sadali",
-    follows: [1],
-    likes: ["p1", "p2"],
-    notifications: [],
-    activities: []
+    // userFullName: "Salvador Dali",
+    // id: "sadali",
+    // follows: [1],
+    // likes: ["p1", "p2"],
+    // notifications: [],
+    // activities: []
   },
   write: {
     haiku: "",
@@ -26,7 +33,7 @@ export default {
     likes: []
   },
   menu: {
-    visible: true,
+    visible: false,
     items: [
       { key: "write", text: "Write" },
       { key: "home", text: "Home" },
@@ -34,5 +41,9 @@ export default {
       { key: "my-profile", text: "Profile" }
       // { key: "tags", text: "Tags" }
     ]
+  },
+  error: {
+    code: 0,
+    message: ""
   }
 };
