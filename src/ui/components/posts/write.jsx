@@ -43,7 +43,8 @@ class Write extends Component {
             backgroundImage: `url(${this.props.write.image})` || "none",
             backgroundColor: this.props.write.backgroundColor || "aliceblue",
             backgroundSize: "cover"
-          }}>
+          }}
+        >
           <div
             contentEditable="true"
             className="write"
@@ -51,10 +52,14 @@ class Write extends Component {
           />
           <ul>
             <li>
-              <a href="#" onClick={this.toggleOptions}>Options</a>
+              <a href="#" onClick={this.toggleOptions}>
+                Options
+              </a>
             </li>
             <li>
-              <a href="#" onClick={this.saveHaiku}>Post Haiku</a>
+              <a href="#" onClick={this.saveHaiku}>
+                Post Haiku
+              </a>
             </li>
           </ul>
         </div>

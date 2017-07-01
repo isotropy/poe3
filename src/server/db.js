@@ -18,7 +18,7 @@ export default {
       userId: "matsuo",
       userFullName: "Matsuo Basho",
       lines: "A crow settles\non a withered branch\nautumn nightfall..\n",
-      image: "woman-kooning",
+      image: "matsuo/woman-kooning.jpg",
       likeCount: 1132
     },
     {
@@ -27,7 +27,7 @@ export default {
       userId: "edvard_munch",
       userFullName: "Edvard Munch",
       lines: "The slow reverberation\nSplits the silence\nShatters the soul",
-      image: "The_Scream",
+      image: "edvard_munch/The_Scream.jpg",
       timestamp: "17:28 05-07-2017",
       likeCount: 0
     },

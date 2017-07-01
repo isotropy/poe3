@@ -18,23 +18,13 @@ const updatePosts = async (results, userId) => {
 
   posts.forEach(async barePost => {
     const comments = await commentsActions.getFullComment(barePost.id);
-
     const likes = await likesAPI.getLikes(barePost.id);
 
-    const imageData = await imageAPI.getImage(barePost.image);
-
-    const post = imageData
-      ? {
-          ...barePost,
-          comments,
-          likes,
-          imageData
-        }
-      : {
-          ...barePost,
-          comments,
-          likes
-        };
+    const post = {
+      ...barePost,
+      comments,
+      likes
+    };
 
     updateState("posts", state =>
       state.map(p => (p.id === post.id ? post : p))
@@ -98,8 +88,12 @@ export async function storeHaiku(haiku) {
   updateState("write", state => ({ ...state, haiku }));
 }
 
-export async function storeImage(image) {
-  updateState("write", state => ({ ...state, image }));
+export async function storeImage(imageData, imageFilename) {
+  updateState("write", state => ({
+    ...state,
+    imageData,
+    imageFilename
+  }));
 }
 
 export async function clearState(image) {

@@ -7,27 +7,40 @@ import * as postsActions from "../../actions/posts";
 class Options extends Component {
   image = "";
 
-  showPalette = () => {
+  showPalette() {
     postsActions.showPalette();
-  };
+  }
 
-  showImageUpload = () => {
+  showImageUpload() {
     postsActions.showImageUpload();
-  };
+  }
 
-  colorChange = ({ hex }) => {
+  colorChange({ hex }) {
     postsActions.storeBackgroundColor(hex);
-  };
+  }
 
-  hideOptions = () => {
+  hideOptions() {
     postsActions.hideOptions();
-  };
+  }
 
-  imageParse = () => {
-    const reader = new FileReader();
-    reader.onload = img => postsActions.storeImage(img.target.result);
-    reader.readAsDataURL(this.image.files[0]);
-  };
+  getFileExtension(filename) {
+    const matches = /.*\.(.*)$/.exec(filename);
+    return matches.length > 2 ? matches[1] : undefined;
+  }
+
+  imageParse() {
+    const file = this.image.files[0];
+    const extension = getFileExtension(file).toLowerCase();
+
+    if ([`jpg`, `png`].includes(extension)) {
+      const reader = new FileReader();
+      reader.onload = img =>
+        postsActions.storeImage(img.target.result, file.name);
+      reader.readAsBinaryString(file);
+    } else {
+      alert(`Upload a jpg or png file.`);
+    }
+  }
 
   render() {
     return (
@@ -39,9 +52,14 @@ class Options extends Component {
               backgroundImage: `url(${this.props.image})` || "none",
               backgroundColor: this.props.backgroundColor || "aliceblue",
               backgroundSize: "cover"
-            }}>
+            }}
+          >
             <ul className="lines">
-              {this.props.haiku.map(i => <li>{i}</li>)}
+              {this.props.haiku.map(i =>
+                <li>
+                  {i}
+                </li>
+              )}
             </ul>
           </li>
         </ul>
@@ -61,7 +79,7 @@ class Options extends Component {
             <input
               type="button"
               value="Send Haiku Home"
-              onClick={() =>
+              onClick={e =>
                 this.props.createPost({
                   image: this.props.image
                 })}
@@ -73,7 +91,7 @@ class Options extends Component {
             <input
               type="button"
               value="Select Image"
-              onClick={this.showImageUpload}
+              onClick={e => this.showImageUpload(e)}
             />
             <div>
               <CirclePicker
@@ -83,7 +101,7 @@ class Options extends Component {
             <input
               type="button"
               value="Send Haiku Home"
-              onClick={() =>
+              onClick={e =>
                 this.props.createPost({
                   color: this.props.backgroundColor
                 })}

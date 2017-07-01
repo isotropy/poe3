@@ -11,6 +11,7 @@ import Write from "./components/posts/write";
 import MyProfile from "./components/profiles/my-profile";
 import Tags from "./components/tags";
 import Menu from "./components/menu";
+import devModeImages from "./dev/images";
 
 export default store => () =>
   <Provider store={store}>

@@ -15,24 +15,49 @@ export async function getFeed(userId) {
   return db.posts.filter(p => feeds.includes(p.id));
 }
 
+function getFileExtension(filename) {
+  return filename.substring(filename.lastIndexOf("."));
+}
+
+function getFilenameWithoutExtension(filename) {
+  return filename.substring(0, filename.lastIndexOf("."))
+}
+
 export async function create(haiku) {
-  console.log(haiku.lines)
   const lines = haiku.lines.join("\n");
   const id = idGenerator("p");
 
-  if (haiku.image) {
+  if (haiku.imageData) {
+    const uploadedFilename =
+      getFilenameWithoutExtension(haiku.imageFilename) +
+      "." +
+      getFileExtension(haiku.imageFilename);
+
+    const lowercaseFilename = uploadedFilename.toLowerCase();
+
+    //See if the filename already exists
+    const exists = fs.images.some(
+      file => file.dir === haiku.userId && file.filename === lowercaseFilename
+    );
+
+    const filename = exists
+      ? `${lowercaseFilename}-${idGenerator("", 8)}`
+      : lowercaseFilename;
+
+    const fullFilePath = `${haiku.userId}/${filename}`;
+
     db.posts = db.posts.concat({
       ...haiku,
       lines,
       id,
-      image: id,
+      image: fullFilePath,
       likeCount: 0
     });
 
     fs.images = fs.images.concat({
       dir: haiku.userId,
-      filename: id,
-      contents: haiku.image
+      filename: imageFilename,
+      contents: haiku.imageData
     });
   } else {
     db.posts = db.posts.concat({
