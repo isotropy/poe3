@@ -52,6 +52,7 @@ export async function create(haiku) {
 
           const fullFilePath = `${haiku.userId}/${filename}`;
 
+          //FIXME - We can't trust haiku.userId
           db.posts = db.posts.concat({
             ...haiku,
             lines,
