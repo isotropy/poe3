@@ -49,6 +49,7 @@ export async function getPost(postId) {
 
 export async function getPostsByUser(userId) {
   const posts = await postsAPI.getPostsByUser(userId);
+  console.log(posts)
   updatePosts(posts);
 }
 

@@ -9,7 +9,7 @@ export default {
     follows: [1],
     likes: ["p1", "p2"],
     notifications: [],
-    activity: []
+    activities: []
   },
   write: {
     haiku: "",

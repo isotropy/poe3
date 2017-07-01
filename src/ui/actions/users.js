@@ -9,17 +9,19 @@ export async function getProfile(userId) {
 }
 
 export async function getMyProfile(userId) {
-  const profile = await postsAPI.getMyProfile(userId);
-  updateState("user", state => ({ ...profile }));
+  const { user, notifications, activities } = await usersAPI.getMyProfile(
+    userId
+  );
+  updateState("user", state => ({
+    notifications,
+    activities,
+    ...user,
+    follows: user.follows ? user.follows.split(",") : [],
+    likes: user.likes ? user.likes.split(",") : []
+  }));
 
-  const profileWithImage = {
-    ...profile,
-    user: {
-      ...profile.user,
-      imageData: await imageAPI.getProfileImage(userId)
-    }
-  };
-  updateState("user", state => ({ ...profileWithImage }));
+  const imageData = await imagesAPI.getProfileImage(userId);
+  updateState("user", state => ({ ...state, imageData }));
 }
 
 export async function login(success, service, serviceId) {

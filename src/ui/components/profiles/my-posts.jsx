@@ -6,7 +6,7 @@ class MyPosts extends Component {
   render() {
     return !this.props.posts
       ? <div>Loading</div>
-      : <Posts posts={this.props.posts} user={this.props} />;
+      : <Posts posts={this.props.posts} user={this.props.user} />;
   }
 }
 
