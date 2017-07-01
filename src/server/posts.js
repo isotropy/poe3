@@ -43,7 +43,7 @@ export async function create(haiku) {
           return `${filenameWithoutExtension}-${idGenerator("i", 8, {
             lowerCase: true,
             numeric: true
-          })}-${extension}`;
+          })}.${extension}`;
         }
       : lowerCaseFilename;
 
