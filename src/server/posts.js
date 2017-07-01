@@ -2,6 +2,7 @@ import db from "./db";
 import fs from "./fs";
 import idGenerator from "./helpers/id-generator";
 import * as likes from "./likes";
+import exception from "./exception";
 
 export async function getInterestingPosts(userId = "dfault") {
   const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
@@ -29,39 +30,43 @@ export async function create(haiku) {
 
   if (haiku.imageData) {
     const lowerCaseFilename = haiku.imageFilename.toLowerCase();
-    //See if the filename already exists
-    const exists = fs.images.some(
-      file => file.dir === haiku.userId && file.filename === lowerCaseFilename
+    const filenameWithoutExtension = getFilenameWithoutExtension(
+      lowerCaseFilename
     );
+    const extension = getFileExtension(lowerCaseFilename);
 
-    const filename = exists
+    return ["jpg", "jpeg", "png"].includes(extension)
       ? () => {
-          const filenameWithoutExtension = getFilenameWithoutExtension(
-            lowerCaseFilename
+          //See if the filename already exists
+          const exists = fs.images.some(
+            file =>
+              file.dir === haiku.userId && file.filename === lowerCaseFilename
           );
-          const extension = getFileExtension(lowerCaseFilename);
-          return `${filenameWithoutExtension}-${idGenerator("i", 8, {
-            lowerCase: true,
-            numeric: true
-          })}.${extension}`;
+
+          const filename = exists
+            ? `${filenameWithoutExtension}-${idGenerator("i", 8, {
+                lowerCase: true,
+                numeric: true
+              })}.${extension}`
+            : lowerCaseFilename;
+
+          const fullFilePath = `${haiku.userId}/${filename}`;
+
+          db.posts = db.posts.concat({
+            ...haiku,
+            lines,
+            id,
+            image: fullFilePath,
+            likeCount: 0
+          });
+
+          fs.images = fs.images.concat({
+            dir: haiku.userId,
+            filename: filename,
+            contents: haiku.imageData
+          });
         }
-      : lowerCaseFilename;
-
-    const fullFilePath = `${haiku.userId}/${filename}`;
-
-    db.posts = db.posts.concat({
-      ...haiku,
-      lines,
-      id,
-      image: fullFilePath,
-      likeCount: 0
-    });
-
-    fs.images = fs.images.concat({
-      dir: haiku.userId,
-      filename: filename,
-      contents: haiku.imageData
-    });
+      : exception("Invalid filename.");
   } else {
     db.posts = db.posts.concat({
       ...haiku,
