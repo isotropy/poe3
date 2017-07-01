@@ -28,7 +28,7 @@ class Write extends Component {
         userId: this.props.user.user.id,
         type: "haiku",
         lines: this.props.write.haiku,
-        timestamp: new Date().toLocaleString()
+        timestamp: Date.now()
       })
       .then(() => {
         postsActions.clearState();

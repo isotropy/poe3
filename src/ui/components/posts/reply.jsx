@@ -12,7 +12,7 @@ export default ({ postId, user, parentCommentId }) => {
           userName: user.name,
           userPicture: user.image,
           message: comment.value,
-          timestamp: new Date().toLocaleString()
+          timestamp: Date.now()
         })
       : commentsActions.write({
           postId,
@@ -21,7 +21,7 @@ export default ({ postId, user, parentCommentId }) => {
           userName: user.name,
           userPicture: user.image,
           message: comment.value,
-          timestamp: new Date().toLocaleString()
+          timestamp: Date.now()
         });
   };
 
