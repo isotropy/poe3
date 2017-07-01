@@ -183,5 +183,6 @@ export default {
       timestamp: 0
     }
   ],
-  identities: [{ service: "google", serviceId: "s_dali", id: "sadali" }]
+  identities: [{ service: "google", serviceId: "s_dali", id: "sadali" }],
+  sessions: [{ userId: "sadali", sessionId: "1", validity: 1798926878615 }]
 };

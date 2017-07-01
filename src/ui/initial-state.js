@@ -1,7 +1,7 @@
 export default {
   posts: [],
   auth: {
-    sessionId: 1
+    sessionId: "1"
   },
   login: {
     serviceProvider: "default",

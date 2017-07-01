@@ -1,4 +1,3 @@
-// reads comments from db
 import db from "./db";
 import idGenerator from "./helpers/id-generator";
 

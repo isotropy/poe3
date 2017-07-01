@@ -30,8 +30,8 @@ const updatePosts = async (results, userId) => {
   });
 };
 
-export async function getFeed(userId) {
-  const posts = await postsAPI.getFeed(userId);
+export async function getFeed(sessionId) {
+  const { posts, userId } = await postsAPI.getFeed(sessionId);
   updatePosts(posts, userId);
 }
 
@@ -47,7 +47,6 @@ export async function getPost(postId) {
 
 export async function getPostsByUser(userId) {
   const posts = await postsAPI.getPostsByUser(userId);
-  console.log(posts)
   updatePosts(posts);
 }
 

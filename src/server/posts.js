@@ -2,6 +2,7 @@ import db from "./db";
 import fs from "./fs";
 import idGenerator from "./helpers/id-generator";
 import * as likes from "./likes";
+import * as APIAuth from "./helpers/api-auth";
 import exception from "./exception";
 
 export async function getInterestingPosts(userId = "dfault") {
@@ -9,11 +10,14 @@ export async function getInterestingPosts(userId = "dfault") {
   return db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
 }
 
-export async function getFeed(userId) {
-  const feeds = db.homeFeed
-    .filter(feedItem => feedItem.userId === userId)
-    .map(f => f.postId);
-  return db.posts.filter(p => feeds.includes(p.id));
+export async function getFeed(sessionId) {
+  return await APIAuth.validate(sessionId, async userId => {
+    const feeds = db.homeFeed
+      .filter(feedItem => feedItem.userId === userId)
+      .map(f => f.postId);
+    const posts = db.posts.filter(p => feeds.includes(p.id));
+    return { posts, userId };
+  });
 }
 
 function getFileExtension(filename) {
