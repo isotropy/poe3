@@ -50,11 +50,11 @@ export async function login(service, serviceId) {
 export async function getMyProfile(userId) {
   const user = db.users.find(u => u.id === userId);
   const notifications = db.notifications.filter(i => i.userId === userId);
-  const activity = db.activity.filter(i => i.userId === userId);
+  const activities = db.activity.filter(i => i.userId === userId);
   return {
     user,
     notifications,
-    activity
+    activities
   };
 }
 
