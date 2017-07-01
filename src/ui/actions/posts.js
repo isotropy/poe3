@@ -17,12 +17,10 @@ const updatePosts = async (results, userId) => {
   updateState("posts", state => posts);
 
   posts.forEach(async barePost => {
-    const comments = await commentsActions.getFullComment(barePost.id);
     const likes = await likesAPI.getLikes(barePost.id);
 
     const post = {
       ...barePost,
-      comments,
       likes
     };
 

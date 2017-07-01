@@ -1,22 +1,22 @@
 export default {
   posts: [],
   auth: {
-    sessionId: 0
+    sessionId: 1
   },
   login: {
     serviceProvider: "default",
     loginSuccess: false,
     providerId: "",
     name: "",
-    id: ""    
+    id: ""
   },
   user: {
-    // userFullName: "Salvador Dali",
-    // id: "sadali",
-    // follows: [1],
-    // likes: ["p1", "p2"],
-    // notifications: [],
-    // activities: []
+    userFullName: "Salvador Dali",
+    id: "sadali",
+    follows: [1],
+    likes: ["p1", "p2"],
+    notifications: [],
+    activities: []
   },
   write: {
     haiku: "",
@@ -33,7 +33,7 @@ export default {
     likes: []
   },
   menu: {
-    visible: false,
+    visible: true,
     items: [
       { key: "write", text: "Write" },
       { key: "home", text: "Home" },

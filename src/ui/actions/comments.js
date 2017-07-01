@@ -20,6 +20,13 @@ export async function toggleComments(postId) {
   );
 }
 
+export async function getCommentByPost(postId) {
+  const comments = await getFullComment(postId);
+  updateState("posts", state =>
+    state.map(p => (p.id === postId ? { ...p, comments } : p))
+  );
+}
+
 export async function getFullComment(postId) {
   const ungroupedComments = await commentsAPI.getByPost(postId);
   const imagedUngroupedComments = await Promise.all(

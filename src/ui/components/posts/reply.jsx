@@ -5,9 +5,10 @@ export default ({ postId, user, parentCommentId }) => {
   let comment = "";
 
   const postComment = () => {
-    parentComment
+    parentCommentId
       ? commentsActions.write({
           postId,
+          parentCommentId,
           userId: user.id,
           userName: user.name,
           userPicture: user.image,
@@ -16,7 +17,6 @@ export default ({ postId, user, parentCommentId }) => {
         })
       : commentsActions.write({
           postId,
-          parentCommentId,
           userId: user.id,
           userName: user.name,
           userPicture: user.image,
