@@ -20,7 +20,7 @@ function getFileExtension(filename) {
 }
 
 function getFilenameWithoutExtension(filename) {
-  return filename.substring(0, filename.lastIndexOf("."))
+  return filename.substring(0, filename.lastIndexOf("."));
 }
 
 export async function create(haiku) {
@@ -28,21 +28,24 @@ export async function create(haiku) {
   const id = idGenerator("p");
 
   if (haiku.imageData) {
-    const uploadedFilename =
-      getFilenameWithoutExtension(haiku.imageFilename) +
-      "." +
-      getFileExtension(haiku.imageFilename);
-
-    const lowercaseFilename = uploadedFilename.toLowerCase();
-
+    const lowerCaseFilename = haiku.imageFilename.toLowerCase();
     //See if the filename already exists
     const exists = fs.images.some(
-      file => file.dir === haiku.userId && file.filename === lowercaseFilename
+      file => file.dir === haiku.userId && file.filename === lowerCaseFilename
     );
 
     const filename = exists
-      ? `${lowercaseFilename}-${idGenerator("", 8)}`
-      : lowercaseFilename;
+      ? () => {
+          const filenameWithoutExtension = getFilenameWithoutExtension(
+            lowerCaseFilename
+          );
+          const extension = getFileExtension(lowerCaseFilename);
+          return `${filenameWithoutExtension}-${idGenerator("i", 8, {
+            lowerCase: true,
+            numeric: true
+          })}-${extension}`;
+        }
+      : lowerCaseFilename;
 
     const fullFilePath = `${haiku.userId}/${filename}`;
 
@@ -56,7 +59,7 @@ export async function create(haiku) {
 
     fs.images = fs.images.concat({
       dir: haiku.userId,
-      filename: imageFilename,
+      filename: filename,
       contents: haiku.imageData
     });
   } else {
