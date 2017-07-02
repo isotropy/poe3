@@ -1,7 +1,7 @@
-import bashoProfile from "../site/dev/images/basho/profile";
-import yasumaroProfile from "../site/dev/images/yasumaro/profile";
-import issaProfile from "../site/dev/images/issa/profile";
-import noguchiProfile from "../site/dev/images/noguchi/profile";
+import bashoProfile from "../site/dev/images/basho/basho";
+import yasumaroProfile from "../site/dev/images/yasumaro/yasumaro";
+import issaProfile from "../site/dev/images/issa/issa";
+import noguchiProfile from "../site/dev/images/noguchi/noguchi";
 
 import theScream_Munch from "../site/dev/images/basho/the-scream-munch";
 import woman_Kooning from "../site/dev/images/basho/woman-kooning";
