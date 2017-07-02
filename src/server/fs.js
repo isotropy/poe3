@@ -1,29 +1,68 @@
-import The_Scream from "../site/dev/images/posts/The_Scream";
-import woman_kooning from "../site/dev/images/posts/woman-kooning";
-import dali from "../site/dev/images/users/dali";
-import munch from "../site/dev/images/users/munch";
+import bashoProfile from "../site/dev/images/basho/profile";
+import yasumaroProfile from "../site/dev/images/yasumaro/profile";
+import issaProfile from "../site/dev/images/issa/profile";
+import noguchiProfile from "../site/dev/images/noguchi/profile";
+
+import theScream_Munch from "../site/dev/images/basho/the-scream-munch";
+import woman_Kooning from "../site/dev/images/basho/woman-kooning";
+import waterLilies_Monet from "../site/dev/images/yasumaro/water-lilies-monet";
 
 export default {
   images: [
     {
-      filename: "The_Scream",
-      dir: "0",
-      contents: The_Scream
+      filename: "basho.jpg",
+      dir: "basho",
+      contents: bashoProfile
     },
     {
-      filename: "dali",
-      dir: "sadali/profile",
-      contents: dali
+      filename: "yasumaro.jpg",
+      dir: "yasumaro",
+      contents: yasumaroProfile
     },
     {
-      filename: "munch",
-      dir: "munch/profile",
-      contents: munch
+      filename: "issa.jpg",
+      dir: "issa",
+      contents: issaProfile
     },
     {
-      filename: "woman-kooning",
-      dir: "0",
-      contents: woman_kooning
-    }
+      filename: "noguchi.jpg",
+      dir: "noguchi",
+      contents: noguchiProfile
+    },
+    {
+      filename: "profile-small.jpg",
+      dir: "basho",
+      contents: bashoProfile
+    },
+    {
+      filename: "profile-small.jpg",
+      dir: "yasumaro",
+      contents: yasumaroProfile
+    },
+    {
+      filename: "profile-small.jpg",
+      dir: "issa",
+      contents: issaProfile
+    },
+    {
+      filename: "profile-small.jpg",
+      dir: "noguchi",
+      contents: noguchiProfile
+    },
+    {
+      filename: "the-scream-munch.jpg",
+      dir: "basho",
+      contents: theScream_Munch
+    },
+    {
+      filename: "woman-kooning.jpg",
+      dir: "basho",
+      contents: woman_Kooning
+    },
+    {
+      filename: "water-lilies-monet.jpg",
+      dir: "yasumaro",
+      contents: waterLilies_Monet
+    },
   ]
 };

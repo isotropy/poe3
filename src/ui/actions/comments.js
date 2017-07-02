@@ -32,7 +32,7 @@ export async function getFullComment(postId) {
   const imagedUngroupedComments = await Promise.all(
     ungroupedComments.map(async ungroupedComment => ({
       ...ungroupedComment,
-      userPictureData: await imageAPI.getImage(ungroupedComment.userPicture)
+      userImageData: await imageAPI.getImage(ungroupedComment.userImage)
     }))
   );
   const groupedComments = ramda.groupBy(c => c.parentCommentId || "root")(

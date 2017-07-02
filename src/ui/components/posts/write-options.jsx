@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { updateState } from "redux-jetpack";
 import { connect } from "redux-jetpack";
-import { CirclePicker } from "react-color";
+import { ColorPicker } from "react-color";
 import * as postsActions from "../../actions/posts";
 
 class Options extends Component {
@@ -15,7 +15,7 @@ class Options extends Component {
     postsActions.showImageUpload();
   }
 
-  colorChange({ hex }) {
+  backgroundColorChange({ hex }) {
     postsActions.storeBackgroundColor(hex);
   }
 
@@ -94,8 +94,8 @@ class Options extends Component {
               onClick={e => this.showImageUpload(e)}
             />
             <div>
-              <CirclePicker
-                onChangeComplete={color => this.colorChange(color)}
+              <ColorPicker
+                onChangeComplete={color => this.backgroundColorChange(color)}
               />
             </div>
             <input
@@ -103,7 +103,7 @@ class Options extends Component {
               value="Send Haiku Home"
               onClick={e =>
                 this.props.createPost({
-                  color: this.props.backgroundColor
+                  backgroundColor: this.props.backgroundColor
                 })}
             />
           </div>}

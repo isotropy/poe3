@@ -11,7 +11,7 @@ export default ({ postId, user, parentCommentId }) => {
           parentCommentId,
           userId: user.id,
           userName: user.name,
-          userPicture: user.image,
+          userImage: user.image,
           message: comment.value,
           timestamp: Date.now()
         })
@@ -19,7 +19,7 @@ export default ({ postId, user, parentCommentId }) => {
           postId,
           userId: user.id,
           userName: user.name,
-          userPicture: user.image,
+          userImage: user.image,
           message: comment.value,
           timestamp: Date.now()
         });

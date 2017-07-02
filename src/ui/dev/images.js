@@ -18,8 +18,11 @@ function scheduleImageUpdate(mutation) {
 }
 
 function refreshImages() {
-  const images = document.querySelectorAll("img:not([data-inlined])");
-  console.log("IMG", images);
+  const images = document.querySelectorAll("img :not([data-inlined])");
+  const backgrounds = document.querySelectorAll(
+    ".bg-image :not([data-inlined]"
+  );
+  console.log("IMG", images, backgrounds);
 }
 
 // configuration of the observer:
