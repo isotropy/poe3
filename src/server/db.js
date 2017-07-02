@@ -31,7 +31,7 @@ export default {
       userFullName: "Matsuo Bashō",
       title: "Slow reverberation",
       lines: "The slow reverberation\nSplits the silence\nShatters the soul",
-      image: "/images/matsuo/the-scream-munch.jpg",
+      image: "/images/basho/the-scream-munch.jpg",
       timestamp: 1497498441691,
       likeCount: 0
     },
@@ -66,6 +66,7 @@ export default {
       title: "The Moth",
       lines:
         "This moth saw brightness\nin a woman's chamber\nburnt to a crisp.",
+      image: "/images/issa/no-5-pollock.jpg",
       backgroundColor: "#22512e",
       timestamp: 1497498441691,
       likeCount: 0

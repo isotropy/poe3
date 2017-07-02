@@ -4,7 +4,7 @@ import * as imageAPI from "../../server/images";
 import * as likesAPI from "../../server/likes";
 import * as commentsActions from "./comments";
 
-const updatePosts = async (results, userId) => {
+async function updatePosts(results, userId) {
   const posts = results.map(result => ({
     ...result,
     likes: {},

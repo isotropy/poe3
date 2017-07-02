@@ -24,6 +24,7 @@ class Write extends Component {
     postsActions
       .createPost({
         ...visualOptions,
+        title: this.props.write.haiku.split("\n")[0],
         userFullName: this.props.user.user.userFullName,
         userId: this.props.user.user.id,
         type: "haiku",
