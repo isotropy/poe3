@@ -1,7 +1,6 @@
 const fs = require("fs");
 const fsExtra = require("fs-extra");
 const path = require("path");
-const btoa = require("btoa");
 const mkdirp = require("mkdirp");
 
 function allFilesSync(dir, fileList = []) {
@@ -49,16 +48,13 @@ function convertToBase64(dirPath, file) {
   const targetDir = path.dirname(destPath);
   const targetFileWithoutExt = path.basename(destPath, path.extname(destPath));
 
-  console.log("---", targetFileWithoutExt);
-
   //make sure target exists
   mkdirp.sync(targetDir);
 
   //read
-  const contents = fs.readFileSync(resolvedPath).toString();
-  const jsFileContents = template(btoa(contents));
-  console.log(jsFileContents);
-
+  const contents = fs.readFileSync(resolvedPath);
+  const jsFileContents = template(contents.toString("base64"));
+  
   fs.writeFileSync(
     path.join(targetDir, `${targetFileWithoutExt}.js`),
     jsFileContents
