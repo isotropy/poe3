@@ -11,10 +11,10 @@ export default {
     id: ""
   },
   user: {
-    userFullName: "Salvador Dali",
-    id: "sadali",
-    follows: [1],
-    likes: ["p1", "p2"],
+    userFullName: "Matsuo Bashō",
+    id: "basho",
+    follows: ["issa"],
+    likes: ["p1", "p5"],
     notifications: [],
     activities: []
   },

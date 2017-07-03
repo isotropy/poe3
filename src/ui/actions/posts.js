@@ -35,8 +35,8 @@ export async function getFeed(sessionId) {
   updatePosts(posts, userId);
 }
 
-export async function getInterestingPosts(userId) {
-  const posts = await postsAPI.getInterestingPosts(userId);
+export async function getInterestingPosts(sessionId) {
+  const { posts, userId } = await postsAPI.getInterestingPosts(sessionId);
   updatePosts(posts, userId);
 }
 

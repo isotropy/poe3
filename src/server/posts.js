@@ -5,9 +5,14 @@ import * as likes from "./likes";
 import * as APIAuth from "./helpers/api-auth";
 import exception from "./exception";
 
-export async function getInterestingPosts(userId = "dfault") {
-  const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
-  return db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
+export async function getInterestingPosts(sessionId) {
+  return await APIAuth.validate(sessionId, getInterestingPosts);
+
+  function getInterestingPosts(userId = "basho") {
+    const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
+    const posts = db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
+    return { posts, userId };
+  }
 }
 
 export async function getFeed(sessionId) {
@@ -18,14 +23,6 @@ export async function getFeed(sessionId) {
     const posts = db.posts.filter(p => feeds.includes(p.id));
     return { posts, userId };
   });
-}
-
-function getFileExtension(filename) {
-  return filename.substring(filename.lastIndexOf("."));
-}
-
-function getFilenameWithoutExtension(filename) {
-  return filename.substring(0, filename.lastIndexOf("."));
 }
 
 export async function create(haiku) {
@@ -89,4 +86,12 @@ export async function getPost(postId) {
 
 export async function getPostsByUser(userId) {
   return db.posts.filter(post => post.userId === userId);
+}
+
+function getFileExtension(filename) {
+  return filename.substring(filename.lastIndexOf("."));
+}
+
+function getFilenameWithoutExtension(filename) {
+  return filename.substring(0, filename.lastIndexOf("."));
 }
