@@ -265,7 +265,7 @@ export default {
       timestamp: 0
     }
   ],
-  activity: [
+  activities: [
     {
       userId: "basho",
       type: "like",

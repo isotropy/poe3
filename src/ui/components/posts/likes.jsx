@@ -13,16 +13,8 @@ class Like extends Component {
 
   handleClick = () => {
     this.props.user.likes.includes(this.props.post.id)
-      ? likesActions.unLike(
-          this.props.user.id,
-          this.props.user.userFullName,
-          this.props.post.id
-        )
-      : likesActions.like(
-          this.props.user.id,
-          this.props.user.userFullName,
-          this.props.post.id
-        );
+      ? likesActions.unLike(this.props.sessionId, this.props.post.id)
+      : likesActions.like(this.props.sessionId, this.props.post.id);
   };
 
   toggleLikes() {
@@ -47,7 +39,11 @@ class Like extends Component {
                 {this.props.post.likes.map(like =>
                   <li key={`likes_${like.postId}${like.userId}`}>
                     <a href={`/profile/${like.userId}`}>
-                      {like.userFullName} <Follow />
+                      {like.userFullName}{" "}
+                      <Follow
+                        sessionId={this.props.sessionId}
+                        profileId={like.userId}
+                      />
                     </a>
                   </li>
                 )}

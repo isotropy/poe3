@@ -3,10 +3,10 @@ import { updateState } from "redux-jetpack";
 import * as commentsAPI from "../../server/comments";
 import * as imageAPI from "../../server/images";
 
-export async function write(comment) {
-  const results = await commentsAPI.write(comment);
+export async function write(sessionId, comment) {
+  const results = await commentsAPI.write(sessionId, comment);
 
-  const comments = await getFullComment(comment.postId);
+  const comments = await getFullComment(sessionId, comment.postId);
   updateState("posts", state =>
     state.map(p => (p.id === comment.postId ? { ...p, comments } : p))
   );
@@ -20,23 +20,17 @@ export async function toggleComments(postId) {
   );
 }
 
-export async function getCommentByPost(postId) {
-  const comments = await getFullComment(postId);
+export async function getCommentByPost(sessionId, postId) {
+  const comments = await getFullComment(sessionId, postId);
   updateState("posts", state =>
     state.map(p => (p.id === postId ? { ...p, comments } : p))
   );
 }
 
-export async function getFullComment(postId) {
-  const ungroupedComments = await commentsAPI.getByPost(postId);
-  const imagedUngroupedComments = await Promise.all(
-    ungroupedComments.map(async ungroupedComment => ({
-      ...ungroupedComment,
-      userImageData: await imageAPI.getImage(ungroupedComment.userImage)
-    }))
-  );
+export async function getFullComment(sessionId, postId) {
+  const ungroupedComments = await commentsAPI.getByPost(sessionId, postId);
   const groupedComments = ramda.groupBy(c => c.parentCommentId || "root")(
-    imagedUngroupedComments
+    ungroupedComments
   );
   return groupedComments.root
     ? groupedComments.root.reduce(

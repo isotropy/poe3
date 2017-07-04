@@ -6,11 +6,16 @@ class MyPosts extends Component {
   render() {
     return !this.props.posts
       ? <div>Loading</div>
-      : <Posts posts={this.props.posts} user={this.props.user} />;
+      : <Posts
+          posts={this.props.posts}
+          user={this.props.user}
+          sessionId={this.props.auth.sessionId}
+        />;
   }
 }
 
 export default connect(MyPosts, state => ({
   user: state.user,
-  posts: state.posts
+  posts: state.posts,
+  auth: state.auth
 }));

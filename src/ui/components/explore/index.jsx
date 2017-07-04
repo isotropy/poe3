@@ -10,9 +10,17 @@ class Explore extends Component {
 
   render() {
     return this.props.posts.length > 0
-      ? <Posts posts={this.props.posts} user={this.props.user} />
+      ? <Posts
+          posts={this.props.posts}
+          user={this.props.user}
+          sessionId={this.props.auth.sessionId}
+        />
       : <div>Thing is loading.</div>;
   }
 }
 
-export default connect(Explore, state => state);
+export default connect(Explore, state => ({
+  user: state.user,
+  posts: state.posts,
+  auth: state.auth
+}));

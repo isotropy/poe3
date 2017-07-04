@@ -1,62 +1,79 @@
 import db from "./db";
 import * as activitiesAPI from "./activities";
 import * as notificationsAPI from "./notifications";
+import * as APIAuth from "./helpers/api-auth";
 
-export async function getLikes(postId) {
-  return db.likes.filter(like => like.postId === postId);
+export async function getLikes(sessionId, postId) {
+  return await APIAuth.validate(sessionId, getLikes, postId);
+
+  function getLikes(userId, postId) {
+    return db.likes.filter(like => like.postId === postId);
+  }
 }
 
-export async function unLike(userId, userFullName, postId) {
-  const user = db.users.find(user => user.id === userId);
-  const likes = user.likes;
+export async function unlike(sessionId, postId) {
+  return await APIAuth.validate(sessionId, unlike, postId);
 
-  //Decrement likeCount on post
-  db.posts = db.posts.map(
-    post =>
-      post.id === postId ? { ...post, likeCount: post.likeCount - 1 } : post
-  );
+  function unlike(userId, postId) {
+    const user = db.users.find(user => user.id === userId);
+    const likes = user.likes;
 
-  //remove like from likes table
-  db.likes = db.likes.filter(
-    like => like.postId !== postId || like.userId !== userId
-  );
+    //Decrement likeCount on post
+    db.posts = db.posts.map(
+      post =>
+        post.id === postId ? { ...post, likeCount: post.likeCount - 1 } : post
+    );
 
-  //Update likes on user table
-  const userLikes = likes.replace(postId, "");
+    //remove like from likes table
+    db.likes = db.likes.filter(
+      like => like.postId !== postId || like.userId !== userId
+    );
 
-  db.users = db.users.map(
-    u => (u.userId === userId ? { ...u, likes: userLikes } : u)
-  );
+    //Update likes on user table
+    const userLikes = likes.replace(postId, "");
 
-  return {
-    likes: db.likes.filter(like => like.postId === postId),
-    likeCount: db.posts.find(post => post.id === postId).likeCount,
-    userLikes
-  };
+    db.users = db.users.map(
+      u => (u.userId === userId ? { ...u, likes: userLikes } : u)
+    );
+
+    activitiesAPI.unlike(userId, postId);
+
+    return {
+      likes: db.likes.filter(like => like.postId === postId),
+      likeCount: db.posts.find(post => post.id === postId).likeCount,
+      userLikes
+    };
+  }
 }
 
-export async function like(userId, userFullName, postId) {
-  const user = db.users.filter(user => user.id === userId);
-  const likes = user.likes;
-  //Increment likeCount on post
-  db.posts = db.posts.map(
-    post =>
-      post.id === postId ? { ...post, likeCount: post.likeCount + 1 } : post
-  );
+export async function like(sessionId, postId) {
+  return await APIAuth.validate(sessionId, like, postId);
 
-  //add like to likes table
-  db.likes = db.likes.concat({ userId, postId });
+  function like(userId, postId) {
+    const user = db.users.filter(user => user.id === userId);
+    const likes = user.likes;
+    //Increment likeCount on post
+    db.posts = db.posts.map(
+      post =>
+        post.id === postId ? { ...post, likeCount: post.likeCount + 1 } : post
+    );
 
-  //Update likes on user table
-  const userLikes = likes + "," + postId;
+    //add like to likes table
+    db.likes = db.likes.concat({ userId, postId });
 
-  db.users = db.users.map(
-    u => (u.userId === userId ? { ...u, likes: userLikes } : u)
-  );
+    //Update likes on user table
+    const userLikes = likes + "," + postId;
 
-  return {
-    likes: db.likes.filter(like => like.postId === postId),
-    likeCount: db.posts.find(post => post.id === postId).likeCount,
-    userLikes
-  };
+    db.users = db.users.map(
+      u => (u.userId === userId ? { ...u, likes: userLikes } : u)
+    );
+
+    activitiesAPI.like(userId, postId);
+
+    return {
+      likes: db.likes.filter(like => like.postId === postId),
+      likeCount: db.posts.find(post => post.id === postId).likeCount,
+      userLikes
+    };
+  }
 }

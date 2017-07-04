@@ -6,18 +6,16 @@ export default ({ postId, user, parentCommentId }) => {
 
   const postComment = () => {
     parentCommentId
-      ? commentsActions.write({
+      ? commentsActions.write(sessionId, {
           postId,
           parentCommentId,
-          userId: user.id,
           userName: user.name,
           userImage: user.image,
           message: comment.value,
           timestamp: Date.now()
         })
-      : commentsActions.write({
+      : commentsActions.write(sessionId, {
           postId,
-          userId: user.id,
           userName: user.name,
           userImage: user.image,
           message: comment.value,

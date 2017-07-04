@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Likes from "./likes";
 import Comments from "./comments";
 
-export default ({ post, user }) => {
+export default ({ post, user, sessionId }) => {
   return (
     <li
       className="post"
@@ -18,8 +18,7 @@ export default ({ post, user }) => {
               backgroundColor: post.backgroundColor || "none"
             }
           : {})
-      }}
-    >
+      }}>
       <ul className="lines">
         {post.lines.split("\n").map((line, i) =>
           <li key={`line_${i}`}>
@@ -27,8 +26,8 @@ export default ({ post, user }) => {
           </li>
         )}
       </ul>
-      <Likes post={post} user={user} />
-      <Comments post={post} user={user} />
+      <Likes post={post} user={user} sessionId={sessionId} />
+      <Comments post={post} user={user} sessionId={sessionId} />
     </li>
   );
 };

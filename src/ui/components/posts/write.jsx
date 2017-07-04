@@ -22,11 +22,11 @@ class Write extends Component {
 
   createPost(visualOptions) {
     postsActions
-      .createPost({
+      .createPost(this.props.auth.sessionId, {
         ...visualOptions,
-        title: this.props.write.haiku.split("\n")[0],
-        userFullName: this.props.user.user.userFullName,
-        userId: this.props.user.user.id,
+        title: this.props.write.haiku[0],
+        userFullName: this.props.user.userFullName,
+        userId: this.props.user.id,
         type: "haiku",
         lines: this.props.write.haiku,
         timestamp: Date.now()
@@ -44,8 +44,7 @@ class Write extends Component {
             backgroundImage: `url(${this.props.write.image})` || "none",
             backgroundColor: this.props.write.backgroundColor || "aliceblue",
             backgroundSize: "cover"
-          }}
-        >
+          }}>
           <div
             contentEditable="true"
             className="write"
@@ -58,7 +57,12 @@ class Write extends Component {
               </a>
             </li>
             <li>
-              <a href="#" onClick={this.saveHaiku}>
+              <a
+                href="#"
+                onClick={e =>
+                  this.createPost({
+                    backgroundColor: "aliceblue"
+                  })}>
                 Post Haiku
               </a>
             </li>
@@ -70,5 +74,6 @@ class Write extends Component {
 
 export default connect(Write, state => ({
   user: state.user,
-  write: state.write
+  write: state.write,
+  auth: state.auth
 }));

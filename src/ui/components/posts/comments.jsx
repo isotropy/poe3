@@ -11,7 +11,7 @@ class Comments extends Component {
   }
 
   toggleComments() {
-    commentsActions.getCommentByPost(this.props.post.id);
+    commentsActions.getCommentByPost(this.props.sessionId, this.props.post.id);
     commentsActions.toggleComments(this.props.post.id);
   }
 
@@ -30,7 +30,7 @@ class Comments extends Component {
                           <Comment
                             comment={c}
                             key={`${this.props.post.id}${c.id}`}
-                          />{" "}
+                          />
                           {c.children.map(cc =>
                             <Comment
                               comment={cc}

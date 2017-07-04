@@ -7,8 +7,14 @@ import Follow from "./follow";
 
 class Profiles extends Component {
   componentWillMount() {
-    usersActions.getProfile(this.props.match.params.userId);
-    postsActions.getPostsByUser(this.props.match.params.userId);
+    usersActions.getProfile(
+      this.props.auth.sessionId,
+      this.props.match.params.userId
+    );
+    postsActions.getPostsByUser(
+      this.props.auth.sessionId,
+      this.props.match.params.userId
+    );
   }
 
   render() {

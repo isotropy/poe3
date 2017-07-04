@@ -4,54 +4,28 @@ import * as imageAPI from "../../server/images";
 import * as likesAPI from "../../server/likes";
 import * as commentsActions from "./comments";
 
-async function updatePosts(results, userId) {
-  const posts = results.map(result => ({
-    ...result,
-    likes: {},
-    comments: [],
-    isPostLiked: false,
-    isLikesOpen: false,
-    isCommentsOpen: false
-  }));
-
-  updateState("posts", state => posts);
-
-  posts.forEach(async barePost => {
-    const likes = await likesAPI.getLikes(barePost.id);
-
-    const post = {
-      ...barePost,
-      likes
-    };
-
-    updateState("posts", state =>
-      state.map(p => (p.id === post.id ? post : p))
-    );
-  });
-};
-
 export async function getFeed(sessionId) {
   const { posts, userId } = await postsAPI.getFeed(sessionId);
-  updatePosts(posts, userId);
+  updatePosts(sessionId, posts, userId);
 }
 
 export async function getInterestingPosts(sessionId) {
   const { posts, userId } = await postsAPI.getInterestingPosts(sessionId);
-  updatePosts(posts, userId);
+  updatePosts(sessionId, posts, userId);
 }
 
-export async function getPost(postId) {
-  const post = await postsAPI.getPost(postId);
-  updatePosts([post]);
+export async function getPost(sessionId, postId) {
+  const post = await postsAPI.getPost(sessionId, postId);
+  updatePosts(sessionId, [post]);
 }
 
-export async function getPostsByUser(userId) {
-  const posts = await postsAPI.getPostsByUser(userId);
-  updatePosts(posts);
+export async function getPostsByUser(sessionId, userId) {
+  const posts = await postsAPI.getPostsByUser(sessionId, userId);
+  updatePosts(sessionId, posts);
 }
 
-export async function createPost(haiku) {
-  const results = await postsAPI.create(haiku);
+export async function createPost(sessionId, haiku) {
+  const results = await postsAPI.create(sessionId, haiku);
 }
 
 export async function storeBackgroundColor(backgroundColor) {
@@ -97,3 +71,29 @@ export async function storeImage(imageData, imageFilename) {
 export async function clearState(image) {
   updateState("write", state => ({}));
 }
+
+async function updatePosts(sessionId, results, userId) {
+  const posts = results.map(result => ({
+    ...result,
+    likes: {},
+    comments: [],
+    isPostLiked: false,
+    isLikesOpen: false,
+    isCommentsOpen: false
+  }));
+
+  updateState("posts", state => posts);
+
+  posts.forEach(async barePost => {
+    const likes = await likesAPI.getLikes(sessionId, barePost.id);
+
+    const post = {
+      ...barePost,
+      likes
+    };
+
+    updateState("posts", state =>
+      state.map(p => (p.id === post.id ? post : p))
+    );
+  });
+};

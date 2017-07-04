@@ -10,8 +10,8 @@ import Activity from "./activity";
 
 class MyProfile extends Component {
   componentWillMount() {
-    usersActions.getMyProfile(this.props.user.id);
-    postsActions.getPostsByUser(this.props.user.id);
+    usersActions.getMyProfile(this.props.auth.sessionId);
+    postsActions.getPostsByUser(this.props.auth.sessionId, this.props.user.id);
   }
 
   render() {
@@ -47,5 +47,6 @@ class MyProfile extends Component {
 
 export default connect(MyProfile, state => ({
   user: state.user,
-  posts: state.posts
+  posts: state.posts,
+  auth: state.auth
 }));
