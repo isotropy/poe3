@@ -2,12 +2,16 @@ import { updateState } from "redux-jetpack";
 import * as likesAPI from "../../server/likes";
 
 export async function like(sessionId, postId) {
-  const { likes, likeCount, userLikes } = await likesAPI.like(
+  const { likes, likeCount, userLikes, error } = await likesAPI.like(
     sessionId,
     postId
   );
 
-  // const likes = await likesAPI.getLikes(postId);
+  if (error) {
+    updateState("error", state => error)
+    return
+  }
+
   updateState("posts", state =>
     state.map(p => (p.id === postId ? { ...p, likes, likeCount } : p))
   );
@@ -19,12 +23,16 @@ export async function like(sessionId, postId) {
 }
 
 export async function unlike(sessionId, postId) {
-  const { likes, likeCount, userLikes } = await likesAPI.unlike(
+  const { likes, likeCount, userLikes, error } = await likesAPI.unlike(
     sessionId,
     postId
   );
 
-  // const likes = await likesAPI.getLikes(postId);
+  if (error) {
+    updateState("error", state => error)
+    return
+  }
+
   updateState("posts", state =>
     state.map(p => (p.id === postId ? { ...p, likes, likeCount } : p))
   );

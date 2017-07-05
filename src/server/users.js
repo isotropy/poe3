@@ -68,7 +68,6 @@ export async function login(service, serviceId, success) {
 
   return user
     ? {
-        error: null,
         sessionId: idGenerator("s"),
         user
       }

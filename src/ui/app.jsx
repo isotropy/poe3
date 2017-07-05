@@ -11,6 +11,7 @@ import Write from "./components/posts/write";
 import MyProfile from "./components/profiles/my-profile";
 import Tags from "./components/tags";
 import Menu from "./components/menu";
+import Error from "./components/error";
 import devModeImages from "./dev/images";
 
 export default store => () =>
@@ -30,6 +31,7 @@ export default store => () =>
             <Route exact path="/tags" component={Tags} />
           </Switch>
           <Menu />
+          <Error />
         </div>
       </Router>
     </div>
