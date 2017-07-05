@@ -12,7 +12,7 @@ export async function like(userId, postId) {
   });
 }
 
-export async function removeLike(userId, postId) {
+export async function unlike(userId, postId) {
   db.activities = db.activities.filter(
     !(a => a.userId === userId && JSON.parse(a.data).post.id === postId)
   );

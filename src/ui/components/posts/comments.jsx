@@ -11,7 +11,7 @@ class Comments extends Component {
   }
 
   toggleComments() {
-    commentsActions.getCommentByPost(this.props.sessionId, this.props.post.id);
+    commentsActions.getCommentByPost(this.props.post.id);
     commentsActions.toggleComments(this.props.post.id);
   }
 

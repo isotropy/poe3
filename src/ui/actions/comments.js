@@ -20,15 +20,15 @@ export async function toggleComments(postId) {
   );
 }
 
-export async function getCommentByPost(sessionId, postId) {
-  const comments = await getFullComment(sessionId, postId);
+export async function getCommentByPost(postId) {
+  const comments = await getFullComment(postId);
   updateState("posts", state =>
     state.map(p => (p.id === postId ? { ...p, comments } : p))
   );
 }
 
-export async function getFullComment(sessionId, postId) {
-  const ungroupedComments = await commentsAPI.getByPost(sessionId, postId);
+export async function getFullComment(postId) {
+  const ungroupedComments = await commentsAPI.getByPost(postId);
   const groupedComments = ramda.groupBy(c => c.parentCommentId || "root")(
     ungroupedComments
   );

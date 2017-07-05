@@ -13,7 +13,7 @@ class Like extends Component {
 
   handleClick = () => {
     this.props.user.likes.includes(this.props.post.id)
-      ? likesActions.unLike(this.props.sessionId, this.props.post.id)
+      ? likesActions.unlike(this.props.sessionId, this.props.post.id)
       : likesActions.like(this.props.sessionId, this.props.post.id);
   };
 

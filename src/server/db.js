@@ -280,5 +280,6 @@ export default {
     }
   ],
   identities: [{ service: "google", serviceId: "matsuo.basho", id: "basho" }],
-  sessions: [{ userId: "basho", sessionId: "1", validity: 1798926878615 }]
+  sessions: [{ userId: "basho", sessionId: "1", validity: 1798926878615 }],
+  errorLog: []
 };

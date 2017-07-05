@@ -3,32 +3,23 @@ import fs from "./fs";
 import idGenerator from "./helpers/id-generator";
 import * as likes from "./likes";
 import * as APIAuth from "./helpers/api-auth";
-import exception from "./exception";
 
-export async function getInterestingPosts(sessionId) {
-  return await APIAuth.validate(sessionId, getInterestingPosts);
-
-  function getInterestingPosts(userId = "basho") {
-    const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
-    const posts = db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
-    return { posts, userId };
-  }
+export async function getInterestingPosts(userId = "basho") {
+  const feeds = db.exploreFeed.filter(feedItem => feedItem.userId === userId);
+  const posts = db.posts.filter(p => feeds.map(f => f.postId).includes(p.id));
+  return posts;
 }
 
-export async function getFeed(sessionId) {
-  return await APIAuth.validate(sessionId, getFeed);
-
-  function getFeed(userId) {
-    const feeds = db.homeFeed
-      .filter(feedItem => feedItem.userId === userId)
-      .map(f => f.postId);
-    const posts = db.posts.filter(p => feeds.includes(p.id));
-    return { posts, userId };
-  }
+export async function getFeed(userId) {
+  const feeds = db.homeFeed
+    .filter(feedItem => feedItem.userId === userId)
+    .map(f => f.postId);
+  const posts = db.posts.filter(p => feeds.includes(p.id));
+  return posts;
 }
 
 export async function create(sessionId, haiku) {
-  return await APIAuth.validate(sessionId, create, haiku)
+  return await APIAuth.validate(sessionId, create, haiku);
 
   function create(userId, haiku) {
     const lines = haiku.lines.join("\n");
@@ -45,8 +36,7 @@ export async function create(sessionId, haiku) {
         ? () => {
             //See if the filename already exists
             const exists = fs.images.some(
-              file =>
-                file.dir === userId && file.filename === lowerCaseFilename
+              file => file.dir === userId && file.filename === lowerCaseFilename
             );
 
             const filename = exists
@@ -72,7 +62,7 @@ export async function create(sessionId, haiku) {
               contents: haiku.imageData
             });
           }
-        : exception("Invalid filename.");
+        : { error: { code: 500, message: "Invalid filename for image." } };
     } else {
       db.posts = db.posts.concat({
         ...haiku,
@@ -84,16 +74,12 @@ export async function create(sessionId, haiku) {
   }
 }
 
-export async function getPost(sessionId, postId) {
-  return await APIAuth.validate(sessionId, getPost, postId)
-
-  function getPost(userId, postId) {
-    return db.posts.find(p => p.id === postId);
-  }
+export async function getPost(postId) {
+  return db.posts.find(p => p.id === postId);
 }
 
 export async function getPostsByUser(sessionId, userIdForPosts) {
-  return await APIAuth.validate(sessionId, getPostsByUser, userIdForPosts)
+  return await APIAuth.validate(sessionId, getPostsByUser, userIdForPosts);
 
   function getPostsByUser(userId, userIdForPosts) {
     return db.posts.filter(post => post.userId === userIdForPosts);

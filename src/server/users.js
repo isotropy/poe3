@@ -76,8 +76,7 @@ export async function login(service, serviceId, success) {
         error: {
           code: 403,
           message: "Register to continue."
-        },
-        sessionId: idGenerator("s")
+        }
       };
 }
 

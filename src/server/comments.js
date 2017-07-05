@@ -14,10 +14,6 @@ export async function write(sessionId, comment) {
   }
 }
 
-export async function getByPost(sessionId, postId) {
-  return await APIAuth.validate(sessionId, getByPost, postId);
-
-  function getByPost(userId, postId) {
-    return db.comments.filter(comment => comment.postId === postId);
-  }
+export async function getByPost(postId) {
+  return db.comments.filter(comment => comment.postId === postId);
 }

@@ -18,23 +18,19 @@ export async function loadUser(sessionId) {
 }
 
 export async function getMyProfile(sessionId) {
-  return await APIAuth.validate(sessionId, getMyProfile)
+  const { user, notifications, activities } = await usersAPI.getMyProfile(
+    sessionId
+  );
+  updateState("user", state => ({
+    notifications,
+    activities,
+    ...user,
+    follows: user.follows ? user.follows.split(",") : [],
+    likes: user.likes ? user.likes.split(",") : []
+  }));
 
-  function getMyProfile(userId) {
-    const { user, notifications, activities } = await usersAPI.getMyProfile(
-      sessionId
-    );
-    updateState("user", state => ({
-      notifications,
-      activities,
-      ...user,
-      follows: user.follows ? user.follows.split(",") : [],
-      likes: user.likes ? user.likes.split(",") : []
-    }));
-
-    const imageData = await imagesAPI.getProfileImage(userId);
-    updateState("user", state => ({ ...state, imageData }));
-  }
+  // const imageData = await imagesAPI.getProfileImage(userId);
+  updateState("user", state => ({ ...state/*, imageData*/ }));
 }
 
 export async function login(success, service, serviceId) {

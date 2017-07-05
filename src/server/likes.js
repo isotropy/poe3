@@ -3,12 +3,8 @@ import * as activitiesAPI from "./activities";
 import * as notificationsAPI from "./notifications";
 import * as APIAuth from "./helpers/api-auth";
 
-export async function getLikes(sessionId, postId) {
-  return await APIAuth.validate(sessionId, getLikes, postId);
-
-  function getLikes(userId, postId) {
-    return db.likes.filter(like => like.postId === postId);
-  }
+export async function getLikes(postId) {
+  return db.likes.filter(like => like.postId === postId);
 }
 
 export async function unlike(sessionId, postId) {

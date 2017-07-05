@@ -4,24 +4,24 @@ import * as imageAPI from "../../server/images";
 import * as likesAPI from "../../server/likes";
 import * as commentsActions from "./comments";
 
-export async function getFeed(sessionId) {
-  const { posts, userId } = await postsAPI.getFeed(sessionId);
-  updatePosts(sessionId, posts, userId);
+export async function getFeed(userId) {
+  const posts = await postsAPI.getFeed(userId);
+  updatePosts(posts, userId);
 }
 
-export async function getInterestingPosts(sessionId) {
-  const { posts, userId } = await postsAPI.getInterestingPosts(sessionId);
-  updatePosts(sessionId, posts, userId);
+export async function getInterestingPosts(userId) {
+  const posts = await postsAPI.getInterestingPosts(userId);
+  updatePosts(posts, userId);
 }
 
-export async function getPost(sessionId, postId) {
-  const post = await postsAPI.getPost(sessionId, postId);
-  updatePosts(sessionId, [post]);
+export async function getPost(postId) {
+  const post = await postsAPI.getPost(postId);
+  updatePosts([post]);
 }
 
 export async function getPostsByUser(sessionId, userId) {
   const posts = await postsAPI.getPostsByUser(sessionId, userId);
-  updatePosts(sessionId, posts);
+  updatePosts(posts);
 }
 
 export async function createPost(sessionId, haiku) {
@@ -72,7 +72,7 @@ export async function clearState(image) {
   updateState("write", state => ({}));
 }
 
-async function updatePosts(sessionId, results, userId) {
+async function updatePosts(results, userId) {
   const posts = results.map(result => ({
     ...result,
     likes: {},
@@ -85,7 +85,7 @@ async function updatePosts(sessionId, results, userId) {
   updateState("posts", state => posts);
 
   posts.forEach(async barePost => {
-    const likes = await likesAPI.getLikes(sessionId, barePost.id);
+    const likes = await likesAPI.getLikes(barePost.id);
 
     const post = {
       ...barePost,
