@@ -20,8 +20,13 @@ function scheduleImageUpdate(mutation) {
 function refreshImages() {
   const images = document.querySelectorAll("img :not([data-inlined])");
   const backgrounds = document.querySelectorAll(
-    ".bg-image :not([data-inlined]"
+    ".bg-image:not([data-inlined]"
   );
+  backgrounds.forEach(elem => {
+    const style = elem.currentStyle || window.getComputedStyle(elem, false);
+    const url = style.backgroundImage.slice(4, -1);
+    console.log("url ->", url);
+  })
   console.log("IMG", images, backgrounds);
 }
 

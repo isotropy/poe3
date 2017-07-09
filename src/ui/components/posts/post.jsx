@@ -5,7 +5,7 @@ import Comments from "./comments";
 export default ({ post, user, sessionId }) => {
   return (
     <li
-      className="post"
+      className={["post"].concat(post.image ? ["bg-image"] : []).join(" ")}
       style={{
         ...(post.image
           ? {
@@ -18,7 +18,8 @@ export default ({ post, user, sessionId }) => {
               backgroundColor: post.backgroundColor || "none"
             }
           : {})
-      }}>
+      }}
+    >
       <ul className="lines">
         {post.lines.split("\n").map((line, i) =>
           <li key={`line_${i}`}>

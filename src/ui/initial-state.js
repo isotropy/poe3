@@ -1,14 +1,14 @@
 export default {
   posts: [],
   auth: {
-    sessionId: ""
+    sessionId: "2093409"
   },
   login: {
-    serviceProvider: "default",
-    loginSuccess: false,
-    providerId: "",
-    name: "",
-    id: ""
+    serviceProvider: "google",
+    loginSuccess: true,
+    providerId: "blah",
+    name: "LALA",
+    id: "dada"
   },
   user: {
     userFullName: "Matsuo Bashō",
