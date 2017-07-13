@@ -1,6 +1,6 @@
 import db from "../db";
 
-const errorHandle = (identifier, callback) => {
+function handleError(identifier, callback) {
   db.errorLog = db.errorLog.concat({
     identifier,
     type: "Failed Authentication",
@@ -13,5 +13,5 @@ export async function validate(sessionId, callback, ...args) {
   const session = db.sessions.find(s => s.sessionId === sessionId);
   return session
     ? callback(session.userId, ...args)
-    : errorHandle({ sessionId }, callback);
+    : handleError({ sessionId }, callback);
 }
