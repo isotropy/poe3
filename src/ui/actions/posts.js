@@ -24,6 +24,11 @@ export async function getPostsByUser(sessionId, userId) {
   updatePosts(posts);
 }
 
+export async function getPostsByTag(tag) {
+  const posts = await postsAPI.getPostsByTag(tag);
+  updatePosts(posts);
+}
+
 export async function createPost(sessionId, haiku) {
   const results = await postsAPI.create(sessionId, haiku);
 }

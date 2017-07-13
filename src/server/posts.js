@@ -86,6 +86,15 @@ export async function getPostsByUser(sessionId, userIdForPosts) {
   }
 }
 
+export async function getPostsByTag(tag) {
+  return db.posts.filter(
+    post =>
+      post.lines.trim().split(/\s+/).find(word => word.startsWith(`#${tag}`))
+        ? post
+        : false
+  );
+}
+
 function getFileExtension(filename) {
   return filename.substring(filename.lastIndexOf("."));
 }
