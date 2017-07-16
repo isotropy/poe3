@@ -54,7 +54,7 @@ function convertToBase64(dirPath, file) {
   //read
   const contents = fs.readFileSync(resolvedPath);
   const jsFileContents = template(contents.toString("base64"));
-  
+
   fs.writeFileSync(
     path.join(targetDir, `${targetFileWithoutExt}.js`),
     jsFileContents

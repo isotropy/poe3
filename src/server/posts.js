@@ -56,11 +56,8 @@ export async function create(sessionId, haiku) {
               likeCount: 0
             });
 
-            fs.images = fs.images.concat({
-              dir: userId,
-              filename: filename,
-              contents: haiku.imageData
-            });
+            fs.images[`${userId/filename}`] = haiku.imageData
+            fs.images = fs.images
           }
         : { error: { code: 500, message: "Invalid filename for image." } };
     } else {

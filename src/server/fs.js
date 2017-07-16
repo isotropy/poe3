@@ -6,63 +6,57 @@ import noguchiProfile from "../site/dev/images/noguchi/noguchi";
 import theScream_Munch from "../site/dev/images/basho/the-scream-munch";
 import woman_Kooning from "../site/dev/images/basho/woman-kooning";
 import waterLilies_Monet from "../site/dev/images/yasumaro/water-lilies-monet";
+import no_5_pollock from "../site/dev/images/issa/no-5-pollock";
 
 export default {
   images: [
     {
-      filename: "basho.jpg",
-      dir: "basho",
+      path: "basho/basho.jpg",
       contents: bashoProfile
     },
     {
-      filename: "yasumaro.jpg",
-      dir: "yasumaro",
+      path: "yasumaro/yasumaro.jpg",
       contents: yasumaroProfile
     },
     {
-      filename: "issa.jpg",
-      dir: "issa",
+      path: "issa/issa.jpg",
       contents: issaProfile
     },
     {
-      filename: "noguchi.jpg",
-      dir: "noguchi",
+      path: "noguchi/noguchi.jpg",
       contents: noguchiProfile
     },
     {
-      filename: "profile-small.jpg",
-      dir: "basho",
+      path: "basho/profile-small.jpg",
       contents: bashoProfile
     },
     {
-      filename: "profile-small.jpg",
-      dir: "yasumaro",
+      path: "yasumaro/profile-small.jpg",
       contents: yasumaroProfile
     },
     {
-      filename: "profile-small.jpg",
-      dir: "issa",
+      path: "issa/profile-small.jpg",
       contents: issaProfile
     },
     {
-      filename: "profile-small.jpg",
-      dir: "noguchi",
+      path: "noguchi/profile-small.jpg",
       contents: noguchiProfile
     },
     {
-      filename: "the-scream-munch.jpg",
-      dir: "basho",
+      path: "basho/the-scream-munch.jpg",
       contents: theScream_Munch
     },
     {
-      filename: "woman-kooning.jpg",
-      dir: "basho",
+      path: "basho/woman-kooning.jpg",
       contents: woman_Kooning
     },
     {
-      filename: "water-lilies-monet.jpg",
-      dir: "yasumaro",
+      path: "yasumaro/water-lilies-monet.jpg",
       contents: waterLilies_Monet
     },
+    {
+      path: "issa/no-5-pollock.jpg",
+      contents: no_5_pollock
+    }
   ]
 };

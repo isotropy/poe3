@@ -1,3 +1,4 @@
+import { getImage } from "../../server/images";
 // select the target node
 const target = document.getElementById("container");
 
@@ -9,6 +10,7 @@ const observer = new MutationObserver(function(mutations) {
 });
 
 let nextUpdate = 0;
+
 function scheduleImageUpdate(mutation) {
   const timeNow = Date.now();
   if (nextUpdate <= timeNow) {
@@ -19,19 +21,23 @@ function scheduleImageUpdate(mutation) {
 
 function refreshImages() {
   const images = document.querySelectorAll("img :not([data-inlined])");
-  const backgrounds = document.querySelectorAll(
-    ".bg-image:not([data-inlined]"
-  );
-  backgrounds.forEach(elem => {
+  const backgrounds = document.querySelectorAll(".bg-image:not([data-inlined]");
+  backgrounds.forEach(async elem => {
     const style = elem.currentStyle || window.getComputedStyle(elem, false);
-    const url = style.backgroundImage.slice(4, -1);
-    console.log("url ->", url);
-  })
-  console.log("IMG", images, backgrounds);
+    const data = await getImage(
+      /\/images\/(.*)"\)/.exec(style.backgroundImage)[1]
+    );
+    const base64Data = btoa(data);
+    elem.attributes.style.nodeValue = `background-image: url("data:image/jpg;base64,${base64Data}")`;
+  });
 }
 
 // configuration of the observer:
-const config = { attributes: true, childList: true, characterData: true };
+const config = {
+  attributes: true,
+  childList: true,
+  characterData: true
+};
 
 // pass in the target node, as well as the observer options
 observer.observe(target, config);
