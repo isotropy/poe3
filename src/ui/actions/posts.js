@@ -4,14 +4,15 @@ import * as imageAPI from "../../server/images";
 import * as likesAPI from "../../server/likes";
 import * as commentsActions from "./comments";
 
-export async function getFeed(userId) {
-  const posts = await postsAPI.getFeed(userId);
-  updatePosts(posts, userId);
+export async function getFeed(sessionId) {
+  const { error, results } = await postsAPI.getFeed(sessionId);
+  if (error) updateState("error", state => error);
+  else updatePosts(results);
 }
 
 export async function getInterestingPosts(userId) {
   const posts = await postsAPI.getInterestingPosts(userId);
-  updatePosts(posts, userId);
+  updatePosts(posts);
 }
 
 export async function getPost(postId) {
@@ -20,8 +21,9 @@ export async function getPost(postId) {
 }
 
 export async function getPostsByUser(sessionId, userId) {
-  const posts = await postsAPI.getPostsByUser(sessionId, userId);
-  updatePosts(posts);
+  const { error, results } = await postsAPI.getPostsByUser(sessionId, userId);
+  if (error) updateState("error", state => error);
+  else updatePosts(results);
 }
 
 export async function getPostsByTag(tag) {
@@ -30,7 +32,8 @@ export async function getPostsByTag(tag) {
 }
 
 export async function createPost(sessionId, haiku) {
-  const results = await postsAPI.create(sessionId, haiku);
+  const { error, results } = await postsAPI.create(sessionId, haiku);
+  if (error) updateState("error", state => error);
 }
 
 export async function storeBackgroundColor(backgroundColor) {
@@ -77,7 +80,7 @@ export async function clearState(image) {
   updateState("write", state => ({}));
 }
 
-async function updatePosts(results, userId) {
+async function updatePosts(results) {
   const posts = results.map(result => ({
     ...result,
     likes: {},
@@ -101,4 +104,4 @@ async function updatePosts(results, userId) {
       state.map(p => (p.id === post.id ? post : p))
     );
   });
-};
+}

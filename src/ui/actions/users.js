@@ -3,8 +3,12 @@ import * as imagesAPI from "../../server/images";
 import * as postsAPI from "../../server/posts";
 import { updateState } from "redux-jetpack";
 
-export async function getProfile(sessionId) {
-  const results = await usersAPI.getProfile(sessionId);
+export async function getProfile(sessionId, userIdForProfile) {
+  const { error, results } = await usersAPI.getProfile(
+    sessionId,
+    userIdForProfile
+  );
+  if (error) updateState("error", state => error);
   updateState("viewProfile", state => results);
 }
 
@@ -30,7 +34,7 @@ export async function getMyProfile(sessionId) {
   }));
 
   // const imageData = await imagesAPI.getProfileImage(userId);
-  updateState("user", state => ({ ...state/*, imageData*/ }));
+  updateState("user", state => ({ ...state /*, imageData*/ }));
 }
 
 export async function login(success, service, serviceId) {

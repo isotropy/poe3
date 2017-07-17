@@ -17,7 +17,7 @@ export async function getMyProfile(sessionId) {
   function getMyProfile(userId) {
     const user = db.users.find(u => u.id === userId);
     const notifications = db.notifications.filter(i => i.userId === userId);
-    const activities = db.activity.filter(i => i.userId === userId);
+    const activities = db.activities.filter(i => i.userId === userId);
     return {
       user,
       notifications,
@@ -26,11 +26,11 @@ export async function getMyProfile(sessionId) {
   }
 }
 
-export async function getProfile(sessionId, userIdForProfiles) {
-  return await APIAuth.validate(sessionId, getProfile, userIdForProfiles);
+export async function getProfile(sessionId, userIdForProfile) {
+  return await APIAuth.validate(sessionId, getProfile, userIdForProfile);
 
-  function getProfile(userId, userIdForProfiles) {
-    return db.users.find(u => u.id === userIdForProfiles);
+  function getProfile(userId, userIdForProfile) {
+    return { results: db.users.find(u => u.id === userIdForProfile) };
   }
 }
 

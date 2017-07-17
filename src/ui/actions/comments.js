@@ -4,7 +4,9 @@ import * as commentsAPI from "../../server/comments";
 import * as imageAPI from "../../server/images";
 
 export async function write(sessionId, comment) {
-  const results = await commentsAPI.write(sessionId, comment);
+  const { error, results } = await commentsAPI.write(sessionId, comment);
+
+  if (error) updateState("error", state => error);
 
   const comments = await getFullComment(sessionId, comment.postId);
   updateState("posts", state =>

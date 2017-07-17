@@ -26,7 +26,7 @@ export default store => () =>
             <Route path="/home" component={Home} />
             <Route path="/explore" component={Explore} />
             <Route path="/posts/:postId" component={Post} />
-            <Route path="/profiles/:profile" component={Profiles} />
+            <Route path="/profile/:userId" component={Profiles} />
             <Route path="/my-profile" component={MyProfile} />
             <Route exact path="/tagged/:tag" component={Tags} />
           </Switch>

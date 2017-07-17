@@ -2,7 +2,7 @@ import { updateState } from "redux-jetpack";
 import * as likesAPI from "../../server/likes";
 
 export async function like(sessionId, postId) {
-  const { likes, likeCount, userLikes, error } = await likesAPI.like(
+  const { error, likes, likeCount, userLikes } = await likesAPI.like(
     sessionId,
     postId
   );
@@ -23,7 +23,7 @@ export async function like(sessionId, postId) {
 }
 
 export async function unlike(sessionId, postId) {
-  const { likes, likeCount, userLikes, error } = await likesAPI.unlike(
+  const { error, likes, likeCount, userLikes } = await likesAPI.unlike(
     sessionId,
     postId
   );

@@ -24,11 +24,11 @@ function refreshImages() {
   const backgrounds = document.querySelectorAll(".bg-image:not([data-inlined]");
   backgrounds.forEach(async elem => {
     const style = elem.currentStyle || window.getComputedStyle(elem, false);
-    const data = await getImage(
-      /\/images\/(.*)"\)/.exec(style.backgroundImage)[1]
-    );
+    const filePath = /\/images\/(.*)"\)/.exec(style.backgroundImage)[1];
+    const format = /[^\.]+$/.exec(filePath)[0];
+    const data = await getImage(filePath);
     const base64Data = btoa(data);
-    elem.attributes.style.nodeValue = `background-image: url("data:image/jpg;base64,${base64Data}")`;
+    elem.attributes.style.nodeValue = `background-image: url("data:image/${format};base64,${base64Data}")`;
   });
 }
 

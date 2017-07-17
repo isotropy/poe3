@@ -5,7 +5,7 @@ import Posts from "../posts/posts";
 
 class Home extends Component {
   componentWillMount() {
-    postsActions.getFeed(this.props.user.id);
+    postsActions.getFeed(this.props.auth.sessionId);
   }
 
   render() {

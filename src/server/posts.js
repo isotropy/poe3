@@ -10,12 +10,16 @@ export async function getInterestingPosts(userId = "basho") {
   return posts;
 }
 
-export async function getFeed(userId) {
-  const feeds = db.homeFeed
-    .filter(feedItem => feedItem.userId === userId)
-    .map(f => f.postId);
-  const posts = db.posts.filter(p => feeds.includes(p.id));
-  return posts;
+export async function getFeed(sessionId) {
+  return await APIAuth.validate(sessionId, getFeed);
+
+  function getFeed(userId) {
+    const feeds = db.homeFeed
+      .filter(feedItem => feedItem.userId === userId)
+      .map(f => f.postId);
+    const posts = db.posts.filter(p => feeds.includes(p.id));
+    return { results: posts };
+  }
 }
 
 export async function create(sessionId, haiku) {
@@ -56,8 +60,8 @@ export async function create(sessionId, haiku) {
               likeCount: 0
             });
 
-            fs.images[`${userId/filename}`] = haiku.imageData
-            fs.images = fs.images
+            fs.images[`${userId / filename}`] = haiku.imageData;
+            fs.images = fs.images;
           }
         : { error: { code: 500, message: "Invalid filename for image." } };
     } else {
@@ -79,7 +83,7 @@ export async function getPostsByUser(sessionId, userIdForPosts) {
   return await APIAuth.validate(sessionId, getPostsByUser, userIdForPosts);
 
   function getPostsByUser(userId, userIdForPosts) {
-    return db.posts.filter(post => post.userId === userIdForPosts);
+    return { results: db.posts.filter(post => post.userId === userIdForPosts) };
   }
 }
 
