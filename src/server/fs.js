@@ -11,51 +11,63 @@ import no_5_pollock from "../site/dev/images/issa/no-5-pollock";
 export default {
   images: [
     {
-      path: "basho/basho.jpg",
+      dir: "basho/",
+      path: "basho.jpg",
       contents: bashoProfile
     },
     {
-      path: "yasumaro/yasumaro.jpg",
+      dir: "yasumaro/",
+      filename: "yasumaro.jpg",
       contents: yasumaroProfile
     },
     {
-      path: "issa/issa.jpg",
+      dir: "issa/",
+      filename: "issa.jpg",
       contents: issaProfile
     },
     {
-      path: "noguchi/noguchi.jpg",
+      dir: "noguchi/",
+      filename: "noguchi.jpg",
       contents: noguchiProfile
     },
     {
-      path: "basho/profile-small.jpg",
+      dir: "basho/",
+      filename: "profile-small.jpg",
       contents: bashoProfile
     },
     {
-      path: "yasumaro/profile-small.jpg",
+      dir: "yasumaro/",
+      filename: "profile-small.jpg",
       contents: yasumaroProfile
     },
     {
-      path: "issa/profile-small.jpg",
+      dir: "issa/",
+      filename: "profile-small.jpg",
       contents: issaProfile
     },
     {
-      path: "noguchi/profile-small.jpg",
+      dir: "noguchi/",
+      filename: "profile-small.jpg",
       contents: noguchiProfile
     },
     {
-      path: "basho/the-scream-munch.jpg",
+      dir: "basho/",
+      filename: "the-scream-munch.jpg",
       contents: theScream_Munch
     },
     {
-      path: "basho/woman-kooning.jpg",
+      dir: "basho/",
+      filename: "woman-kooning.jpg",
       contents: woman_Kooning
     },
     {
-      path: "yasumaro/water-lilies-monet.jpg",
+      dir: "yasumaro/",
+      filename: "water-lilies-monet.jpg",
       contents: waterLilies_Monet
     },
     {
-      path: "issa/no-5-pollock.jpg",
+      dir: "issa/",
+      filename: "no-5-pollock.jpg",
       contents: no_5_pollock
     }
   ]
