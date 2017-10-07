@@ -1,7 +1,7 @@
 {
   "name": "poe3",
   "version": "0.0.1",
-  "author": "Jeswin<jeswinpk@agilehead.com>",
+  "author": "Isotropy Team<isotropy@agilehead.com>",
   "scripts": {
     "start": "webpack-dev-server",
     "update-images": "node scripts/update-images.js",
